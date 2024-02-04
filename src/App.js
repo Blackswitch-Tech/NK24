@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router } from "react-router-dom";
+import { Navbar } from "./components/Navbar";
+import { RouterPaths } from "./components/router";
+import useReady from "./components/useReady";
+import { Loader } from "./components/loader";
+import { getAnalytics, logEvent } from "firebase/analytics";
+import "./App.css";
+const analytics = getAnalytics();
+logEvent(analytics, "received");
 
 function App() {
+  const { ready } = useReady(3000);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {ready !== true ? (
+        <Loader />
+      ) : (
+        <Router>
+          <Navbar />
+          <RouterPaths />
+        </Router>
+      )}
     </div>
   );
 }
