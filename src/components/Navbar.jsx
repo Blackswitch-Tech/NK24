@@ -6,7 +6,7 @@ const navigation = [
   { name: "Home", href: "#", current: true },
   { name: "Events", href: "#", current: false },
   { name: "About", href: "#", current: false },
-  { name: "Calendar", href: "#", current: false },
+  { name: "Profile", href: "#", current: false },
 ];
 
 function classNames(...classes) {
@@ -17,6 +17,8 @@ export default function Navbar() {
   // icon import
   const HamburgerIcon =
     "https://cdn.discordapp.com/attachments/1194336677548802058/1204080633077301248/Hamburger.png";
+  const CloseIcon =
+    "https://cdn.discordapp.com/attachments/1194336677548802058/1204136278199894097/Close.png";
   const NK24Logo =
     "https://firebasestorage.googleapis.com/v0/b/nk23-a5689.appspot.com/o/Compressed%2Fnk23logobright.webp?alt=media&token=8105818c-4e72-437c-8e5c-5f79e995a694";
   const SignInIcon =
@@ -26,29 +28,33 @@ export default function Navbar() {
     <Disclosure as="nav" className="bg-transsparent">
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-            <div className="relative flex h-16 items-center justify-between">
+          <div className="mx-auto max-w-full p-2 pt-3 sm:p-6 lg:px-8">
+            <div className="relative flex h-12 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
-                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                <Disclosure.Button className="relative inline-flex items-center justify-center p-2">
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
                   {open ? (
-                    <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                    <div className="block ml-1 h-10 w-10" aria-hidden="true">
+                      <img src={CloseIcon} alt="Menu icon" />
+                    </div>
                   ) : (
-                    <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                    <div className="block h-12 w-12" aria-hidden="true">
+                      <img src={HamburgerIcon} alt="Menu Icon" />
+                    </div>
                   )}
                 </Disclosure.Button>
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
                   <img
-                    className="h-16 w-16"
+                    className="h-20 w-20 sm:h-24 sm:w-24 "
                     src={NK24Logo}
                     alt="NK24Logo"
                   />
                 </div>
-                <div className="hidden sm:ml-6 sm:block p-4">
+                <div className="hidden sm:ml-5 sm:block p-6">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
                       <a
@@ -69,7 +75,6 @@ export default function Navbar() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
@@ -77,13 +82,13 @@ export default function Navbar() {
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
                       <img
-                        className="h-12 w-12 rounded-full"
+                        className="h-12 w-12 sm:h-20 sm:w-20"
                         src={SignInIcon}
-                        alt=""
+                        alt="User Menu"
                       />
                     </Menu.Button>
                   </div>
-                  <Transition
+                  {/* <Transition
                     as={Fragment}
                     enter="transition ease-out duration-100"
                     enterFrom="transform opacity-0 scale-95"
@@ -133,13 +138,13 @@ export default function Navbar() {
                         )}
                       </Menu.Item>
                     </Menu.Items>
-                  </Transition>
+                  </Transition> */}
                 </Menu>
               </div>
             </div>
           </div>
 
-          <Disclosure.Panel className="sm:hidden">
+          {/* <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
               {navigation.map((item) => (
                 <Disclosure.Button
@@ -158,7 +163,7 @@ export default function Navbar() {
                 </Disclosure.Button>
               ))}
             </div>
-          </Disclosure.Panel>
+          </Disclosure.Panel> */}
         </>
       )}
     </Disclosure>
