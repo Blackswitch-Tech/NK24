@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 const useReady = (delay) => {
   const [ready, setReady] = useState(false);
 
-  useEffect(() => {
+  useEffect((delay) => {
     let id = setTimeout(() => {
       setReady(true);
     }, delay);
