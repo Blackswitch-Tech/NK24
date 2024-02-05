@@ -1,6 +1,7 @@
 import React from "react";
 import { lazy } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
+import SignInComponent from './signup';
 
 
 export function RouterPaths() {
@@ -8,6 +9,7 @@ export function RouterPaths() {
   return (
     
       <Routes location={location} key={location.pathname}>
+        <Route exact path="/signup" element={<SignInComponent></SignInComponent>} />
         
       </Routes>
    

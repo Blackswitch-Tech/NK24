@@ -3,6 +3,9 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { RouterPaths } from "./components/router";
 import useReady from "./components/useReady";
 import { Loader } from "./components/loader";
+
+
+
 import { getAnalytics, logEvent } from "firebase/analytics";
 import "./App.css";
 //const analytics = getAnalytics();
@@ -13,14 +16,13 @@ function App() {
 
   return (
     <div className="App">
-      {ready !== true ? (
-        <Loader />
-      ) : (
+       
         <Router>
+          
           
           <RouterPaths />
         </Router>
-      )}
+      
     </div>
   );
 }
