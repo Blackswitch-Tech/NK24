@@ -17,7 +17,6 @@ function App() {
         <Loader />
       ) : (
         <Router>
-          
           <RouterPaths />
         </Router>
       )}
