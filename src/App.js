@@ -3,6 +3,9 @@ import  Navbar  from "./components/Navbar";
 import { RouterPaths } from "./components/router";
 import useReady from "./components/useReady";
 import { Loader } from "./components/loader";
+
+
+
 import { getAnalytics, logEvent } from "firebase/analytics";
 import "./App.css";
 //const analytics = getAnalytics();
@@ -13,17 +16,19 @@ function App() {
 
   return (
     <div className="App">
-      {ready !== true ? (
-        <Loader />
-      ) : (
+       
         <Router>
+
+          
+
 
 
           <Navbar/>
 
+
           <RouterPaths />
         </Router>
-      )}
+      
     </div>
   );
 }
