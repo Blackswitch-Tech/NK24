@@ -7,12 +7,12 @@ const SignInComponent = () => {
         <p className='font-bebas'>Note: Your chosen name will be displayed on the certificate</p>
       </div>
       
-      <div className="bg-transsparent backdrop-filter backdrop-blur-lg bg-opacity-30  bg-stone p-8  rounded-lg shadow-lg sm:w-96 md:w-70 ">
+      <div className="bg-transsparent backdrop-filter backdrop-blur-lg bg-opacity-30  bg-stone p-8  rounded-2xl shadow-lg flex-initial">
         
         <div className="mb-4 ">
           
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline rounded-2xl"
+            className="shadow appearance-none border rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline rounded-2xl"
             id="displayName"
             type="text"
             placeholder="Display Name"
@@ -21,7 +21,7 @@ const SignInComponent = () => {
         <div className="mb-4 ">
           
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline rounded-2xl"
+            className="shadow appearance-none border rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline rounded-2xl"
             id="displayName"
             type="text"
             placeholder="example@gmail.com"
@@ -30,7 +30,7 @@ const SignInComponent = () => {
         <div className="mb-4 ">
           
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline rounded-2xl"
+            className="shadow appearance-none border rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline rounded-2xl"
             id="displayName"
             type="text"
             placeholder="College name"
@@ -39,7 +39,7 @@ const SignInComponent = () => {
         <div className="mb-4 ">
           
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline rounded-2xl"
+            className="shadow appearance-none border rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline rounded-2xl"
             id="displayName"
             type="text"
             placeholder="Branch"
@@ -48,7 +48,7 @@ const SignInComponent = () => {
         <div className="mb-4 ">
           
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline rounded-2xl"
+            className="shadow appearance-none border rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline rounded-2xl"
             id="displayName"
             type="text"
             placeholder="Semester"
@@ -57,7 +57,7 @@ const SignInComponent = () => {
         <div className="mb-4 ">
           
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline rounded-2xl"
+            className="shadow appearance-none border rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline rounded-2xl"
             id="displayName"
             type="text"
             placeholder="WhatsApp number"
