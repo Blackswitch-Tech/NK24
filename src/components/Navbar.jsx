@@ -25,7 +25,7 @@ export default function Navbar() {
     "https://cdn.discordapp.com/attachments/1194336677548802058/1204080632460873738/SignIn.png";
 
   return (
-    <Disclosure as="nav" className="bg-transsparent fixed top-0 w-full backdrop-filter backdrop-blur-lg bg-opacity-30">
+    <Disclosure as="nav" className="bg-transsparent fixed top-2 w-full backdrop-filter backdrop-blur-lg bg-opacity-30All z-10">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-full p-2 pt-3 sm:p-6 lg:px-8">
