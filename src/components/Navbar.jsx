@@ -25,10 +25,10 @@ export default function Navbar() {
     "https://cdn.discordapp.com/attachments/1194336677548802058/1204080632460873738/SignIn.png";
 
   return (
-    <Disclosure as="nav" className="bg-transsparent fixed  w-full backdrop-filter backdrop-blur-lg bg-opacity-30 z-10">
+    <Disclosure as="nav" className="bg-transsparent fixed  w-full backdrop-filter backdrop-blur-lg bg-opacity-30 z-10 pb-3 lg:pb-0">
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-full p-2 pt-3 sm:p-6 lg:px-8">
+          <div className="mx-auto max-w-full pt-5 sm:p-6 lg:px-8">
             <div className="relative flex h-12 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
