@@ -25,7 +25,7 @@ export default function Navbar() {
     "https://cdn.discordapp.com/attachments/1194336677548802058/1204080632460873738/SignIn.png";
 
   return (
-    <Disclosure as="nav" className="bg-transsparent fixed top-2 w-full backdrop-filter backdrop-blur-lg bg-opacity-30All z-10">
+    <Disclosure as="nav" className="bg-transsparent fixed  w-full backdrop-filter backdrop-blur-lg bg-opacity-30 z-10">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-full p-2 pt-3 sm:p-6 lg:px-8">
@@ -68,7 +68,7 @@ export default function Navbar() {
                             ? "bg-gray-900 text-white"
                             : "text-gray-300 hover:bg-gray-700 hover:text-white",
 
-                          "rounded-md px-3 py-2 text-sm font-medium"
+                          "rounded-md px-3 py-2 text-sm font-pop"
 
                         )}
                         aria-current={item.current ? "page" : undefined}

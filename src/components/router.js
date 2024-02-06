@@ -15,7 +15,7 @@ export function RouterPaths() {
     
       <Routes location={location} key={location.pathname}>
 
-        <Route exact path="/signup" element={<SignInComponent></SignInComponent>} />
+        <Route exact path="/signup" element={<SignInComponent/>} />
         
         
           <Route path="/events" element={<EventsPage />} />
