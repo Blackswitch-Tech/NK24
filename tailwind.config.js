@@ -9,6 +9,7 @@ module.exports = withMT({
       fontFamily: {
         libre: [' Protest Guerrilla ', ...defaultTheme.fontFamily.sans],
         neu:['Bebas Neue', ...defaultTheme.fontFamily.sans],
+        pop:['Poppins', ...defaultTheme.fontFamily.sans],
       }
     },
   },

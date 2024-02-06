@@ -17,7 +17,7 @@ const Technical = () => {
   return (
     <div className="w-full mt-16">
       <div className="justify-center align-middle flex">
-        <h1 className="text-white font-neu text-6xl sm:text-7xl mt-8">Technical Events</h1>
+        <h1 className="text-white font-neu text-6xl sm:text-7xl mt-8 tracking-widest">Technical Events</h1>
       </div>
       <div className="flex flex-row justify-center mx-10">
         <div class="max-w-md mx-auto w-full mt-10">
