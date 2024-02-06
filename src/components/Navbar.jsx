@@ -36,11 +36,14 @@ export default function Navbar() {
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
                   {open ? (
+
                     <div className="block ml-1 h-10 w-10 ease-in" aria-hidden="true">
                       <img src={CloseIcon} alt="Menu icon" />
                     </div>
                   ) : (
                     <div className="block h-12 w-12 ease-in" aria-hidden="true">
+
+
                       <img src={HamburgerIcon} alt="Menu Icon" />
                     </div>
                   )}
@@ -64,7 +67,9 @@ export default function Navbar() {
                           item.current
                             ? "bg-gray-900 text-white"
                             : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                          "rounded-md px-3 py-2 text-xl font-medium font-pop"
+
+                          "rounded-md px-3 py-2 text-sm font-medium"
+
                         )}
                         aria-current={item.current ? "page" : undefined}
                       >
