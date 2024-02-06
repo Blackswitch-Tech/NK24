@@ -25,7 +25,7 @@ export default function Navbar() {
     "https://cdn.discordapp.com/attachments/1194336677548802058/1204080632460873738/SignIn.png";
 
   return (
-    <Disclosure as="nav" className="bg-transsparent">
+    <Disclosure as="nav" className="bg-transsparent fixed top-0 w-full backdrop-filter backdrop-blur-lg bg-opacity-30">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-full p-2 pt-3 sm:p-6 lg:px-8">
@@ -36,11 +36,11 @@ export default function Navbar() {
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
                   {open ? (
-                    <div className="block ml-1 h-10 w-10" aria-hidden="true">
+                    <div className="block ml-1 h-10 w-10 ease-in" aria-hidden="true">
                       <img src={CloseIcon} alt="Menu icon" />
                     </div>
                   ) : (
-                    <div className="block h-12 w-12" aria-hidden="true">
+                    <div className="block h-12 w-12 ease-in" aria-hidden="true">
                       <img src={HamburgerIcon} alt="Menu Icon" />
                     </div>
                   )}

@@ -14,7 +14,7 @@ const Cultural = () => {
       { value: "Craft", label: "Craft" },
     ];
     return (
-      <div className="w-full ">
+      <div className="w-full mt-16">
         <div className="justify-center align-middle flex">
           <h1 className="text-white font-libre text-7xl mt-8">Cultural Events</h1>
         </div>
