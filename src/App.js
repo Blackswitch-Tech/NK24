@@ -17,8 +17,10 @@ function App() {
         <Loader />
       ) : (
         <Router>
-          
-          <Navbar />
+
+
+          <Navbar/>
+
           <RouterPaths />
         </Router>
       )}
