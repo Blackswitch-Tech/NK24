@@ -52,15 +52,15 @@ function Credits() {
   ];
 
   return (
-    <div className="flex flex-wrap justify-center mt-10 p-8">
+    <div className="flex flex-wrap justify-center mt-10 px-8">
       <h1 className="w-full text-center sm:z-10 mb-4 p-10 text-4xl font-extrabold leading-none tracking-tight text-red-500 md:text-5xl lg:text-6xl dark:text-white">
         Our Team
       </h1>
       {/* Mapping over team members array */}
       {teamMembers.map((member, index) => (
-        <div key={index} className="w-64 md:w-72 xl:w-80 p-2">
-          <div className="blob bg-gray-500 shadow-lg  rounded-lg py-8 text-center">
-            <div className="w-32 h-20 mx-auto mb-8 flex items-center justify-center">
+        <div key={index} className="w-64 p-2">
+          <div className="bg-gradient-to-r from-gray-900 to-red-800  rounded-lg shadow-lg py-8 text-center">
+            <div className="w-32 h-18 mx-auto mb-8 flex items-center justify-center">
               {/* <div className="w-32 h-32 bg-purple-400 rounded-full mx-auto mb-8 flex items-center justify-center"> */}
               <img
                 src={member.imgSrc}
