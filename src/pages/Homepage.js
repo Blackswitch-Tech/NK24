@@ -1,6 +1,7 @@
 import DefaultAccordion from "../components/DefaultAccordion";
 import Carouselc from "../components/Carouselc";
 
+
 export default function Homepage() {
   return (
     <div className="main-container">
@@ -19,10 +20,7 @@ export default function Homepage() {
         </div>
       </div>
       <div className="middle-section">
-                <Carouselc/>
-        <div className="w-full h-full flex  justify-left items-center">
-          <div className="text-white text-4xl w-1/2 text-center"></div>
-        </div>
+      <Carouselc/>
       </div>
       <div className="end-section mx-8">
         <div className="text-white">FAQ</div>
