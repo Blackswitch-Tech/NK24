@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-
+import { db } from "../firebase/firebase";
+import { collection, addDoc, getDoc, getDocs } from "firebase/firestore/lite";
 
 
 const Technical = () => {
   // Your component logic goes here
   const [loaded, setLoaded] = useState(false);
   const [search, setSearch] = useState("");
+  const [events, setEvents] = useState([]);
   const options = [
     { value: "Dance", label: "Dance" },
     { value: "Music", label: "Music" },
@@ -14,6 +16,20 @@ const Technical = () => {
     { value: "Literature", label: "Literature" },
     { value: "Craft", label: "Craft" },
   ];
+  useEffect(() => {
+    // Your code here
+    const getData = async () => {
+      await getDocs(collection(db, "events")).then((querySnapshot) => {
+        const newData = querySnapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        setEvents(newData.filter((event) => event.cat === "Technical"));
+        if(events.length > 0) setLoaded(true);
+      });
+    };
+    getData();
+  },[]);
   return (
     <div className="w-full bg-gradient-to-b from-gray-900 to-black">
       <div className="justify-center align-middle flex">
@@ -63,6 +79,22 @@ const Technical = () => {
 
         <div></div>
       </div>
+      <div className="flex flex-col sm:flex-row mx-10 justify-evenly flex-wrap">{loaded ? <>
+          {events.map((event) => (
+            <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
+              <img
+                class="w-full"
+                src={event.imgurl}
+                alt="Sunset in the mountains"
+              />
+              
+              
+            </div>
+          ))}
+        </> : <>
+        
+        
+        </>}</div>
     </div>
   );
 };
