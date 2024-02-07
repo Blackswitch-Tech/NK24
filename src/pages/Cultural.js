@@ -20,7 +20,7 @@ const Cultural = () => {
         </div>
         <div className="flex flex-row justify-center mx-10">
           <div class="max-w-md mx-auto w-full mt-10">
-            <div class="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
+            {/*<div class="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
               <div class="grid place-items-center h-full w-12 text-gray-300">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +45,7 @@ const Cultural = () => {
                 placeholder="Search Events"
                 onChange={(e) => setSearch(e.target.value)}
               />
-            </div>
+            </div>*/}
             <div className="mt-10">
               <div class="relative h-10">
                 <select onChange={(item)=>{console.log(item.target.value)}} class="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
