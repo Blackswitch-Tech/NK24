@@ -28,10 +28,12 @@ const Cultural = () => {
         }));
         setEvents(newData.filter((event) => event.cat === "Cultural"));
         if(events.length > 0) setLoaded(true);
+        console.log(events);
       });
     };
     getData();
   },[]);
+
   return (
     <div className="w-full bg-gradient-to-b from-gray-900 to-black">
       <div className="justify-center align-middle flex">
