@@ -1,10 +1,8 @@
 import { BrowserRouter as Router } from "react-router-dom";
-import  Navbar  from "./components/Navbar"; 
+import Navbar from "./components/Navbar";
 import { RouterPaths } from "./components/router";
 import useReady from "./components/useReady";
 import { Loader } from "./components/loader";
-
-
 
 import { getAnalytics, logEvent } from "firebase/analytics";
 import "./App.css";
@@ -16,20 +14,11 @@ function App() {
 
   return (
     <div className="App">
-       
-        <Router>
+      <Router>
+        <Navbar />
 
-
-          
-
-
-
-          <Navbar/>
-
-
-          <RouterPaths />
-        </Router>
-      
+        <RouterPaths />
+      </Router>
     </div>
   );
 }
