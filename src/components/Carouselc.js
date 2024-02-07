@@ -23,28 +23,46 @@ const sliderImageUrl = [
   //First image url
   {
     url:
-      "https://i2.wp.com/www.geeksaresexy.net/wp-content/uploads/2020/04/movie1.jpg?resize=600%2C892&ssl=1"
+      "https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Artle.jpg?alt=media&token=f5e0fc71-88c4-47a5-945c-537f48282b4f"
   },
   {
     url:
-      "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/best-kids-movies-2020-call-of-the-wild-1579042974.jpg?crop=0.9760858955588091xw:1xh;center,top&resize=480:*"
+      "https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Neo%20Graffiti.jpg?alt=media&token=50cc9156-5218-443c-96cc-6a12cbe3218a"
   },
   //Second image url
   {
     url:
-      "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/best-movies-for-kids-2020-sonic-the-hedgehog-1571173983.jpg?crop=0.9871668311944719xw:1xh;center,top&resize=480:*"
+      "https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Pencil%20Mania.jpg?alt=media&token=edf839e6-b381-4a91-8e1f-74ae52f4aa1a"
   },
   //Third image url
   {
     url:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQS82ET2bq9oTNwPOL8gqyoLoLfeqJJJWJmKQ&usqp=CAU"
+      "https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Double%20Trouble.jpg?alt=media&token=d4a489b5-c967-4485-8cd8-b7fcbc751e95"
   },
 
   //Fourth image url
+  {
+    url:
+      "https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Duo%20Dance.jpg?alt=media&token=93c5019d-651a-4140-a6ae-d538cf098378"
+  },
+  {
+    url:
+      "https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Sync%20Step1.jpg?alt=media&token=a5e09542-63aa-4d30-821a-4d43a22108ac"
+  },
+  //Second image url
+  {
+    url:
+      "https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/BASKETBALL.png?alt=media&token=38ca6811-60c7-4c6f-a5df-d7085d535220"
+  },
+  //Third image url
+  {
+    url:
+      "https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/COUNTY%20CRICKET.png?alt=media&token=aa7d8e74-97af-4d47-a0a1-fbd0c427a8c9"
+  },
 
   {
     url:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTdvuww0JDC7nFRxiFL6yFiAxRJgM-1tvJTxA&usqp=CAU"
+      "https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/FOOTBALL.png?alt=media&token=622da273-5c44-4b6c-9599-09ab37a67b32"
   }
 ];
 const Carouselc = () => {
