@@ -9,6 +9,8 @@ import EventsPage from "../pages/EventsPage";
 import Cultural from "../pages/Cultural";
 import Technical from "../pages/Technical";
 
+import Credits from "../pages/Credits";
+
 
 export function RouterPaths() {
   const location = useLocation();
@@ -25,6 +27,10 @@ export function RouterPaths() {
           <Route path="/events" element={<EventsPage />} />
           <Route path="/events/cultural" element={<Cultural />} />
           <Route path="/events/technical" element={<Technical />} />
+
+          
+          <Route path="/credits" element={<Credits />} />
+
 
 
       </Routes>
