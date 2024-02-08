@@ -1,7 +1,9 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-
+import { useNavigate } from "react-router-dom";
+import { signInWithPopup } from "firebase/auth";
+import { auth, db, provider } from "../firebase/firebase";
 const navigation = [
   { name: "Home", href: "#", current: true },
   { name: "Events", href: "#", current: false },
@@ -14,6 +16,7 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+  const nav=useNavigate();
   // icon import
   const HamburgerIcon =
     "https://cdn.discordapp.com/attachments/1194336677548802058/1204080633077301248/Hamburger.png";
@@ -23,7 +26,15 @@ export default function Navbar() {
     "https://firebasestorage.googleapis.com/v0/b/nk23-a5689.appspot.com/o/Compressed%2Fnk23logobright.webp?alt=media&token=8105818c-4e72-437c-8e5c-5f79e995a694";
   const SignInIcon =
     "https://cdn.discordapp.com/attachments/1194336677548802058/1204080632460873738/SignIn.png";
-
+  const handleSignIn=()=>{
+    signInWithPopup(auth,provider).then((res) => {
+      if(res.user){
+        nav('/signup')
+      }
+    }).catch((error) => {
+      console.log(error.message)
+    })
+  }
   return (
     <Disclosure as="nav" className="bg-transsparent fixed  w-full backdrop-filter backdrop-blur-lg bg-opacity-30 z-10 pb-3 lg:pb-0">
       {({ open }) => (
@@ -83,11 +94,12 @@ export default function Navbar() {
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="relative flex  ">
+                    <Menu.Button className="relative flex  " onClick={()=>{handleSignIn()}}>
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-12 w-12 sm:h-20 sm:w-20"
+                        
                         src={SignInIcon}
                         alt="User Menu"
                       />
