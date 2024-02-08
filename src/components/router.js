@@ -14,6 +14,7 @@ import Refund from "../pages/policy/refund";
 import Terms from "../pages/policy/terms";
 
 import Credits from "../pages/Credits";
+import UpdateProfile from "../pages/UpdateProfile";
 
 export function RouterPaths() {
   const location = useLocation();
@@ -22,13 +23,13 @@ export function RouterPaths() {
       <Route path="/" element={<Homepage />} />
 
       <Route path="/terms" element={<Terms />} />
-      <Route exact path="/signup" element={<SignInComponent />} />
+      <Route path="/signup" element={<SignInComponent />} />
       <Route path="/refund" element={<Refund />} />
       <Route path="/privacy" element={<Privacy />} />
       <Route path="/events" element={<EventsPage />} />
       <Route path="/events/cultural" element={<Cultural />} />
       <Route path="/events/technical" element={<Technical />} />
-
+      <Route path="/update_profile" element={<UpdateProfile/>}/>
       <Route path="/credits" element={<Credits />} />
     </Routes>
   );

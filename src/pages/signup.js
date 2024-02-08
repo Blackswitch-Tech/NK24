@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from 'react';
+import React, { useState, useEffect } from "react";
 import {
   Card,
   Input,
@@ -6,23 +6,23 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
-import { Loader } from '../components/loader';
+import { Loader } from "../components/loader";
 import firebase from "firebase/app";
 import "firebase/auth";
 
-import { db } from '../firebase/firebase'; // Adjust the path as necessary
-import { collection, addDoc ,doc} from 'firebase/firestore/lite';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { db } from "../firebase/firebase"; // Adjust the path as necessary
+import { collection, addDoc, doc } from "firebase/firestore/lite";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
-  const [name, setName] = useState('');
-  const nav=useNavigate();
+  const [name, setName] = useState("");
+  const nav = useNavigate();
 
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [college, setCollege] = useState('');
-  const [branch, setBranch] = useState('');
-  const [semester, setSemester] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [college, setCollege] = useState("");
+  const [branch, setBranch] = useState("");
+  const [semester, setSemester] = useState("");
   const [agreeToTerms, setAgreeToTerms] = useState(false);
   const handleCheckboxChange = (e) => {
     setAgreeToTerms(e.target.checked);
@@ -56,21 +56,21 @@ const Signup = () => {
     }
     try {
       // Add a new document in collection "users"
-      let ids=doc(collection(db,"users")).id
+      let ids = doc(collection(db, "users")).id;
       await addDoc(collection(db, "users"), {
         name: name,
         phoneNumber: phoneNumber,
         college: college,
-        email:currentUser.email,
+        email: currentUser.email,
         branch: branch,
         semester: semester,
-        registered:[],
-        refcount:0,
-        isCA:false,
-        CACode:ids,
-        NKID:`NK-${ids.substring(0,5).toUpperCase()}`
+        registered: [],
+        refcount: 0,
+        isCA: false,
+        CACode: ids,
+        NKID: `NK-${ids.substring(0, 5).toUpperCase()}`,
       });
-      nav('/')
+      nav("/");
       // Reset form or redirect user as needed
     } catch (error) {
       console.error("Error adding document: ", error);
@@ -84,7 +84,10 @@ const Signup = () => {
           <Typography variant="h4" color="white" className="text-center">
             Sign Up
           </Typography>
-          <Typography color="white" className="mt-1 mb-4 font-normal text-center">
+          <Typography
+            color="white"
+            className="mt-1 mb-4 font-normal text-center"
+          >
             Nice to meet you! Enter your details to register.
           </Typography>
           <form>
@@ -107,8 +110,6 @@ const Signup = () => {
                 </Typography>
                 <Input
                   size="lg"
-                
-                  
                   placeholder="XXXXXXXXXX"
                   value={phoneNumber}
                   onChange={(e) => setPhoneNumber(e.target.value)}
@@ -154,23 +155,38 @@ const Signup = () => {
             </div>
             <Checkbox
               label={
-                <Typography variant="small" color="gray" className="flex items-center font-normal text-white mt-4">
+                <Typography
+                  variant="small"
+                  color="gray"
+                  className="flex items-center font-normal text-white mt-4"
+                >
                   I agree to the&nbsp;
-                  <a href="#" className="font-medium transition-colors hover:text-gray-900">
+                  <a
+                    href="#"
+                    className="font-medium transition-colors hover:text-gray-900"
+                  >
                     Terms and Conditions
                   </a>
                 </Typography>
               }
               containerProps={{ className: "mt-4" }}
               onChange={handleCheckboxChange} // Attach onChange handler
-              checked={agreeToTerms} 
+              checked={agreeToTerms}
             />
-            <Button className="mt-6" fullWidth disabled={!agreeToTerms} onClick={SignupCode}>
+            <Button
+              className="mt-6"
+              fullWidth
+              disabled={!agreeToTerms}
+              onClick={SignupCode}
+            >
               Sign Up
             </Button>
             <Typography className="mt-4 text-center font-normal text-gray-50">
               Already have an account?{" "}
-              <a href="#" className="font-medium text-gray-50 hover:text-red-600">
+              <a
+                href="#"
+                className="font-medium text-gray-50 hover:text-red-600"
+              >
                 Sign In
               </a>
             </Typography>
