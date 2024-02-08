@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-
+import { db } from "../firebase/firebase";
+import { collection, addDoc, getDoc, getDocs } from "firebase/firestore/lite";
 
 
 const Technical = () => {
   // Your component logic goes here
   const [loaded, setLoaded] = useState(false);
   const [search, setSearch] = useState("");
+  const [events, setEvents] = useState([]);
   const options = [
     { value: "Dance", label: "Dance" },
     { value: "Music", label: "Music" },
@@ -14,14 +16,28 @@ const Technical = () => {
     { value: "Literature", label: "Literature" },
     { value: "Craft", label: "Craft" },
   ];
+  useEffect(() => {
+    // Your code here
+    const getData = async () => {
+      await getDocs(collection(db, "events")).then((querySnapshot) => {
+        const newData = querySnapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        setEvents(newData.filter((event) => event.cat === "Technical"));
+        setLoaded(true);  
+      });
+    };
+    getData();
+  },[]);
   return (
-    <div className="w-full bg-gradient-to-b from-gray-900 to-black">
+    <div className="bg-cover bg-fixed  bg-no-repeat sm:h-svh h-fit bg-gradient-to-b from-gray-900 to-black w-full">
       <div className="justify-center align-middle flex">
         <h1 className="text-white font-neu text-6xl sm:text-7xl mt-32 tracking-widest">Technical Events</h1>
       </div>
       <div className="flex flex-row justify-center mx-10">
         <div class="max-w-md mx-auto w-full mt-10">
-          <div class="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
+          {/*<div class="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
             <div class="grid place-items-center h-full w-12 text-gray-300">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +62,7 @@ const Technical = () => {
               placeholder="Search Events"
               onChange={(e) => setSearch(e.target.value)}
             />
-          </div>
+  </div>*/}
           <div className="mt-10">
             <div class="relative h-10">
               <select onChange={(item)=>{console.log(item.target.value)}} class="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
@@ -63,6 +79,22 @@ const Technical = () => {
 
         <div></div>
       </div>
+      <div className="flex flex-col sm:flex-row mx-10 justify-evenly flex-wrap mt-12">{loaded ? <>
+          {events.map((event) => (
+            <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
+              <img
+                class="w-full"
+                src={event.imgurl}
+                alt="Sunset in the mountains"
+              />
+              
+              
+            </div>
+          ))}
+        </> : <>
+        
+        
+        </>}</div>
     </div>
   );
 };

@@ -1,63 +1,69 @@
 import React from 'react';
 
+
 const SignInComponent = () => {
   return (
-    <div className=" min-h-screen flex flex-col items-center justify-center bg-[url('https://i.pinimg.com/736x/d9/46/d3/d946d33dc95c1b560b13cf8a78b801ba.jpg')] bg-no-repeat bg-cover bg-center" >
-      <div className="font-bebas bg-red-600 bg-opacity-75 text-white text-center p-2 mb-4 rounded-2xl shadow-md sm:w-96 md:w-70 lg:w-100">
+    <div className=" min-h-screen flex flex-col items-center justify-center bg-[url('https://i.pinimg.com/736x/d9/46/d3/d946d33dc95c1b560b13cf8a78b801ba.jpg')] bg-no-repeat bg-cover bg-fixed bg-center" >
+      <div className="font-pop  mt-24 bg-red-600 bg-opacity-75 text-white text-center p-2 mb-4 rounded-2xl shadow-md sm:w-96 md:w-70 lg:w-100">
         <p>Note: Your chosen name will be displayed on the certificate</p>
       </div>
       
-      <div className="bg-transsparent backdrop-filter backdrop-blur-lg bg-opacity-30  bg-stone p-8  rounded-lg shadow-lg sm:w-96 md:w-70 ">
+      <div className="bg-transsparent backdrop-filter backdrop-blur-lg bg-opacity-30  bg-stone pt-8 px-8 rounded-2xl shadow-lg sm:w-4/12 md:w-4/12 ">
         
         <div className="mb-4 ">
-          
+        <label for="username" className='text-white pb-2'>Display Name</label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline rounded-2xl"
+            className="shadow appearance-none border rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline rounded-2xl"
             id="displayName"
             type="text"
             placeholder="Display Name"
           />
         </div>
+        <label for="username" className='text-white pb-2'>Email</label>
         <div className="mb-4 ">
           
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline rounded-2xl"
+            className="shadow appearance-none border rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline rounded-2xl"
             id="displayName"
             type="text"
             placeholder="example@gmail.com"
           />
         </div>
+        <label for="username" className='text-white pb-2'>College Name</label>
         <div className="mb-4 ">
           
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline rounded-2xl"
+            className="shadow appearance-none border rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline rounded-2xl"
             id="displayName"
             type="text"
             placeholder="College name"
           />
         </div>
+        <label for="username" className='text-white pb-2'>Branch</label>
         <div className="mb-4 ">
           
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline rounded-2xl"
+            className="shadow appearance-none border rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline rounded-2xl"
             id="displayName"
             type="text"
             placeholder="Branch"
           />
         </div>
+        <label for="username" className='text-white pb-2'>Semester</label>
         <div className="mb-4 ">
           
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline rounded-2xl"
+            className="shadow appearance-none border rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline rounded-2xl"
             id="displayName"
             type="text"
             placeholder="Semester"
           />
         </div>
+        <label for="username" className='text-white pb-2'>WhatsApp number</label>
         <div className="mb-4 ">
           
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline rounded-2xl"
+            className="shadow appearance-none border rounded-sm w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline rounded-2xl"
             id="displayName"
             type="text"
             placeholder="WhatsApp number"
@@ -65,8 +71,8 @@ const SignInComponent = () => {
         </div>
         
         {/* Repeat above div for each form field */}
-        <div className="mb-6">
-          <button className="bg-red-500 mt-3 hover:bg-red-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline w-full">
+        <div className="mb-6 flex items-center justify-center">
+          <button className="bg-red-500 mt-3 hover:bg-red-700 center text-white font-bold py-2 px-5 rounded-lg focus:outline-none focus:shadow-outline">
             Sign up
           </button>
         </div>
