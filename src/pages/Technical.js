@@ -25,13 +25,13 @@ const Technical = () => {
           id: doc.id,
         }));
         setEvents(newData.filter((event) => event.cat === "Technical"));
-        if(events.length > 0) setLoaded(true);
+        setLoaded(true);  
       });
     };
     getData();
   },[]);
   return (
-    <div className="w-full bg-gradient-to-b from-gray-900 to-black">
+    <div className="bg-cover bg-fixed  bg-no-repeat sm:h-svh h-fit bg-gradient-to-b from-gray-900 to-black w-full">
       <div className="justify-center align-middle flex">
         <h1 className="text-white font-neu text-6xl sm:text-7xl mt-32 tracking-widest">Technical Events</h1>
       </div>
@@ -79,7 +79,7 @@ const Technical = () => {
 
         <div></div>
       </div>
-      <div className="flex flex-col sm:flex-row mx-10 justify-evenly flex-wrap">{loaded ? <>
+      <div className="flex flex-col sm:flex-row mx-10 justify-evenly flex-wrap mt-12">{loaded ? <>
           {events.map((event) => (
             <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white">
               <img

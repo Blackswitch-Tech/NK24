@@ -13,7 +13,7 @@ function App() {
   const { ready } = useReady(3000);
 
   return (
-    <div className="App">
+    <div className="App ">
       <Router>
         <Navbar />
 
