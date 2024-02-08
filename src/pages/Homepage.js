@@ -10,10 +10,10 @@ export default function Homepage() {
     <div className="main-container">
       <div
         className="upper-section flex h-screen bg-no-repeat bg-cover bg-center"
-        style={{ backgroundImage: `url(${require("./bg3.jpg")})` }}
+        style={{ backgroundImage: `url(${require("../assets/bg3.jpg")})` }}
       >
         <div className="w-full flex  backdrop-brightness-40">
-          <div className="flex w-full h-fit max-w-full justify-center mt-48 overflow-hidden ">
+          <div className="flex w-full h-fit max-w-full justify-center mt-56 overflow-hidden ">
             <div
               style={{
                 display: "flex",
@@ -72,7 +72,7 @@ export default function Homepage() {
 
       <div
         className="about-section flex h-screen bg-no-repeat bg-cover bg-center"
-        style={{ backgroundImage: `url(${require("./bottom.jpg")})` }}>
+        style={{ backgroundImage: `url(${require("../assets/bottom.jpg")})` }}>
       <div className="container mx-auto lg:mx-4 px-4 py-8  bg-cover bg-center">
       <div className="flex flex-wrap items-center">
         <div className="w-full sm:w-3/4 md:w-1/2 px-2 sm:px-4 md:order-first">
