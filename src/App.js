@@ -1,5 +1,6 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Footer from './components/Footer';
 import { RouterPaths } from "./components/router";
 import useReady from "./components/useReady";
 import { Loader } from "./components/loader";
@@ -18,6 +19,7 @@ function App() {
         <Navbar />
 
         <RouterPaths />
+        <Footer />
       </Router>
     </div>
   );
