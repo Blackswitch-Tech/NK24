@@ -9,13 +9,14 @@ html {
 }
 body{
     overflow-x: hidden;
-    background-color: black;
+    background-color: rgb(0, 0, 0);
+    
 }
 
 *::-webkit-scrollbar{
     width: 7px;
     height: 8px;
-    background-color: rgba(30, 30, 30,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 50px;
 }
 *::-webkit-scrollbar-thumb{
