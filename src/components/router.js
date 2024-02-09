@@ -3,7 +3,7 @@ import { lazy } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Homepage from "../pages/Homepage";
 
-import SignInComponent from "../pages/Signup";
+import Signup from "../pages/signup.js"
 
 import EventsPage from "../pages/EventsPage";
 import Cultural from "../pages/Cultural";
@@ -26,7 +26,7 @@ export function RouterPaths() {
          <Route path="/" element={<Homepage />} />
 
         <Route path="/terms" element={<Terms/>}/>
-        <Route exact path="/Signup" element={<SignInComponent/>} />
+        <Route exact path="/Signup" element={<Signup/>} />
         <Route path="/refund" element={<Refund />} />
         <Route path="/privacy" element={<Privacy />} />
           <Route path="/events" element={<EventsPage />} />

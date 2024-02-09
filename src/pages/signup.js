@@ -10,9 +10,9 @@ import {
  
 const Signup = () => {
   return (
-    <div className=" min-h-screen flex flex-col items-center justify-center bg-[url('https://i.pinimg.com/736x/d9/46/d3/d946d33dc95c1b560b13cf8a78b801ba.jpg')] bg-no-repeat bg-cover bg-fixed bg-center" >
-      <div className="bg-transparent bg-stone pt-8 rounded-2xl shadow-lg mx-4 sm:w-4/12 md:w-4/12 ">
-      <Card color="transparent" shadow={false}>
+    <div className=" min-h-screen  flex flex-col items-center justify-center bg-[url('https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Signupbg.jpeg?alt=media&token=94bfbc88-78f6-4c8a-a749-19fcb76fe493')] bg-no-repeat bg-cover bg-fixed bg-center" >
+      <div className=" bg-transparent bg-stone pt-8 rounded-2xl shadow-lg mx-4 sm:w-4/12 md:w-4/12 ">
+      <Card color="transparent" shadow={false} className='mt-10 md:mt-10 lg:mt-16'>
       <Typography variant="h4" color="white">
         Sign Up
       </Typography>
