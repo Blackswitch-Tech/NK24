@@ -3,6 +3,9 @@ import { lazy } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Homepage from "../pages/Homepage";
 
+import Dash from "../pages/Dash.js"
+
+
 import SignInComponent from "../pages/signup";
 
 import EventsPage from "../pages/EventsPage";
@@ -16,12 +19,23 @@ import Terms from "../pages/policy/terms";
 import Credits from "../pages/Credits";
 import UpdateProfile from "../pages/UpdateProfile";
 
+
 export function RouterPaths() {
   const location = useLocation();
   return (
-    <Routes location={location} key={location.pathname}>
-      <Route path="/" element={<Homepage />} />
 
+
+        
+
+
+
+
+      </Routes>
+   
+
+  
+      <Route path="/" element={<Homepage />} />
+<Route path="/dashboard" element={<Dash />} />
       <Route path="/terms" element={<Terms />} />
       <Route path="/signup" element={<SignInComponent />} />
       <Route path="/refund" element={<Refund />} />
@@ -32,5 +46,6 @@ export function RouterPaths() {
       <Route path="/update_profile" element={<UpdateProfile/>}/>
       <Route path="/credits" element={<Credits />} />
     </Routes>
+
   );
 }

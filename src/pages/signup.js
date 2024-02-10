@@ -78,11 +78,13 @@ const Signup = () => {
     }
   };
   return (
+
     <div className="min-h-screen flex flex-col items-center justify-center bg-[url('https://i.pinimg.com/736x/d9/46/d3/d946d33dc95c1b560b13cf8a78b801ba.jpg')] bg-no-repeat bg-cover bg-fixed bg-center">
       <div className="w-full max-w-md px-8 py-8 bg-transparent rounded-2xl shadow-lg">
         <Card color="transparent" shadow={false}>
           <Typography variant="h4" color="white" className="text-center">
             Sign Up
+
           </Typography>
           <Typography
             color="white"
