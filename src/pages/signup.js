@@ -14,11 +14,14 @@ import { db } from "../firebase/firebase"; // Adjust the path as necessary
 import { collection, addDoc, doc } from "firebase/firestore/lite";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 
-const Signup = () => {
+import { useParams } from "react-router-dom";
+const Signup = ({route}) => {
   const [name, setName] = useState("");
   const nav = useNavigate();
-
+  const location = useLocation();
+  const from = useParams().from;
   const [phoneNumber, setPhoneNumber] = useState("");
   const [college, setCollege] = useState("");
   const [branch, setBranch] = useState("");
@@ -36,14 +39,16 @@ const Signup = () => {
       setCurrentUser(user);
       setLoading(false); // Hide loader once the auth state is determined
     });
+  
 
     // Cleanup subscription on unmount
     return () => unsubscribe();
+   
   }, []);
   if (loading) {
     return <Loader />; // Render your loader component here
   }
-
+  console.log(route)
   if (!currentUser) {
     // Optionally, redirect or show a message instead
     return <div>Please sign in to access this page.</div>;
@@ -70,7 +75,14 @@ const Signup = () => {
         CACode: ids,
         NKID: `NK-${ids.substring(0, 5).toUpperCase()}`,
       });
-      nav("/");
+      if(location.search.split('=')[1])
+      {
+        nav(location.search.split('=')[1]);
+      }
+      else {
+        nav("/");
+      }
+    
       // Reset form or redirect user as needed
     } catch (error) {
       console.error("Error adding document: ", error);
