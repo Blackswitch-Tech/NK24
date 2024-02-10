@@ -89,7 +89,7 @@ export default function Homepage() {
     </div>
     </div>
 
-      <div className="end-section mx-8">
+      <div className="end-section mx-8 mt-16 lg:mt-2">
         <div className="text-white-800 font-extrabold text-5xl font-pop">FAQ</div>
         <DefaultAccordion />
       </div>
