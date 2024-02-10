@@ -25,6 +25,7 @@ const EventPage = () => {
   const [refCode, setRefcode] = useState(null);
   const [team, setTeam] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
+  const [userData,setUserData] = useState(null);
   const [needSignUp, setNeedSignUp] = useState(true);
   const nav = useNavigate();
 
@@ -48,10 +49,22 @@ const EventPage = () => {
       setCurrentUser(user);
       // Hide loader once the auth state is determined
     });
+    
+    if (currentUser) {
+      console.log(currentUser);
+      getUserByEmail(currentUser.email).then((data) => {
 
+        if (data) {
+          setNeedSignUp(false);
+        } else {
+          setNeedSignUp(true);
+        
+        }
+      });
+    }
     // Cleanup subscription on unmount
     return () => unsubscribe();
-  }, [id]);
+  }, [id,currentUser]);
 
   const handleSignIn = () => {
     signInWithPopup(auth, provider)
@@ -147,13 +160,29 @@ const EventPage = () => {
             <div className="flex flex-col md:flex-row gap-4">
               {currentUser ? (
                 <>
-                  <button
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                    onClick={() => {
-                      // Register the user
-                    }}
-                    
-                  >Regsiter</button>
+                  {needSignUp ? (
+                    <>
+                      <button
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        onClick={() => {
+                          nav(`/signup?redirect=/events/cultural/${id}`);
+                        }}
+                      >
+                        SignUp to register
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <button
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        onClick={() => {
+                          // Register the user
+                        }}
+                      >
+                        Regsiter
+                      </button>
+                    </>
+                  )}
                 </>
               ) : (
                 <>
