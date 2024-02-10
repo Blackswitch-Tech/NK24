@@ -1,9 +1,12 @@
-import { Fragment } from "react";
+import { Fragment,useState,useEffect } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
 import { signInWithPopup } from "firebase/auth";
 import { auth, db, provider } from "../firebase/firebase";
+import { collection, addDoc ,doc} from 'firebase/firestore/lite';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import {getUserByEmail} from "../utils/searchbyEmail";
 const navigation = [
   { name: "Home", href: "#", current: true },
   { name: "Events", href: "#", current: false },
@@ -17,7 +20,20 @@ function classNames(...classes) {
 
 export default function Navbar() {
   const nav=useNavigate();
+  const [loading, setLoading] = useState(true); // State to manage loading state
+  const [currentUser, setCurrentUser] = useState(null); // State to store the current user
+
   // icon import
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+       // Hide loader once the auth state is determined
+    });
+
+    // Cleanup subscription on unmount
+    return () => unsubscribe();
+  }, []);
   const HamburgerIcon =
     "https://cdn.discordapp.com/attachments/1194336677548802058/1204080633077301248/Hamburger.png";
   const CloseIcon =
@@ -26,11 +42,17 @@ export default function Navbar() {
     "https://firebasestorage.googleapis.com/v0/b/nk23-a5689.appspot.com/o/Compressed%2Fnk23logobright.webp?alt=media&token=8105818c-4e72-437c-8e5c-5f79e995a694";
   const SignInIcon =
     "https://cdn.discordapp.com/attachments/1194336677548802058/1204080632460873738/SignIn.png";
+    const UserIcon="https://www.iconpacks.net/icons/1/free-user-login-icon-305-thumb.png";
   const handleSignIn=()=>{
     signInWithPopup(auth,provider).then((res) => {
-      if(res.user){
-        nav('/signup')
-      }
+      getUserByEmail(res.user.email).then((userData) => {
+        if (userData) {
+          
+          // Proceed with user data
+        } else {
+          nav('/signup')
+        }
+      });
     }).catch((error) => {
       console.log(error.message)
     })
@@ -90,7 +112,28 @@ export default function Navbar() {
                   </div>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              {
+                currentUser ? <>
+                <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                {/* Profile dropdown */}
+                <Menu as="div" className="relative ml-3">
+                  <div>
+                    <Menu.Button className="relative flex  " onClick={()=>{console.log("success")}}>
+                      <span className="absolute -inset-1.5" />
+                      <span className="sr-only">Open user menu</span>
+                      <img
+                        className="h-12 w-12 sm:h-20 sm:w-20"
+                        
+                        src={UserIcon}
+                        alt="User Menu"
+                      />
+                    </Menu.Button>
+                  </div>
+                  
+                </Menu>
+              </div>
+                </> : <>
+                <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
@@ -105,59 +148,11 @@ export default function Navbar() {
                       />
                     </Menu.Button>
                   </div>
-                  {/* <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-100"
-                    enterFrom="transform opacity-0 scale-95"
-                    enterTo="transform opacity-100 scale-100"
-                    leave="transition ease-in duration-75"
-                    leaveFrom="transform opacity-100 scale-100"
-                    leaveTo="transform opacity-0 scale-95"
-                  >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Your Profile
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Settings
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Sign out
-                          </a>
-                        )}
-                      </Menu.Item>
-                    </Menu.Items>
-                  </Transition> */}
+                  
                 </Menu>
               </div>
+                </>
+              }
             </div>
           </div>
 
