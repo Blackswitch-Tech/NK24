@@ -8,6 +8,7 @@ import SignInComponent from "../pages/signup";
 import EventsPage from "../pages/EventsPage";
 import Cultural from "../pages/Cultural";
 import Technical from "../pages/Technical";
+import EventDescPage from "../pages/EventDescPage";
 
 import Privacy from "../pages/policy/Privacy";
 import Refund from "../pages/policy/refund";
@@ -29,6 +30,8 @@ export function RouterPaths() {
       <Route path="/events" element={<EventsPage />} />
       <Route path="/events/cultural" element={<Cultural />} />
       <Route path="/events/technical" element={<Technical />} />
+      <Route path="/events/cultural/:id" element={<EventDescPage />} />
+      <Route path="/events/cultural/:id" element={<EventDescPage />} />
       <Route path="/update_profile" element={<UpdateProfile/>}/>
       <Route path="/credits" element={<Credits />} />
     </Routes>
