@@ -9,13 +9,11 @@ const Technical = () => {
   const [loaded, setLoaded] = useState(false);
   const [search, setSearch] = useState("");
   const [events, setEvents] = useState([]);
+  const [curEvents,setCurEvents]=useState([]);
   const options = [
-    { value: "Dance", label: "Dance" },
-    { value: "Music", label: "Music" },
-    { value: "Art", label: "Art" },
-    { value: "Drama", label: "Drama" },
-    { value: "Literature", label: "Literature" },
-    { value: "Craft", label: "Craft" },
+    { value: "Competition", label: "Competition" },
+    { value: "Workshop", label: "Workshop" },
+    { value: "All", label: "All" },
   ];
   useEffect(() => {
     // Your code here
@@ -31,6 +29,16 @@ const Technical = () => {
     };
     getData();
   },[]);
+
+
+  const handleChangeCategory = (category) => {
+    if(category==="All"){
+      setCurEvents(events);
+    }
+    else {
+      setCurEvents(events.filter((event) => event.subcat === category));
+    }
+  }
   return (
     <div className="bg-cover bg-fixed bg-no-repeat h-auto min-h-screen bg-gradient-to-b from-gray-900 to-black w-full px-5">
       <div className="flex justify-center items-center pt-32">
@@ -45,7 +53,7 @@ const Technical = () => {
             <div className="relative">
               <select
                 onChange={(item) => {
-                  console.log(item.target.value);
+                  handleChangeCategory(item.target.value);
                 }}
                 className="peer h-full w-full rounded-lg bg-transparent px-3 py-2 text-sm font-normal text-white outline-none border border-gray-700 focus:ring-2 focus:ring-gray-500"
               >
@@ -64,7 +72,7 @@ const Technical = () => {
       </div>
       <div className="flex flex-wrap justify-center mx-4 my-12">
         {loaded ? (
-          events.map((event, index) => (
+          curEvents.map((event, index) => (
             <Suspense fallback={<Loader />} key={index}>
               <div className="outline-1 outline p-2 border-white hover:outline-gray-600 delay-300 ease-linear hover:bg-white outline-gray-400 rounded-2xl m-4">
                 <div className="outline-2 outline p-2 border-white outline-gray-400 bg-black rounded-2xl">

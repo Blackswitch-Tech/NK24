@@ -10,13 +10,20 @@ const Cultural = () => {
   const [loaded, setLoaded] = useState(false);
   const [search, setSearch] = useState("");
   const [events, setEvents] = useState([]);
+  const [curEvents,setCurEvents]=useState([]);
   const options = [
+    { value: "General Events", label: "General Events" },
     { value: "Dance", label: "Dance" },
     { value: "Music", label: "Music" },
+    { value: "Sports", label: "Sports" },
+    { value: "Board Games", label: "Board Games" },
+    { value: "Photography", label: "Photography" },
+    { value: "Gaming", label: "Gaming" },
+    { value: "Quiz", label: "Quiz" },
     { value: "Art", label: "Art" },
-    { value: "Drama", label: "Drama" },
-    { value: "Literature", label: "Literature" },
-    { value: "Craft", label: "Craft" },
+    { value: "Cookery", label: "Cookery" },
+    { value: "Movie/Anime", label: "Movie/Anime" },
+    {value:"All",label:"All"}
   ];
 
   useEffect(() => {
@@ -28,12 +35,22 @@ const Cultural = () => {
           id: doc.id,
         }));
         setEvents(newData.filter((event) => event.cat === "Cultural"));
+        setCurEvents(newData.filter((event) => event.cat === "Cultural"));
         wait(1000);
         setLoaded(true);
       });
     };
     getData();
   }, []);
+
+  const handleChangeCategory = (category) => {
+    if(category==="All"){
+      setCurEvents(events);
+    }
+    else {
+      setCurEvents(events.filter((event) => event.subcat === category));
+    }
+  }
 
   return (
     <div className="bg-cover bg-fixed bg-no-repeat h-auto min-h-screen bg-gradient-to-b from-gray-900 to-black w-full px-5">
@@ -49,7 +66,7 @@ const Cultural = () => {
             <div className="relative">
               <select
                 onChange={(item) => {
-                  console.log(item.target.value);
+                  handleChangeCategory(item.target.value);
                 }}
                 className="peer h-full w-full rounded-lg bg-transparent px-3 py-2 text-sm font-normal text-white outline-none border border-gray-700 focus:ring-2 focus:ring-gray-500"
               >
@@ -68,7 +85,7 @@ const Cultural = () => {
       </div>
       <div className="flex flex-wrap justify-center mx-4 my-12">
         {loaded ? (
-          events.map((event, index) => (
+          curEvents.map((event, index) => (
             <Suspense fallback={<Loader />} key={index}>
               <div className="outline-1 outline p-2 border-white hover:outline-gray-600 delay-300 ease-linear hover:bg-white outline-gray-400 rounded-2xl m-4">
                 <div className="outline-2 outline p-2 border-white outline-gray-400 bg-black rounded-2xl">

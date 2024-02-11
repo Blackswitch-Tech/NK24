@@ -27,12 +27,12 @@ export const displayRazorpay = async (token) => {
   const eventFee = {
     amount: parseInt(token.amount) * 100,
   };
-  const data = await fetch("https://us-central1-nakshatra-9c45c.cloudfunctions.net/razorpayFunction/razorpay", {
+  const data = await fetch("https://asia-south1-nk23-a5689.cloudfunctions.net/app/razorpay", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: { id: token.eventid },
+    body:  eventFee ,
   })
     .then((t) => t.json())
     .catch((error) => {
