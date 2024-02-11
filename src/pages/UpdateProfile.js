@@ -84,7 +84,7 @@ const UpdateProfile = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[url('https://i.pinimg.com/736x/d9/46/d3/d946d33dc95c1b560b13cf8a78b801ba.jpg')] bg-no-repeat bg-cover bg-fixed bg-center">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-[url('https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Signupbg.jpeg?alt=media&token=94bfbc88-78f6-4c8a-a749-19fcb76fe493')] bg-no-repeat bg-cover bg-fixed bg-center">
       <div className="w-full max-w-md px-8 py-8 bg-transparent rounded-2xl shadow-lg">
         <Card color="transparent" shadow={false}>
           <Typography variant="h4" color="white" className="text-center">
@@ -128,8 +128,8 @@ const UpdateProfile = () => {
                 <Input size="lg" placeholder="Semester" value={semester} onChange={(e) => setSemester(e.target.value)} className="text-white" />
               </div>
               {/* Terms and Conditions */}
-              <Checkbox label={<Typography variant="small" color="gray" className="flex items-center font-normal text-white">I agree to the Terms and Conditions</Typography>} containerProps={{ className: "mt-4" }} checked={agreeToTerms} onChange={handleCheckboxChange} />
-              <Button className="mt-6" fullWidth disabled={!agreeToTerms} onClick={updateProfile}>Update Profile</Button>
+              <Checkbox label={<Typography variant="small" color="gray" className="flex items-center font-normal font-pop text-white">I agree to the Terms and Conditions</Typography>}  checked={agreeToTerms} onChange={handleCheckboxChange} />
+              <Button className="mt-6 hover:bg-green-700" fullWidth disabled={!agreeToTerms} onClick={updateProfile}>Update Profile</Button>
             </div>
           </form>
         </Card>
