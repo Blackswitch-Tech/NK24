@@ -2,23 +2,43 @@ import { useState,useEffect} from 'react';
 import "./dashstyle.css";
 import { Button } from "@material-tailwind/react";
 import { getAuth, onAuthStateChanged,signOut } from 'firebase/auth';
-import { auth, provider } from "../firebase/firebase";
+import { auth } from "../firebase/firebase";
 import { useNavigate } from 'react-router-dom';
+import { collection, addDoc, doc ,updateDoc, getDocs,query,where} from "firebase/firestore/lite";
+import { db } from '../firebase/firebase'; 
+
 
 export default function Dash()
 {
+  const [isCampusAmbassador,setCampusAmbassador]= useState(false);
+  const [amboId,setAmboId]= useState(null);
+  
   const [currentUser, setCurrentUser] = useState(null);
   const nav = useNavigate();
   useEffect(() => {
     const auth = getAuth();
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setCurrentUser(user);
-       // Hide loader once the auth state is determined
-    });
-
-    // Cleanup subscription on unmount
-    return () => unsubscribe();
-  }, []);
+  
+      try {
+          const usersRef = collection(db, "users");
+          const q = query(usersRef, where("email", "==", user.email));
+          const querySnapshot = await getDocs(q);
+          const userDocSnapshot = querySnapshot.docs[0]; 
+          const isAmbassador = userDocSnapshot.data().isCA; 
+          const id = userDocSnapshot.data().CACode;
+          console.log(isAmbassador);
+          console.log(amboId)
+          setCampusAmbassador(isAmbassador);
+          setAmboId(id);
+      }
+      catch(error)
+      {
+        console.log("error")
+      }
+  })
+    return() => unsubscribe();
+  }, []); 
 
   const handleUpdate = ()=>{
     nav('/signup', { state: { update: true } });
@@ -31,6 +51,24 @@ export default function Dash()
     }).catch((error) => {
     });
   }
+
+  const caRegister=async ()=>{
+    try {
+
+        const usersRef = collection(db, "users");
+        const q = query(usersRef, where("email", "==", currentUser.email));
+        const querySnapshot = await getDocs(q);
+        const userDocSnapshot = querySnapshot.docs[0]; 
+        const userDocRef = userDocSnapshot.ref; 
+        
+        await updateDoc(userDocRef, {
+          isCA: true
+        });
+        setCampusAmbassador(true);
+    } catch (error) {
+      console.error("Error in caRegister:", error);
+    }
+  };
 
   return(
         <div className=" min-h-screen  flex flex-col items-center justify-center bg-[url('https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Signupbg.jpeg?alt=media&token=94bfbc88-78f6-4c8a-a749-19fcb76fe493')] bg-no-repeat bg-cover bg-fixed bg-center" >
@@ -51,11 +89,19 @@ export default function Dash()
 
     <div className="bg-white p-12 shadow-xl flex flex-col rounded-xl min-h-[300px] w-full" style={{ backgroundColor: 'rgb(22, 23, 27)' }}>
       <div className="text-3xl sm:text-xl md:text-2xl lg:text-3xl font-bold font-pop text-white">Campus Ambassador</div>
-      <div className="text-20 font-pop mt-5">Have you dreamed of being a superhero ? Who needs superheroes when you can be a campus ambassador. “With great power comes great responsibility”. Here’s an opportunity to explore your inner influencer. Let’s see who will become the next face of Nakshatra
-      </div>
-      <Button  className="text-green-600 lg:w-1/2  text-xl mt-20 font-pop hover:bg-white">Register Now</Button>
-    </div>
+      <div className="text-20 font-pop mt-5">Have you dreamed of being a superhero ? Who needs superheroes when you can be a campus ambassador. “With great power comes great responsibility”. Here’s an opportunity to explore your inner influencer. Let’s see who will become the next face of Nakshatra</div>
 
+      <div>
+  {isCampusAmbassador===false? 
+    <Button onClick={caRegister} className="text-green-600 lg:w-1/2 text-xl mt-20 font-pop hover:bg-white">Register as Ambassador</Button>
+    :
+    <>
+    <div className="text-3xl mt-5 sm:text-xl md:text-2xl lg:text-3xl font-bold font-pop text-white">You are Registered!</div>
+    <div className="text-lg sm:text-lg md:text-2xl lg:text-3xl font-bold font-pop  text-green-500">id: {amboId}</div>
+    </>
+  }
+</div>
+    </div>
     <div className="bg-white p-12 shadow-xl rounded-xl md:col-span-2 min-h-[300px] w-full" style={{ backgroundColor: 'rgb(22, 23, 27)' }} /*style={{ animation: 'gradientAnimation 3s ease infinite', backgroundSize: '200% 200%' }}*/>
     <div className="text-3xl sm:text-xl md:text-2xl lg:text-3xl font-bold font-pop text-white">Registered Events</div>
     </div>
