@@ -6,10 +6,13 @@ import { auth } from "../firebase/firebase";
 import { useNavigate } from 'react-router-dom';
 import { collection, addDoc, doc ,updateDoc, getDocs,query,where} from "firebase/firestore/lite";
 import { db } from '../firebase/firebase'; 
+import { FaWhatsapp } from 'react-icons/fa';
 
 
 export default function Dash()
 {
+
+
   const [isCampusAmbassador,setCampusAmbassador]= useState(false);
   const [amboId,setAmboId]= useState(null);
   
@@ -70,6 +73,12 @@ export default function Dash()
     }
   };
 
+
+  //whatsapp evide
+  const shareText = `മൈരേ നക്ഷത്രക്ക്  വന്നോണം!ഇതാണ്  എന്റെ  തിരിച്ചറിയൽ രേഖ : ${amboId}`;
+  const encodedShareText = encodeURIComponent(shareText);
+  const whatsappLink = `https://wa.me/?text=${encodedShareText}`;
+
   return(
         <div className=" min-h-screen  flex flex-col items-center justify-center bg-[url('https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Signupbg.jpeg?alt=media&token=94bfbc88-78f6-4c8a-a749-19fcb76fe493')] bg-no-repeat bg-cover bg-fixed bg-center" >
          <div className="container mx-auto px-4 lg:px-8 mt-20 ">
@@ -98,6 +107,12 @@ export default function Dash()
     <>
     <div className="text-3xl mt-5 sm:text-xl md:text-2xl lg:text-3xl font-bold font-pop text-white">You are Registered!</div>
     <div className="text-lg sm:text-lg md:text-2xl lg:text-3xl font-bold font-pop  text-green-500">id: {amboId}</div>
+    <a href={whatsappLink} 
+         className="mt-5 inline-flex items-center justify-center bg-green-600 text-white font-bold font-pop py-2 px-4 rounded hover:bg-green-300"
+         target="_blank" rel="noopener noreferrer">
+        <FaWhatsapp className="mr-2" /> Share
+    
+  </a>
     </>
   }
 </div>
