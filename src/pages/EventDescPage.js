@@ -18,6 +18,7 @@ import { getUserByEmail } from "../utils/searchbyEmail";
 import { useNavigate } from "react-router-dom";
 
 import SignInComponent from "./signup";
+import { displayRazorpay } from "../razorpay/razorpay";
 
 const EventPage = () => {
   const [eventData, setEventData] = useState(null);
@@ -81,6 +82,23 @@ const EventPage = () => {
         console.log(error.message);
       });
   };
+
+  const proceedToPay = async () => {
+    getUserByEmail(currentUser.email).then((userData) => {
+      const token = {
+        uid: userData.id,
+        nkid:userData.NKID,
+        username: userData.name,
+        amount: eventData.regfee,
+        eventid: eventData.id,
+        eventname: eventData.name,
+        
+       
+      };
+      displayRazorpay(token)
+    })}
+
+
   if (!eventData) return <div className="text-center p-10">Loading...</div>;
 
   return (
@@ -176,7 +194,7 @@ const EventPage = () => {
                       <button
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                         onClick={() => {
-                          // Register the user
+                          proceedToPay()
                         }}
                       >
                         Regsiter
