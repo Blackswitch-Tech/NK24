@@ -36,9 +36,6 @@ const Signup = ({route}) => {
   const [loading, setLoading] = useState(true); // State to manage loading state
   const [currentUser, setCurrentUser] = useState(null); // State to store the current user
 
-  //checks the previous route was from DASHBOARD 
-const { update } = location.state || { update: false };
-console.log(update)
 
   useEffect(() => {
     const auth = getAuth();
@@ -62,14 +59,13 @@ console.log(update)
   }
   const SignupCode = async (e) => {
     e.preventDefault(); // Prevent the default form submission behavior
-    if (!agreeToTerms&&!update) {
+    if (!agreeToTerms) {
       alert("Please agree to the terms and conditions.");
       return;
     }
     try {
       // Add a new document in collection "users"
-      if(!update)
-      {
+      
         let ids = doc(collection(db, "users")).id;
         console.log(ids)
         await addDoc(collection(db, "users"), {
@@ -85,23 +81,7 @@ console.log(update)
           CACode: ids,
           NKID: `NK-${ids.substring(0, 5).toUpperCase()}`,
       });
-    }
-    else
-    {
-
-      const usersRef = collection(db, "users");
-      const q = query(usersRef, where("email", "==", currentUser.email));
-      const querySnapshot = await getDocs(q);
-      const userDocRef = querySnapshot.docs[0].ref;
-
-      await updateDoc(userDocRef, {
-        name: name,
-        phoneNumber: phoneNumber,
-        college: college,
-        branch: branch,
-        semester: semester,
-      });
-    }
+    
       if(location.search.split('=')[1])
       {
         nav(location.search.split('=')[1]);
@@ -121,15 +101,15 @@ console.log(update)
     <div className="min-h-screen flex flex-col items-center justify-center bg-[url('https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Signupbg.jpeg?alt=media&token=94bfbc88-78f6-4c8a-a749-19fcb76fe493')] bg-no-repeat bg-cover bg-fixed bg-center">
       <div className="w-full max-w-md px-8 py-8 bg-transparent rounded-2xl mt-16 shadow-lg">
         <Card color="transparent" shadow={false}>
-        {update ? (  <Typography variant="h4" color="white" className="text-center">Update Profile  </Typography>)
-                :
-                ( <Typography variant="h4" color="white" className="text-center"> Sign up</Typography>)}
+       
+                
+                 <Typography variant="h4" color="white" className="text-center"> Sign up</Typography>
 
               <Typography color="white" className="mt-1 mb-4 font-normal text-center">
               
-              {update ? (  <Typography color="white" className="mt-1 mb-4 font-normal text-center">Enter the new Details here!  </Typography>)
-                :
-                ( <Typography color="white" className="mt-1 mb-4 font-normal text-center"> Nice to meet you! Enter your details</Typography>)}
+             
+                
+                <Typography color="white" className="mt-1 mb-4 font-normal text-center"> Nice to meet you! Enter your details</Typography>
                 </Typography>
           <form>
             <div className="flex flex-col gap-4">
@@ -194,7 +174,7 @@ console.log(update)
                 />
               </div>
             </div>
-            {update===false ? (
+           
        <>
       <Checkbox
         label={
@@ -221,18 +201,7 @@ console.log(update)
         Sign Up
       </Button>
     </>
-  ) : (
-    <div>
-        <Button
-        className="mt-6  hover:bg-green-500"
-        fullWidth
-        onClick={SignupCode}
-      >
-        update
-      </Button>
-    </div>
-  )
-}
+
               </form>
             </Card>
           </div>
