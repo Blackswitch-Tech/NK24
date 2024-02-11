@@ -7,22 +7,26 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const admin = require("firebase-admin");
 
-
+require('dotenv').config();
 // Initialize Firebase Admin SDK
 admin.initializeApp({
-  apiKey: "AIzaSyAsSfJbJUxNflxSvGXS1Uzkv7ZU5jv0P8M",
-  authDomain: "nakshatra-9c45c.firebaseapp.com",
-  projectId: "nakshatra-9c45c",
-  storageBucket: "nakshatra-9c45c.appspot.com",
-  messagingSenderId: "203297675242",
-  appId: "1:203297675242:web:c8cbef31c9890871324493",
-  measurementId: "G-8MQPTG1Y07"
-});
+  
+
+  
+    apiKey: process.env.API_KEY,
+    authDomain: process.env.AUTH_DOMAIN,
+    projectId: process.env.PROJECT_ID,
+    storageBucket: process.env.STORAGE_BUCKET,
+    messagingSenderId: process.env.MESSAGING_SENDER_ID,
+    appId: process.env.APP_ID,
+    measurementId: process.env.MEASUREMENT_ID
+  });
+
 
 const db = admin.firestore();
 const razorpay = new Razorpay({
-  key_id: "rzp_test_2E3CGjPItUa2Ee",
-  key_secret: "W9SnUEGR1KjlCyJhxw8ibejD",
+  key_id: process.env.KEY_ID,
+  key_secret: process.env.KEY_SECRET,
 });
 
 // Configure CORS and body-parser
