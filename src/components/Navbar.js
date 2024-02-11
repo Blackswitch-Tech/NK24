@@ -82,11 +82,11 @@ export default function Navbar() {
                   <span className="sr-only">Open main menu</span>
                   {open ? (
 
-                    <div className="block ml-1 h-10 w-10 ease-in-out" aria-hidden="true">
-                      <img src={Select} alt="Menu Icon" />
+                    <div className="block ml-1 h-10 w-10 ease-in" aria-hidden="true">
+                      <img src={Select} alt="Menu icon" />
                     </div>
                   ) : (
-                    <div className="block h-12 w-12 ease-in-out" aria-hidden="true">
+                    <div className="block h-12 w-12 ease-in" aria-hidden="true">
 
 
                       <img src={Burger} alt="Menu Icon" />
