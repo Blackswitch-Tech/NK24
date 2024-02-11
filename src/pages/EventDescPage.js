@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
+import { Dialogbox, LongDialog } from '../components/Dialogbox';
 import {
   collection,
   query,
@@ -16,8 +17,15 @@ import { auth, db, provider } from "../firebase/firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getUserByEmail } from "../utils/searchbyEmail";
 import { useNavigate } from "react-router-dom";
-
-import SignInComponent from "./signup";
+import {
+  Button,
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
+  Typography,
+} from "@material-tailwind/react";
+import SignInComponent from "./Signup";
 import { displayRazorpay } from "../razorpay/razorpay";
 
 const EventPage = () => {
@@ -29,6 +37,9 @@ const EventPage = () => {
   const [userData,setUserData] = useState(null);
   const [needSignUp, setNeedSignUp] = useState(true);
   const nav = useNavigate();
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => setOpen(!open);
 
   useEffect(() => {
     const fetchEventData = async () => {
@@ -167,11 +178,27 @@ const EventPage = () => {
           </div>
           <div>
             <h2 className="text-2xl font-semibold mb-2">Rules</h2>
-            <ul className="list-disc pl-5">
+            <Button onClick={handleOpen}>View Rules</Button>
+      <Dialog open={open} handler={handleOpen}>
+        <DialogHeader>Event Rules</DialogHeader>
+        <DialogBody className="h-[42rem] overflow-scroll">
+          <Typography className="font-normal">
+          <ul className="list-disc pl-5">
               {eventData.rules.map((rule, index) => (
                 <li key={index}>{rule}</li>
               ))}
             </ul>
+          </Typography>
+        </DialogBody>
+        <DialogFooter className="space-x-2">
+          <Button variant="text" color="blue-gray" onClick={handleOpen}>
+            Cancel
+          </Button>
+          <Button variant="gradient" color="green" onClick={handleOpen}>
+            Confirm
+          </Button>
+        </DialogFooter>
+      </Dialog>
           </div>
           <div>
             <h2 className="text-2xl font-semibold mb-2">Register</h2>

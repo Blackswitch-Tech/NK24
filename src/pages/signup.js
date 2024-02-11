@@ -6,7 +6,7 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
-import { Loader } from "../components/loader";
+import { Loader } from "../components/Loader";
 import firebase from "firebase/app";
 import "firebase/auth";
 

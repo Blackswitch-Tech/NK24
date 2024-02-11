@@ -28,31 +28,25 @@ export default function DefaultAccordion() {
   return (
     <>
       <Accordion  open={open === 1} icon={<Icon id={1} open={open} />}>
-        <AccordionHeader onClick={() => handleOpen(1)} className="hover:!text-white text-white font-pop">What is Material Tailwind?</AccordionHeader>
+        <AccordionHeader onClick={() => handleOpen(1)} className="hover:!text-white text-white font-pop">Will participants receive activity points for attending Nakshathra 2024?</AccordionHeader>
         <AccordionBody className="font-pop">
-          We&apos;re not always in the position that we want to be at. We&apos;re constantly
-          growing. We&apos;re constantly making mistakes. We&apos;re constantly trying to express
-          ourselves and actualize our dreams.
+        Activity Points are awarded in accordance with the regulations and norms established by KTU. The number of points granted varies depending on the nature of the event (Technical/Non-technical) in which the participant is involved.
         </AccordionBody>
       </Accordion>
       <Accordion open={open === 2} icon={<Icon id={2} open={open} />}>
         <AccordionHeader onClick={() => handleOpen(2)} className="hover:!text-white text-white font-pop">
-          How to use Material Tailwind?
+        Will all registered participants receive a Certificate of Participation for the event?
         </AccordionHeader>
         <AccordionBody className="font-pop">
-          We&apos;re not always in the position that we want to be at. We&apos;re constantly
-          growing. We&apos;re constantly making mistakes. We&apos;re constantly trying to express
-          ourselves and actualize our dreams.
+        Certificates of Participation are exclusively granted to individuals who attend the event on the scheduled day. Participants who do not attend the event on the specified day are not eligible to receive the certification.
         </AccordionBody>
       </Accordion>
       <Accordion open={open === 3} icon={<Icon id={3} open={open} />}>
         <AccordionHeader onClick={() => handleOpen(3)} className="hover:!text-white text-white font-pop">
-          What can I do with Material Tailwind?
+        Is transportation provided for participants attending Nakshathra 2024?
         </AccordionHeader>
         <AccordionBody className="font-pop">
-          We&apos;re not always in the position that we want to be at. We&apos;re constantly
-          growing. We&apos;re constantly making mistakes. We&apos;re constantly trying to express
-          ourselves and actualize our dreams.
+        Transportation arrangements can be made available for participants upon request. Those interested in availing of this service are kindly requested to contact the Transportation Head, Devika, at 94008 05672. Please inform him as soon as possible and confirm your transportation arrangements no later than 3 days prior to the event.
         </AccordionBody>
       </Accordion>
     </>

@@ -7,8 +7,14 @@ import { auth, db, provider } from "../firebase/firebase";
 import { collection, addDoc ,doc} from 'firebase/firestore/lite';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import {getUserByEmail} from "../utils/searchbyEmail";
+import NK24logo from '../assets/NK24logo.webp';
+import Burger from '../assets/hamburger.png'
+import Select from '../assets/option.png'
+import Enter from '../assets/enter.png';
+import User from '../assets/user.png'
+
 const navigation = [
-  { name: "Home", href: "/", current: true },
+  { name: "Home", href: "/", current: false },
   { name: "Events", href: "/events", current: false },
 ];
 
@@ -32,15 +38,7 @@ export default function Navbar() {
     // Cleanup subscription on unmount
     return () => unsubscribe();
   }, []);
-  const HamburgerIcon =
-    "https://cdn.discordapp.com/attachments/1194336677548802058/1204080633077301248/Hamburger.png";
-  const CloseIcon =
-    "https://cdn.discordapp.com/attachments/1194336677548802058/1204136278199894097/Close.png";
-  const NK24Logo =
-    "https://firebasestorage.googleapis.com/v0/b/nk23-a5689.appspot.com/o/Compressed%2Fnk23logobright.webp?alt=media&token=8105818c-4e72-437c-8e5c-5f79e995a694";
-  const SignInIcon =
-    "https://cdn.discordapp.com/attachments/1194336677548802058/1204080632460873738/SignIn.png";
-    const UserIcon="https://www.iconpacks.net/icons/1/free-user-login-icon-305-thumb.png";
+  
   const handleSignIn=()=>{
     
     if (!auth.currentUser) {
@@ -82,14 +80,14 @@ export default function Navbar() {
                   <span className="sr-only">Open main menu</span>
                   {open ? (
 
-                    <div className="block ml-1 h-10 w-10 ease-in" aria-hidden="true">
-                      <img src={CloseIcon} alt="Menu icon" />
+                    <div className="block ml-1 h-12 w-12 ease-in" aria-hidden="true">
+                      <img src={Select} alt="Menu icon" />
                     </div>
                   ) : (
-                    <div className="block h-12 w-12 ease-in" aria-hidden="true">
+                    <div className="block h-10 w-10 ease-in" aria-hidden="true">
 
 
-                      <img src={HamburgerIcon} alt="Menu Icon" />
+                      <img src={Burger} alt="Menu Icon" />
                     </div>
                   )}
                 </Disclosure.Button>
@@ -98,7 +96,7 @@ export default function Navbar() {
                 <div className="flex flex-shrink-0 items-center">
                   <img
                     className="h-20 w-20 sm:h-24 sm:w-24 "
-                    src={NK24Logo}
+                    src={NK24logo}
                     alt="NK24Logo"
                   />
                 </div>
@@ -134,9 +132,8 @@ export default function Navbar() {
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
                       <img
-                        className="h-12 w-12 sm:h-20 sm:w-20"
-                        
-                        src={UserIcon}
+                        className="h-10 w-10 sm:h-12 sm:w-12"
+                        src={User}
                         alt="User Menu"
                       />
                     </Menu.Button>
@@ -150,12 +147,12 @@ export default function Navbar() {
                 <Menu as="div" className="relative ml-3">
                   <div>
                     <Menu.Button className="relative flex  " onClick={()=>{handleSignIn()}}>
-                      <span className="absolute -inset-1.5" />
+                      <span className="-inset-1.5" />
                       <span className="sr-only">Open user menu</span>
                       <img
-                        className="h-12 w-12 sm:h-20 sm:w-20"
+                        className="h-10 w-10 sm:h-12 sm:w-12" 
                         
-                        src={SignInIcon}
+                        src={Enter}
                         alt="User Menu"
                       />
                     </Menu.Button>
