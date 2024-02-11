@@ -4,8 +4,16 @@ import Carouselc from "../components/Carouselc";
 import { motion } from "framer-motion";
 import img1 from "../assets/Mar1 asset(1).png";
 import img2 from "../assets/Mar2 asset(2).png";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 export default function Homepage() {
+  const location = useLocation();
+  useEffect(() => {
+   localStorage.setItem("refcode",location.search.split('=')[1]);
+  
+  } 
+  , []);
   return (
     <div className="main-container">
       <div
