@@ -27,20 +27,18 @@ export const displayRazorpay = async (token) => {
   const eventFee = {
     amount: parseInt(token.amount) * 100,
   };
-  const data = await fetch(
-    "https://asia-south1-nakshatra-9c45c.cloudfunctions.net/app/razorpay    ",
-    {method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: {"id":token.eventid} ,
-    }
-  )
+  const data = await fetch("http://localhost:4444/razorpay", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: { id: token.eventid },
+  })
     .then((t) => t.json())
     .catch((error) => {
       console.log(error);
     });
-    
+
   const options = {
     key: process.env.REACT_APP_RZP_APIKEY,
     amount: token.amount,
@@ -69,18 +67,16 @@ export const displayRazorpay = async (token) => {
     },
 
     handler: function (res) {
-      if(res.razorpay_payment_id){
-        console.log("sucess")
-      }
-      else {
-        console.log("failed")
+      if (res.razorpay_payment_id) {
+        console.log("sucess");
+      } else {
+        console.log("failed");
       }
     },
   };
   const paymentObject = new window.Razorpay(options);
   paymentObject.open();
   paymentObject.on("payment.failed", function (res) {
-    alert("payment failed")
-  })
-
+    alert("payment failed");
+  });
 };
