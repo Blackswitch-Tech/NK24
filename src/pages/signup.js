@@ -11,13 +11,16 @@ import firebase from "firebase/app";
 import "firebase/auth";
 
 import { db } from "../firebase/firebase"; // Adjust the path as necessary
-import { collection, addDoc, doc } from "firebase/firestore/lite";
+import { collection, addDoc, doc ,updateDoc, getDocs,query,where} from "firebase/firestore/lite";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 
 import { useParams } from "react-router-dom";
+
+
 const Signup = ({route}) => {
+
   const [name, setName] = useState("");
   const nav = useNavigate();
   const location = useLocation();
@@ -32,6 +35,10 @@ const Signup = ({route}) => {
   };
   const [loading, setLoading] = useState(true); // State to manage loading state
   const [currentUser, setCurrentUser] = useState(null); // State to store the current user
+
+  //checks the previous route was from DASHBOARD 
+const { update } = location.state || { update: false };
+console.log(update)
 
   useEffect(() => {
     const auth = getAuth();
@@ -55,26 +62,46 @@ const Signup = ({route}) => {
   }
   const SignupCode = async (e) => {
     e.preventDefault(); // Prevent the default form submission behavior
-    if (!agreeToTerms) {
+    if (!agreeToTerms&&!update) {
       alert("Please agree to the terms and conditions.");
       return;
     }
     try {
       // Add a new document in collection "users"
-      let ids = doc(collection(db, "users")).id;
-      await addDoc(collection(db, "users"), {
+      if(!update)
+      {
+        let ids = doc(collection(db, "users")).id;
+        console.log(ids)
+        await addDoc(collection(db, "users"), {
+          name: name,
+          phoneNumber: phoneNumber,
+          college: college,
+          email: currentUser.email,
+          branch: branch,
+          semester: semester,
+          registered: [],
+          refcount: 0,
+          isCA: false,
+          CACode: ids,
+          NKID: `NK-${ids.substring(0, 5).toUpperCase()}`,
+      });
+    }
+    else
+    {
+
+      const usersRef = collection(db, "users");
+      const q = query(usersRef, where("email", "==", currentUser.email));
+      const querySnapshot = await getDocs(q);
+      const userDocRef = querySnapshot.docs[0].ref;
+
+      await updateDoc(userDocRef, {
         name: name,
         phoneNumber: phoneNumber,
         college: college,
-        email: currentUser.email,
         branch: branch,
         semester: semester,
-        registered: [],
-        refcount: 0,
-        isCA: false,
-        CACode: ids,
-        NKID: `NK-${ids.substring(0, 5).toUpperCase()}`,
       });
+    }
       if(location.search.split('=')[1])
       {
         nav(location.search.split('=')[1]);
@@ -91,19 +118,19 @@ const Signup = ({route}) => {
   };
   return (
 
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[url('https://i.pinimg.com/736x/d9/46/d3/d946d33dc95c1b560b13cf8a78b801ba.jpg')] bg-no-repeat bg-cover bg-fixed bg-center">
-      <div className="w-full max-w-md px-8 py-8 bg-transparent rounded-2xl shadow-lg">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-[url('https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Signupbg.jpeg?alt=media&token=94bfbc88-78f6-4c8a-a749-19fcb76fe493')] bg-no-repeat bg-cover bg-fixed bg-center">
+      <div className="w-full max-w-md px-8 py-8 bg-transparent rounded-2xl mt-16 shadow-lg">
         <Card color="transparent" shadow={false}>
-          <Typography variant="h4" color="white" className="text-center">
-            Sign Up
+        {update ? (  <Typography variant="h4" color="white" className="text-center">Update Profile  </Typography>)
+                :
+                ( <Typography variant="h4" color="white" className="text-center"> Sign up</Typography>)}
 
-          </Typography>
-          <Typography
-            color="white"
-            className="mt-1 mb-4 font-normal text-center"
-          >
-            Nice to meet you! Enter your details to register.
-          </Typography>
+              <Typography color="white" className="mt-1 mb-4 font-normal text-center">
+              
+              {update ? (  <Typography color="white" className="mt-1 mb-4 font-normal text-center">Enter the new Details here!  </Typography>)
+                :
+                ( <Typography color="white" className="mt-1 mb-4 font-normal text-center"> Nice to meet you! Enter your details</Typography>)}
+                </Typography>
           <form>
             <div className="flex flex-col gap-4">
               <div>
@@ -167,48 +194,50 @@ const Signup = ({route}) => {
                 />
               </div>
             </div>
-            <Checkbox
-              label={
-                <Typography
-                  variant="small"
-                  color="gray"
-                  className="flex items-center font-normal text-white mt-4"
-                >
-                  I agree to the&nbsp;
-                  <a
-                    href="#"
-                    className="font-medium transition-colors hover:text-gray-900"
-                  >
-                    Terms and Conditions
-                  </a>
-                </Typography>
-              }
-              containerProps={{ className: "mt-4" }}
-              onChange={handleCheckboxChange} // Attach onChange handler
-              checked={agreeToTerms}
-            />
-            <Button
-              className="mt-6"
-              fullWidth
-              disabled={!agreeToTerms}
-              onClick={SignupCode}
-            >
-              Sign Up
-            </Button>
-            <Typography className="mt-4 text-center font-normal text-gray-50">
-              Already have an account?{" "}
-              <a
-                href="#"
-                className="font-medium text-gray-50 hover:text-red-600"
-              >
-                Sign In
-              </a>
-            </Typography>
-          </form>
-        </Card>
-      </div>
+            {update===false ? (
+       <>
+      <Checkbox
+        label={
+          <Typography
+            variant="small"
+            color="gray"
+            className="flex items-center font-normal font-pop text-white mt-4">
+            I agree to the&nbsp;
+            <a href="#" className="font-medium font-pop transition-colors hover:text-gray-900">
+              Terms and Conditions
+            </a>
+          </Typography>
+        }
+        containerProps={{ className: "mt-4" }}
+        onChange={handleCheckboxChange}
+        checked={agreeToTerms}
+      />
+      <Button
+        className="mt-6"
+        fullWidth
+        disabled={!agreeToTerms}
+        onClick={SignupCode}
+      >
+        Sign Up
+      </Button>
+    </>
+  ) : (
+    <div>
+        <Button
+        className="mt-6  hover:bg-green-500"
+        fullWidth
+        onClick={SignupCode}
+      >
+        update
+      </Button>
     </div>
-  );
-};
+  )
+}
+              </form>
+            </Card>
+          </div>
+        </div>
+      );
+}
 
 export default Signup;

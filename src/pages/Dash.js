@@ -1,18 +1,51 @@
+import { useState,useEffect} from 'react';
 import "./dashstyle.css";
 import { Button } from "@material-tailwind/react";
+import { getAuth, onAuthStateChanged,signOut } from 'firebase/auth';
+import { auth, provider } from "../firebase/firebase";
+import { useNavigate } from 'react-router-dom';
+
 export default function Dash()
 {
+  const [currentUser, setCurrentUser] = useState(null);
+  const nav = useNavigate();
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+       // Hide loader once the auth state is determined
+    });
 
-    return(
+    // Cleanup subscription on unmount
+    return () => unsubscribe();
+  }, []);
+
+  const handleUpdate = ()=>{
+    nav('/signup', { state: { update: true } });
+  }
+
+  const handleSignOut=()=>{
+    signOut(auth).then(() => {
+      setCurrentUser(null);
+      nav('/')
+    }).catch((error) => {
+    });
+  }
+
+  return(
         <div className=" min-h-screen  flex flex-col items-center justify-center bg-[url('https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Signupbg.jpeg?alt=media&token=94bfbc88-78f6-4c8a-a749-19fcb76fe493')] bg-no-repeat bg-cover bg-fixed bg-center" >
          <div className="container mx-auto px-4 lg:px-8 mt-20 ">
   {/* Container with horizontal padding, adjustable for larger screens */}
   <div className="grid grid-cols-1 md:grid-cols-2 gap-10 ">
 
     <div className=" p-12 shadow-2xl flex flex-col justify-between  rounded-xl min-h-[300px] w-full"style={{ backgroundColor: 'rgb(22, 23, 27)' }} >
-      <div className="text-3xl sm:text-xl md:text-2xl lg:text-3xl font-bold font-pop text-white">Welcome,User</div>
-      <div className="text-20 font-pop mt-2">This is the dashboard. You can view the events you have regitered here.</div>
-      <Button  className="mt-20 lg:w-1/2 font-pop text-xl text-red-900 hover:bg-white">LOG OUT</Button>
+    <div className="text-3xl sm:text-xl md:text-2xl lg:text-3xl font-bold font-pop text-white">
+             Welcome, {currentUser ? currentUser.displayName || 'User' : 'No user logged in'}
+    </div>
+
+      <div className="text-20 font-pop mt-2">This is the dashboard. You can view the events you have regitered here and update your current profile</div>
+      <Button onClick={handleUpdate} className="mt-20 lg:w-1/2 font-pop text-xl text-blue-900 hover:bg-white">Update Profile</Button>
+      <Button onClick={handleSignOut} className="mt-5 lg:w-1/2 font-pop text-xl text-red-800 hover:bg-white">LOGOUT</Button>
 
     </div>
 
