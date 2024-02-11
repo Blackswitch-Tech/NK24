@@ -1,5 +1,22 @@
 import { Typography } from "@material-tailwind/react";
 import Logo from '../assets/NK24logo.webp'
+import React from "react";
+
+const CustomTypography = () => {
+  return (
+    <div class='flex fle-row justify-center w-full'>
+    <Typography color="white" className="text-center text-sm font-pop">
+      Made with 
+    </Typography>
+    <Typography color="red" className="text-center text-sm">
+     &nbsp;❤&nbsp;
+  </Typography>
+  <Typography color="white" className="text-center text-sm font-pop">
+  by NK24 Website Team
+</Typography>
+</div>
+  );
+};
  
 export default function Footer() {
   return (
@@ -12,7 +29,7 @@ export default function Footer() {
               as="a"
               href="#"
               color="white"
-              className="font-normal transition-colors hover:text- focus:text-blue-500"
+              className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
             >
               About Us
             </Typography>
@@ -21,7 +38,7 @@ export default function Footer() {
             <Typography
               as="a"
               href="#"
-              color="White"
+              color="white"
               className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
             >
               License
@@ -40,9 +57,7 @@ export default function Footer() {
         </ul>
       </div>
       <hr className="my-8 border-blue-gray-50" />
-      <Typography color="gray" className="text-center font-normal">
-        &copy; 2024 NAKSHATRA Website team
-      </Typography>
+        <CustomTypography/>
     </footer>
   );
 }

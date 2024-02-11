@@ -10,6 +10,8 @@ import {getUserByEmail} from "../utils/searchbyEmail";
 import NK24logo from '../assets/NK24logo.webp';
 import Burger from '../assets/hamburger.png'
 import Select from '../assets/option.png'
+import Enter from '../assets/enter.png';
+import User from '../assets/user.png'
 
 const navigation = [
   { name: "Home", href: "/", current: false },
@@ -36,11 +38,7 @@ export default function Navbar() {
     // Cleanup subscription on unmount
     return () => unsubscribe();
   }, []);
-  const HamburgerIcon = Burger;
-  const NK24Logo = NK24logo;
-  const SignInIcon =
-    "https://cdn.discordapp.com/attachments/1194336677548802058/1204080632460873738/SignIn.png";
-    const UserIcon="https://www.iconpacks.net/icons/1/free-user-login-icon-305-thumb.png";
+  
   const handleSignIn=()=>{
     
     if (!auth.currentUser) {
@@ -82,11 +80,11 @@ export default function Navbar() {
                   <span className="sr-only">Open main menu</span>
                   {open ? (
 
-                    <div className="block ml-1 h-10 w-10 ease-in" aria-hidden="true">
+                    <div className="block ml-1 h-12 w-12 ease-in" aria-hidden="true">
                       <img src={Select} alt="Menu icon" />
                     </div>
                   ) : (
-                    <div className="block h-12 w-12 ease-in" aria-hidden="true">
+                    <div className="block h-10 w-10 ease-in" aria-hidden="true">
 
 
                       <img src={Burger} alt="Menu Icon" />
@@ -98,7 +96,7 @@ export default function Navbar() {
                 <div className="flex flex-shrink-0 items-center">
                   <img
                     className="h-20 w-20 sm:h-24 sm:w-24 "
-                    src={NK24Logo}
+                    src={NK24logo}
                     alt="NK24Logo"
                   />
                 </div>
@@ -134,9 +132,8 @@ export default function Navbar() {
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
                       <img
-                        className="h-12 w-12 sm:h-20 sm:w-20"
-                        
-                        src={UserIcon}
+                        className="h-10 w-10 sm:h-12 sm:w-12"
+                        src={User}
                         alt="User Menu"
                       />
                     </Menu.Button>
@@ -150,12 +147,12 @@ export default function Navbar() {
                 <Menu as="div" className="relative ml-3">
                   <div>
                     <Menu.Button className="relative flex  " onClick={()=>{handleSignIn()}}>
-                      <span className="absolute -inset-1.5" />
+                      <span className="-inset-1.5" />
                       <span className="sr-only">Open user menu</span>
                       <img
-                        className="h-12 w-12 sm:h-20 sm:w-20"
+                        className="h-10 w-10 sm:h-12 sm:w-12" 
                         
-                        src={SignInIcon}
+                        src={Enter}
                         alt="User Menu"
                       />
                     </Menu.Button>
