@@ -17,7 +17,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getUserByEmail } from "../utils/searchbyEmail";
 import { useNavigate } from "react-router-dom";
 
-import SignInComponent from "./signup";
+import SignInComponent from "./Signup";
 import { displayRazorpay } from "../razorpay/razorpay";
 
 const EventPage = () => {

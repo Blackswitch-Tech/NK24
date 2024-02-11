@@ -81,7 +81,7 @@ const Carouselc = () => {
         {sliderImageUrl.map((imageUrl, index) => {
           return (
             <div className="slider" key={index}>
-              <img src={imageUrl.url} alt="movie" />
+              <img src={imageUrl.url} alt="movie" className="hover:scale-110 transition duration-200 cursor-pointer" />
             </div>
           );
         })}

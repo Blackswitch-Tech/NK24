@@ -2,7 +2,7 @@ import React, { useState, useEffect, Suspense } from "react";
 import { Input } from "@material-tailwind/react";
 import { db } from "../firebase/firebase";
 import { collection, addDoc, getDoc, getDocs } from "firebase/firestore/lite";
-import { Loader } from "../components/loader";
+import { Loader } from "../components/Loader";
 import { wait } from "@testing-library/user-event/dist/utils";
 
 const Cultural = () => {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Card, Input, Checkbox, Button, Typography } from "@material-tailwind/react";
-import { Loader } from "../components/loader"; // Ensure this path is correct
+import { Loader } from "../components/Loader"; // Ensure this path is correct
 import { db } from "../firebase/firebase"; // Adjust the path as necessary
 import { collection, query, where, getDocs, updateDoc, doc } from "firebase/firestore/lite";
 import { getAuth, onAuthStateChanged } from "firebase/auth";

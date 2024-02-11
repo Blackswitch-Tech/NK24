@@ -6,7 +6,7 @@ import Homepage from "../pages/Homepage";
 import Dash from "../pages/Dash.js"
 
 
-import SignInComponent from "../pages/signup";
+import SignInComponent from "../pages/Signup.js";
 
 import EventsPage from "../pages/EventsPage";
 import Cultural from "../pages/Cultural";
