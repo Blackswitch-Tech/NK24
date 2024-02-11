@@ -8,10 +8,8 @@ import { collection, addDoc ,doc} from 'firebase/firestore/lite';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import {getUserByEmail} from "../utils/searchbyEmail";
 const navigation = [
-  { name: "Home", href: "#", current: true },
-  { name: "Events", href: "#", current: false },
-  { name: "About", href: "#", current: false },
-  { name: "Profile", href: "#", current: false },
+  { name: "Home", href: "/", current: true },
+  { name: "Events", href: "/events", current: false },
 ];
 
 function classNames(...classes) {
@@ -44,25 +42,39 @@ export default function Navbar() {
     "https://cdn.discordapp.com/attachments/1194336677548802058/1204080632460873738/SignIn.png";
     const UserIcon="https://www.iconpacks.net/icons/1/free-user-login-icon-305-thumb.png";
   const handleSignIn=()=>{
-    signInWithPopup(auth,provider).then((res) => {
-      getUserByEmail(res.user.email).then((userData) => {
-        if (userData) {
-          
-          // Proceed with user data
-        } else {
-          nav('/signup')
-        }
+    
+    if (!auth.currentUser) {
+      signInWithPopup(auth, provider).then((res) => {
+        getUserByEmail(res.user.email).then((userData) => {
+          if (userData) {
+            nav('/dashboard');
+          } else {
+            nav('/signup');
+          }
+        }).catch((error) => {
+          console.error("Error fetching user data: ", error.message);
+        });
+      }).catch((error) => {
+        console.error("Error during sign in: ", error.message);
       });
-    }).catch((error) => {
-      console.log(error.message)
-    })
+    } else {
+      getUserByEmail(auth.currentUser.email).then((userData) => {
+        if (userData) {
+          nav('/dashboard');
+        } else {
+          nav('/signup');
+        }
+      }).catch((error) => {
+        console.error("Error fetching user data: ", error.message);
+      });
+    }
   }
   return (
     <Disclosure as="nav" className="bg-transsparent fixed  w-full backdrop-filter backdrop-blur-lg bg-opacity-30 z-10 pb-3 lg:pb-0">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-full pt-5 sm:p-6 lg:px-8">
-            <div className="relative flex h-12 items-center justify-between">
+            <div className="relative flex h-8 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
                 <Disclosure.Button className="relative inline-flex items-center justify-center p-2">
@@ -118,7 +130,7 @@ export default function Navbar() {
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="relative flex  " onClick={()=>{console.log("success")}}>
+                    <Menu.Button className="relative flex  " onClick={handleSignIn}>
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
                       <img
