@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const admin = require("firebase-admin");
 
+
 // Initialize Firebase Admin SDK
 admin.initializeApp({
   apiKey: "AIzaSyAsSfJbJUxNflxSvGXS1Uzkv7ZU5jv0P8M",
@@ -25,7 +26,7 @@ const razorpay = new Razorpay({
 });
 
 // Configure CORS and body-parser
-app.use(cors({ origin: true })); // Automatically allow cross-origin requests
+// Automatically allow cross-origin requests
 app.use(bodyParser.json()); // for parsing application/json
 
 app.get("/", (req, res) => {
@@ -33,7 +34,12 @@ app.get("/", (req, res) => {
 });
 
 let amount;
-
+app.options("/razorpay", (req, res) => {  
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Access-Control-Allow-Methods", "POST");
+  res.set("Access-Control-Allow-Headers", "Content-Type");
+  res.status(204).send("");
+});
 app.post("/razorpay", async (req, res) => {
   await db.collection('events').get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
@@ -50,12 +56,18 @@ app.post("/razorpay", async (req, res) => {
       payment_capture: 1,
       amount: amount,
     });
+    res.set("Access-Control-Allow-Origin", "*");
+    res.set("Access-Control-Allow-Methods", "POST");
+    res.set("Access-Control-Allow-Headers", "Content-Type");
     res.json({
       id: response.id,
       currency: "INR",
       amount: response.amount,
     });
   } catch (e) {
+    res.set("Access-Control-Allow-Origin", "*");
+    res.set("Access-Control-Allow-Methods", "POST");
+    res.set("Access-Control-Allow-Headers", "Content-Type");
     console.error("Error creating Razorpay order:", e);
     res.status(500).send("Unable to create order.");
   }
