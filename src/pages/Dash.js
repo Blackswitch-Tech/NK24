@@ -41,7 +41,7 @@ export default function Dash()
   }, []); 
 
   const handleUpdate = ()=>{
-    nav('/signup', { state: { update: true } });
+    nav('/update_profile', { state: { update: true } });
   }
 
   const handleSignOut=()=>{
