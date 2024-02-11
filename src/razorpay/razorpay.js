@@ -1,5 +1,5 @@
 import { redirect } from "react-router-dom";
-
+import axios from "axios";
 const loadScript = () => {
   return new Promise((resolve) => {
     const script = document.createElement("script");
@@ -28,9 +28,8 @@ export const displayRazorpay = async (token) => {
     amount: parseInt(token.amount) * 100,
   };
   const data = await fetch(
-    "https://us-central1-nakshatra-9c45c.cloudfunctions.net/app/razorpay",
-    {
-      method: "POST",
+    "https://asia-south1-nakshatra-9c45c.cloudfunctions.net/app/razorpay    ",
+    {method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -41,7 +40,7 @@ export const displayRazorpay = async (token) => {
     .catch((error) => {
       console.log(error);
     });
-
+    
   const options = {
     key: process.env.REACT_APP_RZP_APIKEY,
     amount: token.amount,
