@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../firebase/firebase";
 import { collection, addDoc, getDoc, getDocs } from "firebase/firestore/lite";
+import { useNavigate } from "react-router-dom";
 
 import { Loader } from "../components/Loader.js";
 import { Suspense } from "react";
 const Technical = () => {
-  // Your component logic goes here
+  
+  const nav = useNavigate();
   const [loaded, setLoaded] = useState(false);
   const [search, setSearch] = useState("");
   const [events, setEvents] = useState([]);
@@ -16,20 +18,21 @@ const Technical = () => {
     { value: "All", label: "All" },
   ];
   useEffect(() => {
-    // Your code here
     const getData = async () => {
       await getDocs(collection(db, "events")).then((querySnapshot) => {
-        const newData = querySnapshot.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id,
-        }));
-        setEvents(newData.filter((event) => event.cat === "Technical"));
-        setLoaded(true);  
+        const newData = querySnapshot.docs.map((doc) => {
+          const docData = doc.data();
+          return {
+            ...docData, 
+            id: docData.id, 
+          };
+        });
+        setEvents(newData.filter((event) => event.cat === "Technical"||event.cat === "technical"));
+        setTimeout(() => setLoaded(true), 1000);
       });
     };
     getData();
-  },[]);
-
+  }, []);
 
   const handleChangeCategory = (category) => {
     if(category==="All"){
@@ -74,7 +77,7 @@ const Technical = () => {
         {loaded ? (
           curEvents.map((event, index) => (
             <Suspense fallback={<Loader />} key={index}>
-              <div className="hover:scale-110 transition duration-200 cursor-pointer rounded-2xl m-4 ">
+              <div className="hover:scale-110 transition duration-200 cursor-pointer rounded-2xl m-4" onClick={() => nav(`/events/cultural/${event.id}`)}>
                   <div class="max-w-sm rounded-lg overflow-hidden shadow-lg bg-white">
                     <img
                       class="w-full h-fit"
