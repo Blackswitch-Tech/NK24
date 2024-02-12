@@ -2,9 +2,9 @@ import React from 'react';
 
 const Terms = () => {
   return (
-    <div className="bg-black text-white font-neu text-md md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl p-8 min-h-screen flex items-center">
+    <div className="bg-black text-white font-pop text-md md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl p-8 min-h-screen flex items-center">
       <div>
-        <h1 className="text-2xl md:text-3xl lg:text-3xl xl:text-5xl 2xl:text-6xl 3xl:text-6xl 4xl:text-6xl 5xl:text-6xlfont-bold mb-4 text-center ">Terms & Conditions</h1>
+        <h1 className="text-2xl md:text-3xl lg:text-3xl xl:text-5xl 2xl:text-6xl 3xl:text-6xl 4xl:text-6xl 5xl:text-6xlfont-bold mb-4 text-center mt-10">Terms & Conditions</h1>
         <p className="mb-4 md:text-lg lg:text-xl xl:text-2xl">
           Acceptance of Terms: By accessing and utilizing the website and services provided by Saintgits Nakshatra 24 ("Owner"), you acknowledge and agree to comply with these Terms and Conditions. If you do not agree with any part of these terms, please refrain from using the website.
         </p>

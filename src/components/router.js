@@ -14,8 +14,8 @@ import Technical from "../pages/Technical";
 import EventDescPage from "../pages/EventDescPage";
 
 import Privacy from "../pages/policy/Privacy";
-import Refund from "../pages/policy/refund";
-import Terms from "../pages/policy/terms";
+import Refund from "../pages/policy/Refund";
+import Terms from "../pages/policy/Terms";
 
 import Credits from "../pages/Credits";
 import UpdateProfile from "../pages/UpdateProfile";

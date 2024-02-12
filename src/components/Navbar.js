@@ -11,7 +11,7 @@ import NK24logo from '../assets/NK24logo.webp';
 import Burger from '../assets/hamburger.png'
 import Select from '../assets/option.png'
 import Enter from '../assets/enter.png';
-import User from '../assets/user.png'
+import User from '../assets/user.svg'
 
 const navigation = [
   { name: "Home", href: "/", current: false },
