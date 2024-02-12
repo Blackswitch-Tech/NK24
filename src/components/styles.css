@@ -57,3 +57,13 @@
         width: 80%;
     }
 }
+
+@font-face {
+  font-family: 'Aurora';
+  src: url('../assets/Aurora.OTF') format('opentype'),
+}
+
+@font-face {
+  font-family: 'Milk';
+  src: url('../assets/Lemonmilk.otf') format('opentype'),
+}

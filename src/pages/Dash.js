@@ -97,7 +97,7 @@ export default function Dash() {
             </div>
 
             <div className="text-20 font-pop mt-2">
-              This is the dashboard. You can view the events you have regitered
+              This is the dashboard. You can view the events you have registered
               here and update your current profile
             </div>
             <Button

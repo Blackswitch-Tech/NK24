@@ -10,6 +10,8 @@ module.exports = withMT({
         libre: [' Protest Guerrilla ', ...defaultTheme.fontFamily.sans],
         neu:['Bebas Neue', ...defaultTheme.fontFamily.sans],
         pop:['Poppins', ...defaultTheme.fontFamily.sans],
+        aurora:['Aurora', ...defaultTheme.fontFamily.sans],
+        milk:['Milk', ...defaultTheme.fontFamily.sans],
       }
     },
   },
