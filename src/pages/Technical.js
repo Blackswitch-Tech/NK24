@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { db } from "../firebase/firebase";
 import { collection, addDoc, getDoc, getDocs } from "firebase/firestore/lite";
 
-import { Loader } from "../components/loader";
+import { Loader } from "../components/Loader";
 import { Suspense } from "react";
 const Technical = () => {
   // Your component logic goes here
