@@ -6,7 +6,6 @@ import Homepage from "../pages/Homepage";
 import Dash from "../pages/Dash.js"
 
 
-import SignInComponent from "../pages/Signup.js";
 
 import EventsPage from "../pages/EventsPage";
 import Cultural from "../pages/Cultural";
@@ -19,6 +18,7 @@ import Terms from "../pages/policy/Terms";
 
 import Credits from "../pages/Credits";
 import UpdateProfile from "../pages/UpdateProfile";
+import Signup from "../pages/Signup.js";
 
 
 export function RouterPaths() {
@@ -38,7 +38,7 @@ export function RouterPaths() {
       <Route path="/" element={<Homepage />} />
 <Route path="/dashboard" element={<Dash />} />
       <Route path="/terms" element={<Terms />} />
-      <Route path="/signup" element={<SignInComponent />} />
+      <Route path="/signup" element={<Signup />} />
       <Route path="/refund" element={<Refund />} />
       <Route path="/privacy" element={<Privacy />} />
       <Route path="/events" element={<EventsPage />} />

@@ -11,7 +11,7 @@ import "./App.css";
 //logEvent(analytics, "received");
 
 function App() {
-  const { ready } = useReady(5000);
+  const { ready } = useReady(3000);
 
   return (
     <div className="App ">
