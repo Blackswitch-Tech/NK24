@@ -2,8 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { MdPhone } from 'react-icons/md'
 import { MdOutlineEmojiEvents as TrophyIcon } from 'react-icons/md';
+import { Input } from "@material-tailwind/react";
 
-import { useParams } from "react-router-dom";
+import { redirect, useParams } from "react-router-dom";
 import { Dialogbox, LongDialog } from '../components/Dialogbox';
 import {
   collection,
@@ -33,8 +34,11 @@ import { displayRazorpay } from "../razorpay/razorpay";
 const EventPage = () => {
   const [eventData, setEventData] = useState(null);
   const { id } = useParams();
+  const [count,setCount] = useState(0);
   const [refCode, setRefcode] = useState(null);
-  const [team, setTeam] = useState([]);
+  const [min,setMin] = useState(null);
+  const [max,setMax] = useState(null);
+  const [team, setTeam] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
   const [userData,setUserData] = useState(null);
   const [needSignUp, setNeedSignUp] = useState(true);
@@ -44,14 +48,21 @@ const EventPage = () => {
   const handleOpen = () => setOpen(!open);
 
   useEffect(() => {
+    const ref = localStorage.getItem("refcode");
+    if(ref!=="undefined")
+      setRefcode(ref)
+
     const fetchEventData = async () => {
       const q = query(collection(db, "events"), where("id", "==", id));
       const querySnapshot = await getDocs(q);
-
+      console.log(querySnapshot)
+  
       if (!querySnapshot.empty) {
-        // Assuming 'id' is unique, there should only be one document.
         const docData = querySnapshot.docs[0].data();
+
+         
         setEventData(docData);
+
       } else {
         console.log("No such event!");
       }
@@ -97,19 +108,35 @@ const EventPage = () => {
   };
 
   const proceedToPay = async () => {
-    getUserByEmail(currentUser.email).then((userData) => {
-      const token = {
-        uid: userData.id,
-        nkid:userData.NKID,
-        username: userData.name,
-        amount: eventData.regfee,
-        eventid: eventData.id,
-        eventname: eventData.name,
-        
-       
-      };
-      displayRazorpay(token)
-    })}
+        if((count > eventData.min && count < eventData.max)||eventData.type === "single"||eventData.type === "Single")
+        {
+          getUserByEmail(currentUser.email).then((userData) => {
+            const token = {
+
+              uid: userData.id,
+              nkid:userData.NKID,
+              username: userData.name,
+              amount: eventData.regfee,
+              eventid: eventData.id,
+              eventname: eventData.name,
+              
+            
+            };
+            displayRazorpay(token)
+        })
+        }
+        else
+        {
+          alert(`number of participants are required between ${eventData.min} and ${eventData.max}`)
+        }
+    
+}
+
+const handleRefCodeChange = (event) => {
+  setRefcode(event.target.value);
+};
+
+
 
 
   if (!eventData) return <div className="text-center p-10">Loading...</div>;
@@ -217,19 +244,59 @@ const EventPage = () => {
                     </>
                   ) : (
                     <>
+                    {
+                  eventData && eventData.type === "team" && (
+                    <>
+                      <button
+                        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-4"
+                        onClick={() => setCount(count + 1)}
+                      >
+                        Increase
+                      </button>
+                      <button
+                        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-4"
+                        onClick={() => setCount((prevCount) => prevCount > 0 ? prevCount - 1 : 0)}
+                      >
+                        Decrease
+                      </button>
+                      <h1>{count}</h1>
+                   </>
+
+                  )
+                }
+
+                                 <div>
+                                    <div className="font-pop text-white">REFERRAL CODE</div>
+                                    <div className="flex w-72 flex-col gap-6">
+                                      <input 
+                                        type="text"
+                                        color="blue" 
+                                        value={refCode}
+                                        onChange={handleRefCodeChange} 
+                                        readOnly={!!refCode} 
+                                        className="input-class" 
+                                      />
+                                    </div>
+                                  </div>
+                                        
+                                        
                       <button
                         className="bg-blue-500 hover:bg-blue-700 font-pop text-white font-bold py-2 px-4 rounded"
                         onClick={() => {
                           proceedToPay()
+                        
                         }}
                       >
                         REGISTER
                       </button>
                     </>
                   )}
+
+                      
                 </>
               ) : (
                 <>
+                  
                   <button
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                     onClick={() => {

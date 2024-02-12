@@ -82,7 +82,7 @@ const Technical = () => {
                     <img
                       class="w-full h-fit"
                       src={event.imgurl}
-                      alt="Sunset in the mountains"
+                      alt={`${event.type}`}
                     />
                   </div>
               </div>
