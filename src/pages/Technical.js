@@ -3,7 +3,9 @@ import { db } from "../firebase/firebase";
 import { collection, addDoc, getDoc, getDocs } from "firebase/firestore/lite";
 import { useNavigate } from "react-router-dom";
 
+
 import { Loader } from "../components/Loader.js";
+
 import { Suspense } from "react";
 const Technical = () => {
   

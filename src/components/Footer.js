@@ -6,7 +6,7 @@ const CustomTypography = () => {
   return (
     <div class='flex fle-row justify-center w-full'>
     <Typography color="white" className="text-center text-sm font-pop">
-      Made with 
+      Made with
     </Typography>
     <Typography color="red" className="text-center text-sm">
      &nbsp;❤&nbsp;
@@ -23,15 +23,15 @@ export default function Footer() {
     <footer className="w-full bg-black p-8 font-pop">
       <div className="flex flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12 bg-black  text-center md:justify-between">
         <img src={Logo} alt="logo-ct" className="w-20" />
-        <ul className="flex flex-wrap items-center gap-y-2 gap-x-8">
+        <ul className="flex flex-wrap items-center gap-x-8">
           <li>
             <Typography
               as="a"
               href="#"
               color="white"
-              className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
+              className="font-pop transition-colors hover:text-blue-500 focus:text-blue-500"
             >
-              About Us
+              Privacy Policy
             </Typography>
           </li>
           <li>
@@ -39,9 +39,9 @@ export default function Footer() {
               as="a"
               href="#"
               color="white"
-              className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
+              className="font-pop transition-colors hover:text-blue-500 focus:text-blue-500"
             >
-              License
+              Terms and Conditions
             </Typography>
           </li>
           <li>
@@ -49,7 +49,17 @@ export default function Footer() {
               as="a"
               href="#"
               color="white"
-              className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
+              className="font-pop transition-colors hover:text-blue-500 focus:text-blue-500"
+            >
+              Credits
+            </Typography>
+          </li>
+          <li>
+            <Typography
+              as="a"
+              href="#"
+              color="white"
+              className="font-pop transition-colors hover:text-blue-500 focus:text-blue-500"
             >
               Contact Us
             </Typography>
