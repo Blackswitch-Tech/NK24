@@ -1,8 +1,8 @@
-/*const accountSid = "****************************";
-const authToken = "****************************";
-const client = require("twilio")(accountSid, authToken);
-*/
 require("dotenv").config();
+const accountSid = process.env.SSID;
+const authToken = process.env.AUTH_TOKEN;
+const client = require("twilio")(accountSid, authToken);
+
 const functions = require("firebase-functions");
 const express = require("express");
 const app = express();
