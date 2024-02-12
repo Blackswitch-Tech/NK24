@@ -67,3 +67,15 @@
   font-family: 'Milk';
   src: url('../assets/Lemonmilk.otf') format('opentype'),
 }
+
+.icon-transition {
+  transition: opacity 2.3s ease;
+}
+
+.icon-hidden {
+  opacity: 0;
+}
+
+.icon-visible {
+  opacity: 1;
+}

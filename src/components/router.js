@@ -13,8 +13,8 @@ import Technical from "../pages/Technical";
 import EventDescPage from "../pages/EventDescPage";
 
 import Privacy from "../pages/policy/Privacy";
-import Refund from "../pages/policy/Refund";
-import Terms from "../pages/policy/Terms";
+import Refund from "../pages/policy/Refund.js";
+import Terms from "../pages/policy/Terms.js";
 
 import Credits from "../pages/Credits";
 import UpdateProfile from "../pages/UpdateProfile";

@@ -71,7 +71,7 @@ export default function Homepage() {
             </div>
           </div>
           <div className="flex flex-col w-full h-fit max-w-full justify-center mt-50">
-            <div className="font-aurora text-white text-5xl xs:text-5xl sm:text-7xl mt-56 grid place-items-center">
+            <div className="font-aurora text-white text-5xl xs:text-5xl sm:text-7xl mt-10 grid place-items-center">
               nakshathra
             </div>
             <div className="font-milk text-white text-xl xs:text-2xl sm:text-3xl grid place-items-center">
@@ -81,6 +81,7 @@ export default function Homepage() {
         </div>
       </div>
       <div className="middle-section">
+        <div className=" mx-3 font-pop  text-white text-3xl">Featured Events</div>
         <Carouselc />
       </div>
 
