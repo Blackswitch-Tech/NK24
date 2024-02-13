@@ -35,7 +35,7 @@ import { displayRazorpay } from "../razorpay/razorpay";
 const EventPage = () => {
   const [eventData, setEventData] = useState(null);
   const { id } = useParams();
-
+  const [registerButton,setRegisterButton] = useState("Register")
   const [newMemberName, setNewMemberName] = useState("");
   const [refCode, setRefcode] = useState(null);
   const [team, setTeam] = useState([]);
@@ -120,10 +120,14 @@ const EventPage = () => {
           uid: userData.id,
           nkid: userData.NKID,
           username: userData.name,
-          amount: eventData.regfee,
+          amount: eventData.regfee*100,
           eventid: eventData.id,
           eventname: eventData.name,
+          phone: userData.phoneNumber,
+          ref: refCode ? refCode : "nor",
+          team:eventData.type.toLowerCase() === "team" ? team.toString() : null,
         };
+        
         displayRazorpay(token);
       });
     } else {
@@ -354,10 +358,11 @@ const EventPage = () => {
                       <button
                         className="bg-blue-500 mt-3 hover:bg-blue-700 font-pop w-72 text-white font-bold py-2 px-4 rounded"
                         onClick={() => {
+                          
                           proceedToPay();
                         }}
                       >
-                        REGISTER
+REGISTER
                       </button>
                     </div>
                   )}
