@@ -430,8 +430,10 @@ app.post("/verify", async (req, res) => {
         .set({
           eventid: notes.eventid,
           eventname: notes.eventname,
+          email:notes.email,
           id: notes.uid,
           nkid: notes.nkid,
+          online:true,
           username: notes.username,
           refcode: notes.ref,
           payment_id: req.body.data.payment_id,
