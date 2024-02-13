@@ -5,6 +5,14 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../firebase/firebase";
 import { useNavigate } from "react-router-dom";
 import {
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
+  Typography,
+} from "@material-tailwind/react";
+
+import {
   collection,
   addDoc,
   doc,
@@ -18,7 +26,10 @@ import { FaWhatsapp } from "react-icons/fa";
 
 export default function Dash() {
   const [isCampusAmbassador, setCampusAmbassador] = useState(false);
+  const [name,setName] = useState("");
   const [amboId, setAmboId] = useState(null);
+  const [open, setOpen] = useState(false);
+  const [ref, setRefcode] = useState(0);
 
   const [currentUser, setCurrentUser] = useState(null);
   const nav = useNavigate();
@@ -34,10 +45,13 @@ export default function Dash() {
         const userDocSnapshot = querySnapshot.docs[0];
         const isAmbassador = userDocSnapshot.data().isCA;
         const id = userDocSnapshot.data().CACode;
-        console.log(isAmbassador);
-        console.log(amboId);
+        const nam = userDocSnapshot.data().name;
         setCampusAmbassador(isAmbassador);
         setAmboId(id);
+        setName(nam);
+        setRefcode(userDocSnapshot.data().refcount)
+        console.log(ref);
+        console.log(name);
       } catch (error) {
         console.log("error");
       }
@@ -49,6 +63,8 @@ export default function Dash() {
     nav("/update_profile", { state: { update: true } });
   };
 
+  const handleOpen = () => setOpen(!open);
+
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
@@ -59,6 +75,18 @@ export default function Dash() {
   };
 
   const caRegister = async () => {
+
+    try {
+      await addDoc(collection(db, "campusAmb"), {
+        cacode: amboId,
+        name: name,
+        email: currentUser.email,
+        refcount: ref
+      });
+      console.log("Document successfully written!");
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
     try {
       const usersRef = collection(db, "users");
       const q = query(usersRef, where("email", "==", currentUser.email));
@@ -74,6 +102,7 @@ export default function Dash() {
       console.error("Error in caRegister:", error);
     }
   };
+
 
   //whatsapp evide
   const shareText = `Dive into the Ciniverse Extravaganza at Nakshatra 2024! 🌌✨ Experience the ultimate blend of technology and culture, where the magic of cinema meets the future of innovation. Don't miss this epic fest! Join us: ${window.location.origin}?refocde=${amboId} #Nakshatra2024 #CiniverseExtravaganza`;
@@ -128,11 +157,28 @@ export default function Dash() {
               influencer. Let’s see who will become the next face of Nakshatra
             </div>
 
+            <a
+              className="py-4 text-lg font-pop underline text-white hover:text-green-500 cursor-pointer"
+              onClick={handleOpen}
+            >
+             CLICK HERE TO VIEW RULES
+            </a>
+                        <Dialog open={open} handler={handleOpen}>
+              <DialogHeader>Event Rules</DialogHeader>
+              <DialogBody className="h-[42rem] overflow-scroll">
+                <Typography className="font-normal">
+                  <ul className="list-disc pl-5">
+                    
+                  </ul>
+                </Typography>
+              </DialogBody>
+              </Dialog>
+
             <div>
               {isCampusAmbassador === false ? (
                 <Button
                   onClick={caRegister}
-                  className="text-green-600 lg:w-1/2 text-xl mt-20 font-pop hover:bg-white"
+                  className="text-green-600 lg:w-1/2 text-xl mt-15 font-pop hover:bg-white"
                 >
                   Register as Ambassador
                 </Button>

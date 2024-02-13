@@ -29,7 +29,7 @@ import {
   DialogFooter,
   Typography,
 } from "@material-tailwind/react";
-import SignInComponent from "./Signup";
+
 import { displayRazorpay } from "../razorpay/razorpay";
 
 const EventPage = () => {
