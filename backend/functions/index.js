@@ -301,7 +301,6 @@ app.post("/verification", (req, res) => {
 });
 
 app.post("/verify", async (req, res) => {
-
   if (
     validatePaymentVerification(
       {
@@ -385,40 +384,39 @@ app.post("/verify", async (req, res) => {
       }
 
       if (notes.ref && notes.ref !== "nor") {
-        db.collection("users")
-          .where("CACode", "==", notes.ref)
+        db.collection("campusAmb")
+          .where("cacode", "==", notes.ref)
           .get()
           .then((querySnapshot) => {
             if (querySnapshot.empty) {
-              console.log("No user found with the provided CACode:", notes.ref);
+              // No document found with the provided cacode
+              console.log(
+                "No document found with the provided cacode:",
+                notes.ref
+              );
             } else {
+              // Document(s) with the cacode exist, proceed to increment refcount
               querySnapshot.forEach((doc) => {
-                const currentRefcount = doc.data().refcount;
-                console.log(currentRefcount);
-                const newRefcount =
-                  typeof currentRefcount === "number" ? currentRefcount + 1 : 1;
-
-                db.collection("users")
-                  .doc(doc.id)
+                const docRef = db.collection("campusAmb").doc(doc.id); // Reference to the specific document
+                docRef
                   .update({
-                    refcount: newRefcount,
+                    refcount: admin.firestore.FieldValue.increment(1), // Increment refcount by 1
                   })
-                  .then(() =>
+                  .then(() => {
                     console.log(
-                      "Manually incremented refcount for user with CACode:",
+                      "Incremented refcount for cacode:",
                       notes.ref
-                    )
-                  )
-                  .catch((error) =>
-                    console.error(
-                      "Error manually incrementing refcount:",
-                      error
-                    )
-                  );
+                    );
+                  })
+                  .catch((error) => {
+                    console.error("Error incrementing refcount:", error);
+                  });
               });
             }
           })
-          .catch((error) => console.error("Error querying users:", error));
+          .catch((error) => {
+            console.error("Error querying for cacode:", error);
+          });
       } else {
         console.log('CACode is not provided or set to default value "nor".');
       }
@@ -430,14 +428,14 @@ app.post("/verify", async (req, res) => {
         .set({
           eventid: notes.eventid,
           eventname: notes.eventname,
-          email:notes.email,
+          email: notes.email,
           id: notes.uid,
           nkid: notes.nkid,
-          online:true,
+          online: true,
           username: notes.username,
           refcode: notes.ref,
           payment_id: req.body.data.payment_id,
-          attended:false,
+          attended: false,
           team: notes.team,
           phone: notes.phone,
         });
@@ -459,7 +457,11 @@ app.post("/verify", async (req, res) => {
 
           // Ensure there's an array for the current eventid, then check for and add the userid if not already present
           registrations[notes.eventid] = registrations[notes.eventid] || [];
-          if (!registrations[notes.eventid].includes(`${notes.nkid}-${notes.eventid}`)) {
+          if (
+            !registrations[notes.eventid].includes(
+              `${notes.nkid}-${notes.eventid}`
+            )
+          ) {
             registrations[notes.eventid].push(`${notes.nkid}-${notes.eventid}`);
 
             // Update or create the document with the updated registrations object
