@@ -208,8 +208,7 @@ const EventPage = () => {
             </h2>
             {eventData.prizes.map((prize, index) => (
               <div key={index} className="mb-2">
-                <p>
-                  <span className="font-medium font-pop">
+                  <div className="font-medium font-pop">
                     {prize.title === "1st" && (
                       <TrophyIcon
                         className="text-yellow-500 inline"
@@ -225,13 +224,12 @@ const EventPage = () => {
                         size={32}
                       />
                     )}
-                    {prize.title !== "1st" &&
-                      prize.title !== "2nd" &&
-                      prize.title !== "3rd" &&
+                    {prize.title !== "1st" ||
+                      prize.title !== "2nd" ||
+                      prize.title !== "3rd" ||
                       prize.title}{" "}
                     {prize.amt}
-                  </span>
-                </p>
+                  </div>
               </div>
             ))}
           </div>

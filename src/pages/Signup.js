@@ -59,6 +59,12 @@ const Signup = ({route}) => {
   }
   const SignupCode = async (e) => {
     e.preventDefault(); // Prevent the default form submission behavior
+
+    if(name.trim() === '' || phoneNumber.trim() === '' || college.trim() === '' || branch.trim() === '' || semester.trim() === '')
+       alert("fill the form completely");
+    else
+    {
+
     if (!agreeToTerms) {
       alert("Please agree to the terms and conditions.");
       return;
@@ -95,6 +101,7 @@ const Signup = ({route}) => {
       console.error("Error adding document: ", error);
       alert("There was an issue registering the user.");
     }
+  }
   };
   return (
 
@@ -157,6 +164,7 @@ const Signup = ({route}) => {
                   size="lg"
                   placeholder="Computer Science"
                   value={branch}
+               
                   onChange={(e) => setBranch(e.target.value)}
                   className="text-white"
                 />
@@ -169,6 +177,7 @@ const Signup = ({route}) => {
                   size="lg"
                   placeholder="VI"
                   value={semester}
+             
                   onChange={(e) => setSemester(e.target.value)}
                   className="text-white"
                 />
@@ -193,7 +202,8 @@ const Signup = ({route}) => {
         checked={agreeToTerms}
       />
       <Button
-        className="mt-6"
+        className="mt-6 hover:bg-green-500"
+        type="submit"
         fullWidth
         disabled={!agreeToTerms}
         onClick={SignupCode}
