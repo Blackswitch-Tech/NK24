@@ -35,7 +35,7 @@ import { displayRazorpay } from "../razorpay/razorpay";
 const EventPage = () => {
   const [eventData, setEventData] = useState(null);
   const { id } = useParams();
-  const [registerButton,setRegisterButton] = useState("Register")
+  const [registering,setRegistering] = useState(false)
   const [newMemberName, setNewMemberName] = useState("");
   const [refCode, setRefcode] = useState(null);
   const [team, setTeam] = useState([]);
@@ -119,6 +119,7 @@ const EventPage = () => {
         const token = {
           uid: userData.id,
           nkid: userData.NKID,
+          email:userData.email,
           username: userData.name,
           amount: eventData.regfee*100,
           eventid: eventData.id,
@@ -127,8 +128,8 @@ const EventPage = () => {
           ref: refCode ? refCode : "nor",
           team:eventData.type.toLowerCase() === "team" ? team.toString() : null,
         };
-        
-        displayRazorpay(token);
+        setRegistering(true);
+        displayRazorpay(token,nav);
       });
     } else {
       alert(
@@ -357,12 +358,13 @@ const EventPage = () => {
 
                       <button
                         className="bg-blue-500 mt-3 hover:bg-blue-700 font-pop w-72 text-white font-bold py-2 px-4 rounded"
+                        disabled={registering}
                         onClick={() => {
                           
                           proceedToPay();
                         }}
                       >
-REGISTER
+{registering ? "Registering, May take time ..":"Register"}
                       </button>
                     </div>
                   )}

@@ -17,7 +17,7 @@ const loadScript = () => {
   });
 };
 
-export const displayRazorpay = async (token) => {
+export const displayRazorpay = async (token,nav) => {
 
   const res = await loadScript();
 
@@ -66,7 +66,7 @@ export const displayRazorpay = async (token) => {
             console.log(res);
             axios
               .post(
-                "https://d8e2-2001-df5-d380-770b-e367-1d21-b370-fc08.ngrok-free.app/nakshatra-9c45c/asia-south1/app/verify",
+                "https://asia-south1-nakshatra-9c45c.cloudfunctions.net/app/verify",
                 {
                   headers: {
                     "content-type": "application/json",
@@ -85,7 +85,7 @@ export const displayRazorpay = async (token) => {
                 if(res.data.status === "ok"){
                   console.log("success");
                   alert("Payment Successful");
-                  redirect("/dashboard");
+                  nav("/dashboard");
                 }
               })
               .catch((error) => {
