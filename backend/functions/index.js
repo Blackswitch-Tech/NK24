@@ -434,7 +434,8 @@ app.post("/verify", async (req, res) => {
           nkid: notes.nkid,
           username: notes.username,
           refcode: notes.ref,
-
+          payment_id: req.body.data.payment_id,
+          attended:false,
           team: notes.team,
           phone: notes.phone,
         });
@@ -456,8 +457,8 @@ app.post("/verify", async (req, res) => {
 
           // Ensure there's an array for the current eventid, then check for and add the userid if not already present
           registrations[notes.eventid] = registrations[notes.eventid] || [];
-          if (!registrations[notes.eventid].includes(notes.nkid)) {
-            registrations[notes.eventid].push(notes.nkid);
+          if (!registrations[notes.eventid].includes(`${notes.nkid}-${notes.eventid}`)) {
+            registrations[notes.eventid].push(`${notes.nkid}-${notes.eventid}`);
 
             // Update or create the document with the updated registrations object
             eventRegRef

@@ -66,7 +66,7 @@ export const displayRazorpay = async (token) => {
             console.log(res);
             axios
               .post(
-                "https://8b63-117-254-186-29.ngrok-free.app/nakshatra-9c45c/asia-south1/app/verify",
+                "https://d8e2-2001-df5-d380-770b-e367-1d21-b370-fc08.ngrok-free.app/nakshatra-9c45c/asia-south1/app/verify",
                 {
                   headers: {
                     "content-type": "application/json",
