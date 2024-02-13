@@ -2,7 +2,9 @@ require("dotenv").config();
 const accountSid = process.env.SSID;
 const authToken = process.env.AUTH_TOKEN;
 const client = require("twilio")(accountSid, authToken);
-
+const {
+  validatePaymentVerification,
+} = require("razorpay/dist/utils/razorpay-utils");
 const functions = require("firebase-functions");
 const express = require("express");
 const app = express();
@@ -12,7 +14,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const admin = require("firebase-admin");
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 const firebaseConfig = {
@@ -49,10 +51,12 @@ app.use(cors());
 //   origin: ['http://example1.com', 'http://example2.com'],
 // }));
 
-
-
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
   res.send("NK23 BACKEND v3");
+  const eventRef = db.collection("events").doc("NK-03");
+
+  const doc = await eventRef.get();
+  console.log(doc);
 });
 let amount;
 // No need to call cors() here again as it's already applied to all routes using app.use(cors());
@@ -131,13 +135,13 @@ app.post("/razorpay", async (req, res) => {
     "NK-42": "30",
     "NK-15": "50",
   };
-  console.log(req.body.id)
+  console.log(req.body.id);
   try {
     const response = await razorpay.orders.create({
       currency: "INR",
       receipt: shortid.generate(),
       payment_capture: 1,
-      amount: parseInt(dataforevents[req.body.id])*100, // Ensure amount is in the smallest currency unit (e.g., paise for INR)
+      amount: parseInt(dataforevents[req.body.id]) * 100, // Ensure amount is in the smallest currency unit (e.g., paise for INR)
     });
     res.json({
       id: response.id,
@@ -153,9 +157,23 @@ app.post("/razorpay", async (req, res) => {
 // L
 
 app.post("/verification", (req, res) => {
+  console.log(req.body.payload);
+  console.log(req.body);
   try {
-    const secret = "2234172";
+    const secret = "123456789";
+    const {
+      validateWebhookSignature,
+    } = require("razorpay/dist/utils/razorpay-utils");
 
+    console.log(
+      validateWebhookSignature(
+        JSON.stringify(req.body),
+        req.headers["x-razorpay-signature"],
+        secret
+      )
+    );
+    console.log(req.body.payload);
+    console.log(req.body);
     const crypto = require("crypto");
 
     const shasum = crypto.createHmac("sha256", secret);
@@ -170,7 +188,7 @@ app.post("/verification", (req, res) => {
         try {
           client.messages
             .create({
-              from: "whatsapp:+14155238886",
+              from: "whatsapp:+918157981093",
 
               // body
               body: `Hey ${
@@ -192,10 +210,10 @@ app.post("/verification", (req, res) => {
         }
 
         try {
-          db.collection("Events")
+          db.collection("events")
             .doc(req.body.payload.payment.entity?.notes?.eventid)
             .update({
-              spots: admin.firestore.FieldValue.increment(-1),
+              slots_left: admin.firestore.FieldValue.increment(-1),
             });
         } catch (e) {
           console.log("Failed to update spots: " + e);
@@ -279,6 +297,193 @@ app.post("/verification", (req, res) => {
     res.json({ status: "ok" });
   } catch (e) {
     console.log("Verification fail");
+  }
+});
+
+app.post("/verify", async (req, res) => {
+
+  if (
+    validatePaymentVerification(
+      {
+        order_id: req.body.data.order_id,
+        payment_id: req.body.data.payment_id,
+      },
+      req.body.data.sign,
+      "W9SnUEGR1KjlCyJhxw8ibejD"
+    )
+  ) {
+    const notes = req.body.data.notes; // Centralized reference for ease of access
+
+    try {
+      // Send WhatsApp message
+
+      // Update slots left for the event
+      const eventRef = db.collection("events").where("id", "==", notes.eventid);
+
+      try {
+        const querySnapshot = await eventRef.get();
+
+        if (querySnapshot.empty) {
+          console.log("No matching documents.");
+          return;
+        }
+
+        querySnapshot.forEach(async (doc) => {
+          let currentSlots = doc.data().slots_left;
+          let newSlots = parseInt(currentSlots, 10) - 1;
+
+          if (!isNaN(newSlots)) {
+            // Convert newSlots back to a string and update the document
+            await db.collection("events").doc(doc.id).update({
+              slots_left: newSlots.toString(),
+            });
+            console.log(
+              "Updated slots_left successfully for document with ID:",
+              doc.id,
+              "to",
+              newSlots
+            );
+          } else {
+            console.error(
+              "Current slots_left value is not a valid number for document with ID:",
+              doc.id
+            );
+          }
+        });
+      } catch (error) {
+        console.error("Error updating slots_left:", error);
+      }
+
+      // Update user's registered events
+      const userRef = db.collection("users").doc(notes.uid);
+
+      try {
+        const doc = await userRef.get();
+
+        if (doc.exists) {
+          // Get the current array or initialize it as an empty array if it doesn't exist
+          const currentRegistered = doc.data().registered || [];
+
+          // Check if the eventId is already in the array to avoid duplicates
+          if (!currentRegistered.includes(notes.eventid)) {
+            // Add the eventId to the array
+            const updatedRegistered = [...currentRegistered, notes.eventid];
+
+            // Update the document with the new array
+            await userRef.update({
+              registered: updatedRegistered,
+            });
+            console.log("Updated registered events for user:", notes.uid);
+          } else {
+            console.log("EventId already registered for user:", notes.uid);
+          }
+        } else {
+          console.log("No such document exists with UID:", notes.uid);
+        }
+      } catch (error) {
+        console.error("Error updating registered events for user:", error);
+      }
+
+      if (notes.ref && notes.ref !== "nor") {
+        db.collection("users")
+          .where("CACode", "==", notes.ref)
+          .get()
+          .then((querySnapshot) => {
+            if (querySnapshot.empty) {
+              console.log("No user found with the provided CACode:", notes.ref);
+            } else {
+              querySnapshot.forEach((doc) => {
+                const currentRefcount = doc.data().refcount;
+                console.log(currentRefcount);
+                const newRefcount =
+                  typeof currentRefcount === "number" ? currentRefcount + 1 : 1;
+
+                db.collection("users")
+                  .doc(doc.id)
+                  .update({
+                    refcount: newRefcount,
+                  })
+                  .then(() =>
+                    console.log(
+                      "Manually incremented refcount for user with CACode:",
+                      notes.ref
+                    )
+                  )
+                  .catch((error) =>
+                    console.error(
+                      "Error manually incrementing refcount:",
+                      error
+                    )
+                  );
+              });
+            }
+          })
+          .catch((error) => console.error("Error querying users:", error));
+      } else {
+        console.log('CACode is not provided or set to default value "nor".');
+      }
+
+      // Add registration details
+      await db
+        .collection("Registrations")
+        .doc(`${notes.nkid}-${notes.eventid}`)
+        .set({
+          eventid: notes.eventid,
+          eventname: notes.eventname,
+          email:notes.email,
+          id: notes.uid,
+          nkid: notes.nkid,
+          online:true,
+          username: notes.username,
+          refcode: notes.ref,
+          payment_id: req.body.data.payment_id,
+          attended:false,
+          team: notes.team,
+          phone: notes.phone,
+        });
+      console.log("Added registration details for:", notes.userid);
+
+      // Update event registrations
+      const eventRegRef = db.collection("EventRegs").doc(notes.eventid);
+
+      eventRegRef
+        .get()
+        .then((doc) => {
+          // Initialize the registrations object to hold arrays keyed by eventid
+          let registrations = {};
+
+          if (doc.exists) {
+            // Document exists, fetch its data
+            registrations = doc.data().registrations || {};
+          }
+
+          // Ensure there's an array for the current eventid, then check for and add the userid if not already present
+          registrations[notes.eventid] = registrations[notes.eventid] || [];
+          if (!registrations[notes.eventid].includes(`${notes.nkid}-${notes.eventid}`)) {
+            registrations[notes.eventid].push(`${notes.nkid}-${notes.eventid}`);
+
+            // Update or create the document with the updated registrations object
+            eventRegRef
+              .set({ registrations }, { merge: true })
+              .then(() =>
+                console.log("Updated event registrations for:", notes.eventid)
+              )
+              .catch((error) =>
+                console.error("Error updating event registrations:", error)
+              );
+          } else {
+            console.log("Userid already registered for event:", notes.eventid);
+          }
+        })
+        .catch((error) => console.error("Error fetching document:", error));
+
+      res.json({ status: "ok" });
+    } catch (e) {
+      console.error("Error in processing verification:", e);
+      res.status(500).send("Error processing request");
+    }
+  } else {
+    res.json({ status: "Error" });
   }
 });
 

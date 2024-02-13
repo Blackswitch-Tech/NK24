@@ -1,4 +1,0 @@
-const razorpay = new Razorpay({
-  key_id: "rzp_test_2E3CGjPItUa2Ee",
-  key_secret: "W9SnUEGR1KjlCyJhxw8ibejD",
-});
