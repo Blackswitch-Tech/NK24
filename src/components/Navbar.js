@@ -1,17 +1,16 @@
 import { Fragment,useState,useEffect } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
 import { signInWithPopup } from "firebase/auth";
 import { auth, db, provider } from "../firebase/firebase";
-import { collection, addDoc ,doc} from 'firebase/firestore/lite';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import {getUserByEmail} from "../utils/searchbyEmail";
 import NK24logo from '../assets/NK24logo.webp';
-import Burger from '../assets/hamburger.png'
-import Select from '../assets/option.png'
 import Enter from '../assets/enter.png';
 import User from '../assets/user.svg'
+import { MdMenu,MdClose,MdLogin,MdPerson } from 'react-icons/md';
+import "./styles.css"
+
 
 const navigation = [
   { name: "Home", href: "/", current: false },
@@ -80,15 +79,10 @@ export default function Navbar() {
                   <span className="sr-only">Open main menu</span>
                   {open ? (
 
-                    <div className="block ml-1 h-12 w-12 ease-in" aria-hidden="true">
-                      <img src={Select} alt="Menu icon" />
-                    </div>
+                    <MdClose className="block h-6 w-6 " size={20} aria-hidden="true" />
                   ) : (
-                    <div className="block h-10 w-10 ease-in" aria-hidden="true">
-
-
-                      <img src={Burger} alt="Menu Icon" />
-                    </div>
+                    
+                    <MdMenu className="block h-6 w-6  " aria-hidden="true" />
                   )}
                 </Disclosure.Button>
               </div>
@@ -131,11 +125,7 @@ export default function Navbar() {
                     <Menu.Button className="relative flex  " onClick={handleSignIn}>
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
-                      <img
-                        className="h-10 w-10 sm:h-12 sm:w-12"
-                        src={User}
-                        alt="User Menu"
-                      />
+                      <MdPerson className="block h-10 w-10 " size={20} aria-hidden="true" />
                     </Menu.Button>
                   </div>
                   
@@ -149,12 +139,7 @@ export default function Navbar() {
                     <Menu.Button className="relative flex  " onClick={()=>{handleSignIn()}}>
                       <span className="-inset-1.5" />
                       <span className="sr-only">Open user menu</span>
-                      <img
-                        className="h-10 w-10 sm:h-12 sm:w-12" 
-                        
-                        src={Enter}
-                        alt="User Menu"
-                      />
+                      <MdLogin className="block h-6 w-6 " size={20} aria-hidden="true" />
                     </Menu.Button>
                   </div>
                   
@@ -175,8 +160,8 @@ export default function Navbar() {
                   className={classNames(
                     item.current
                       ? "bg-gray-900 text-white"
-                      : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                    "block rounded-md px-3 py-2 text-base font-medium"
+                      : "text-gray-300 ",
+                    "block rounded-md px-3 py-2 text-base font-medium font-pop text-white"
                   )}
                   aria-current={item.current ? "page" : undefined}
                 >
