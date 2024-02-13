@@ -13,6 +13,7 @@ import "./App.css";
 function App() {
   const { ready } = useReady(3500);
 
+
   return (
     <div className="App ">
       {ready !== true ? (
