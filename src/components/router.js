@@ -3,9 +3,7 @@ import { lazy } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Homepage from "../pages/Homepage";
 
-import Dash from "../pages/Dash.js"
-
-
+import Dash from "../pages/Dash.js";
 
 import EventsPage from "../pages/EventsPage";
 import Cultural from "../pages/Cultural";
@@ -19,24 +17,14 @@ import Terms from "../pages/policy/Terms.js";
 import Credits from "../pages/Credits";
 import UpdateProfile from "../pages/UpdateProfile";
 import Signup from "../pages/Signup.js";
-
+import ContactUsPage from "../pages/ContactUs.js";
 
 export function RouterPaths() {
   const location = useLocation();
   return (
-
-
-        
-
-
-
-
-      <Routes>
-   
-
-  
+    <Routes>
       <Route path="/" element={<Homepage />} />
-<Route path="/dashboard" element={<Dash />} />
+      <Route path="/dashboard" element={<Dash />} />
       <Route path="/terms" element={<Terms />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/refund" element={<Refund />} />
@@ -46,9 +34,9 @@ export function RouterPaths() {
       <Route path="/events/technical" element={<Technical />} />
       <Route path="/events/cultural/:id" element={<EventDescPage />} />
       <Route path="/events/cultural/:id" element={<EventDescPage />} />
-      <Route path="/update_profile" element={<UpdateProfile/>}/>
+      <Route path="/update_profile" element={<UpdateProfile />} />
       <Route path="/credits" element={<Credits />} />
+      <Route path="/contact_us" element={<ContactUsPage />} />
     </Routes>
-
   );
 }

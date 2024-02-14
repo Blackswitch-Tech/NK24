@@ -124,22 +124,22 @@ const EventPage = () => {
           const token = {
             uid: userData.id,
             nkid: userData.NKID,
-            email:userData.email,
+            email: userData.email,
             username: userData.name,
-            amount: eventData.regfee*100,
+            amount: eventData.regfee * 100,
             eventid: eventData.id,
             eventname: eventData.name,
             phone: userData.phoneNumber,
             ref: refCode ? refCode : "nor",
-            team:eventData.type.toLowerCase() === "team" ? team.toString() : null,
-  
+            team:
+              eventData.type.toLowerCase() === "team" ? team.toString() : null,
           };
           setRegistering(true);
-          displayRazorpay(token,nav,window.location.pathname);
+          displayRazorpay(token, nav, window.location.pathname);
         });
       } else {
         alert(
-         ` number of participants are required between ${eventData.min} and ${eventData.max}`
+          ` number of participants are required between ${eventData.min} and ${eventData.max}`
         );
       }
     } else {
@@ -167,7 +167,7 @@ const EventPage = () => {
     setTeam(team.filter((_, i) => i !== index));
   };
 
-  if (!eventData) return <div className="text-center p-10">Loading...</div>
+  if (!eventData) return <div className="text-center p-10">Loading...</div>;
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
@@ -251,8 +251,7 @@ const EventPage = () => {
                   )}
                   {(prize.title !== "1st" &&
                     prize.title !== "2nd" &&
-                    prize.title !== "3rd") ||
-                    prize.title}{" "}
+                    prize.title !== "3rd") || "  "}
                   {prize.amt}
                 </div>
               </div>
@@ -402,6 +401,34 @@ const EventPage = () => {
                           onChange={handleChange}
                           checked={agreeToTerms}
                         />
+                        {registering ? (
+                          <>
+                            <div
+                              class=" border border-red-400 text-red-700 px-4 py-3 rounded relative"
+                              role="alert"
+                            >
+                              <strong class="font-bold font-pop">
+                                Disclaimer:
+                              </strong>
+                              <span class="block sm:inline text-xs text-pop">
+                                {" "}
+                                If your account is debited but the transaction
+                                does not appear in your registration status,
+                                please{" "}
+                                <a
+                                  className="underline text-red-200"
+                                  href="/contact_us"
+                                >
+                                  Contact Us
+                                </a>{" "}
+                                before attempting another payment.
+                              </span>
+                            </div>
+                          </>
+                        ) : (
+                          <></>
+                        )}
+
                         <button
                           className="bg-blue-500 mt-5 hover:bg-blue-700 font-pop w-full py-3 sm:w-72 text-white font-bold py-2 px-4 rounded "
                           disabled={registering}
