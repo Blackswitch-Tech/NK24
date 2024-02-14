@@ -156,149 +156,6 @@ app.post("/razorpay", async (req, res) => {
 
 // L
 
-app.post("/verification", (req, res) => {
-  console.log(req.body.payload);
-  console.log(req.body);
-  try {
-    const secret = "123456789";
-    const {
-      validateWebhookSignature,
-    } = require("razorpay/dist/utils/razorpay-utils");
-
-    console.log(
-      validateWebhookSignature(
-        JSON.stringify(req.body),
-        req.headers["x-razorpay-signature"],
-        secret
-      )
-    );
-    console.log(req.body.payload);
-    console.log(req.body);
-    const crypto = require("crypto");
-
-    const shasum = crypto.createHmac("sha256", secret);
-    shasum.update(JSON.stringify(req.body));
-    const digest = shasum.digest("hex");
-
-    console.log(digest, req.headers["x-razorpay-signature"]);
-
-    if (digest === req.headers["x-razorpay-signature"]) {
-      console.log("request is legit");
-      if (req.body.payload.payment.entity?.notes?.app !== "isApp") {
-        try {
-          client.messages
-            .create({
-              from: "whatsapp:+918157981093",
-
-              // body
-              body: `Hey ${
-                req.body.payload.payment.entity?.notes?.username
-              }, Welcome to _*Nakshatra23*_!\nYour registration for the event *${
-                req.body.payload.payment.entity?.notes?.eventname
-              }* has been processed succesfully your registration ID is *${
-                req.body.payload.payment.entity?.notes?.userid +
-                req.body.payload.payment.entity?.notes?.eventid
-              }*\nWe are excited to see you soon !`,
-              // body
-
-              mediaUrl: "https://upcdn.io/W142hhQ/raw/msgbanner.jpg",
-              to: `whatsapp:+91${req.body.payload.payment.entity?.notes?.whatsapp}`,
-            })
-            .then((message) => console.log(message.sid));
-        } catch (e) {
-          console.log("wtspFail" + e);
-        }
-
-        try {
-          db.collection("events")
-            .doc(req.body.payload.payment.entity?.notes?.eventid)
-            .update({
-              slots_left: admin.firestore.FieldValue.increment(-1),
-            });
-        } catch (e) {
-          console.log("Failed to update spots: " + e);
-        }
-
-        try {
-          db.collection("users")
-            .doc(req.body.payload.payment.entity?.notes?.userid)
-            .update({
-              registered: admin.firestore.FieldValue.arrayUnion(
-                req.body.payload.payment.entity.notes.eventid
-              ),
-            });
-        } catch (e) {
-          console.log("failedToAdduserEvent: " + e);
-        }
-
-        try {
-          if (req.body.payload.payment.entity.notes?.referral !== "nor") {
-            db.collection("users")
-              .where(
-                "refcode",
-                "==",
-                req.body.payload.payment.entity.notes?.referral
-              )
-              .get()
-              .then((docu) => {
-                docu.forEach((_doc) => {
-                  if (_doc.exists) {
-                    db.collection("users")
-                      .doc(_doc.data().uid)
-                      .update({
-                        refcount: admin.firestore.FieldValue.increment(1),
-                      });
-                  }
-                });
-              });
-          }
-        } catch (e) {
-          console.log(e);
-        }
-
-        try {
-          console.log(req.body.payload.payment.entity?.notes);
-          db.collection("Registrations")
-            .doc(
-              `${req.body.payload.payment.entity?.notes.userid}${req.body.payload.payment.entity?.notes.eventid}`
-            )
-            .set({
-              eventid: req.body.payload.payment.entity?.notes.eventid,
-              eventname: req.body.payload.payment.entity?.notes.eventname,
-              userid: req.body.payload.payment.entity?.notes.userid,
-              username: req.body.payload.payment.entity?.notes.username,
-              refcode: req.body.payload.payment.entity?.notes.referral,
-              payment_id: req.body.payload.payment.entity?.id,
-              order_id: req.body.payload.payment.entity?.order_id,
-              method: req.body.payload.payment.entity?.method,
-              amount: req.body.payload.payment.entity?.notes.amount,
-              team: req.body.payload.payment.entity?.notes.team,
-              whatsapp: req.body.payload.payment.entity?.notes.whatsapp,
-            });
-        } catch (e) {
-          console.log("addingFail: " + e);
-        }
-      }
-      try {
-        db.collection("EventRegs")
-          .doc(req.body.payload.payment.entity?.notes.eventid)
-          .update({
-            registrations: admin.firestore.FieldValue.arrayUnion(
-              req.body.payload.payment.entity.notes.userid
-            ),
-          });
-      } catch (e) {
-        console.log("eventRegPushFail: " + e);
-      }
-    } else {
-      console.log("invalid");
-    }
-    console.log(req.body.payload.payment.entity?.notes);
-    res.json({ status: "ok" });
-  } catch (e) {
-    console.log("Verification fail");
-  }
-});
 
 app.post("/verify", async (req, res) => {
   if (
@@ -313,76 +170,76 @@ app.post("/verify", async (req, res) => {
   ) {
     const notes = req.body.data.notes; // Centralized reference for ease of access
 
+    // Send WhatsApp message
+
+    // Update slots left for the event
+    const eventRef = db.collection("events").where("id", "==", notes.eventid);
+
     try {
-      // Send WhatsApp message
+      const querySnapshot = await eventRef.get();
 
-      // Update slots left for the event
-      const eventRef = db.collection("events").where("id", "==", notes.eventid);
-
-      try {
-        const querySnapshot = await eventRef.get();
-
-        if (querySnapshot.empty) {
-          console.log("No matching documents.");
-          return;
-        }
-
-        querySnapshot.forEach(async (doc) => {
-          let currentSlots = doc.data().slots_left;
-          let newSlots = parseInt(currentSlots, 10) - 1;
-
-          if (!isNaN(newSlots)) {
-            // Convert newSlots back to a string and update the document
-            await db.collection("events").doc(doc.id).update({
-              slots_left: newSlots.toString(),
-            });
-            console.log(
-              "Updated slots_left successfully for document with ID:",
-              doc.id,
-              "to",
-              newSlots
-            );
-          } else {
-            console.error(
-              "Current slots_left value is not a valid number for document with ID:",
-              doc.id
-            );
-          }
-        });
-      } catch (error) {
-        console.error("Error updating slots_left:", error);
+      if (querySnapshot.empty) {
+        console.log("No matching documents.");
+        return;
       }
 
-      // Update user's registered events
-      const userRef = db.collection("users").doc(notes.uid);
+      querySnapshot.forEach(async (doc) => {
+        let currentSlots = doc.data().slots_left;
+        let newSlots = parseInt(currentSlots, 10) - 1;
 
-      try {
-        const doc = await userRef.get();
-
-        if (doc.exists) {
-          // Get the current array or initialize it as an empty array if it doesn't exist
-          const currentRegistered = doc.data().registered || [];
-
-          // Check if the eventId is already in the array to avoid duplicates
-          if (!currentRegistered.includes(notes.eventid)) {
-            // Add the eventId to the array
-            const updatedRegistered = [...currentRegistered, notes.eventid];
-
-            // Update the document with the new array
-            await userRef.update({
-              registered: updatedRegistered,
-            });
-            console.log("Updated registered events for user:", notes.uid);
-          } else {
-            console.log("EventId already registered for user:", notes.uid);
-          }
+        if (!isNaN(newSlots)) {
+          // Convert newSlots back to a string and update the document
+          await db.collection("events").doc(doc.id).update({
+            slots_left: newSlots.toString(),
+          });
+          console.log(
+            "Updated slots_left successfully for document with ID:",
+            doc.id,
+            "to",
+            newSlots
+          );
         } else {
-          console.log("No such document exists with UID:", notes.uid);
+          console.error(
+            "Current slots_left value is not a valid number for document with ID:",
+            doc.id
+          );
         }
-      } catch (error) {
-        console.error("Error updating registered events for user:", error);
-      }
+      });
+    } catch (error) {
+      console.error("Error updating slots_left:", error);
+    }
 
+    // Update user's registered events
+    const userRef = db.collection("users").doc(notes.uid);
+
+    try {
+      const doc = await userRef.get();
+
+      if (doc.exists) {
+        // Get the current array or initialize it as an empty array if it doesn't exist
+        const currentRegistered = doc.data().registered || [];
+
+        // Check if the eventId is already in the array to avoid duplicates
+        if (!currentRegistered.includes(notes.eventid)) {
+          // Add the eventId to the array
+          const updatedRegistered = [...currentRegistered, notes.eventid];
+
+          // Update the document with the new array
+          await userRef.update({
+            registered: updatedRegistered,
+          });
+          console.log("Updated registered events for user:", notes.uid);
+        } else {
+          console.log("EventId already registered for user:", notes.uid);
+        }
+      } else {
+        console.log("No such document exists with UID:", notes.uid);
+      }
+    } catch (error) {
+      console.error("Error updating registered events for user:", error);
+    }
+
+    try {
       if (notes.ref && notes.ref !== "nor") {
         db.collection("campusAmb")
           .where("cacode", "==", notes.ref)
@@ -403,10 +260,7 @@ app.post("/verify", async (req, res) => {
                     refcount: admin.firestore.FieldValue.increment(1), // Increment refcount by 1
                   })
                   .then(() => {
-                    console.log(
-                      "Incremented refcount for cacode:",
-                      notes.ref
-                    );
+                    console.log("Incremented refcount for cacode:", notes.ref);
                   })
                   .catch((error) => {
                     console.error("Error incrementing refcount:", error);
@@ -420,8 +274,12 @@ app.post("/verify", async (req, res) => {
       } else {
         console.log('CACode is not provided or set to default value "nor".');
       }
+    } catch (error) {
+      console.error("Error incrementing refcount:", error);
+    }
 
-      // Add registration details
+    // Add registration details
+    try {
       await db
         .collection("Registrations")
         .doc(`${notes.nkid}-${notes.eventid}`)
@@ -440,8 +298,11 @@ app.post("/verify", async (req, res) => {
           phone: notes.phone,
         });
       console.log("Added registration details for:", notes.userid);
-
-      // Update event registrations
+    } catch (error) {
+      console.error("Error registering user:", error);
+    }
+    // Update event registrations
+    try {
       const eventRegRef = db.collection("EventRegs").doc(notes.eventid);
 
       eventRegRef
@@ -478,12 +339,10 @@ app.post("/verify", async (req, res) => {
           }
         })
         .catch((error) => console.error("Error fetching document:", error));
-
-      res.json({ status: "ok" });
-    } catch (e) {
-      console.error("Error in processing verification:", e);
-      res.status(500).send("Error processing request");
+    } catch (error) {
+      console.error("Error updating event registrations:", error);
     }
+    res.json({ status: "ok" });
   } else {
     res.json({ status: "Error" });
   }

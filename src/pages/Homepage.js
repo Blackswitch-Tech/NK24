@@ -19,7 +19,7 @@ export default function Homepage() {
         style={{ backgroundImage: `url(${require("../assets/bg3.jpg")})` }}
       >
         <div className="w-full flex flex-col  backdrop-brightness-40">
-          <div className="flex w-full h-fit max-w-full justify-center mt-56 overflow-hidden ">
+          <div className="flex w-full h-fit max-w-full justify-center mt-56 lg:mt-56 overflow-hidden ">
             <div
               style={{
                 display: "flex",
@@ -70,18 +70,29 @@ export default function Homepage() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col w-full h-fit max-w-full justify-center mt-50">
-            <div className="font-aurora text-white text-5xl xs:text-5xl sm:text-7xl mt-10 grid place-items-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+              duration: 0.8,
+              delay: 1,
+              ease: [0, 0.71, 0.2, 1.01],
+            }}
+            className="flex flex-col w-full h-fit max-w-full justify-center mt-50"
+          >
+            <div className="font-aurora text-white text-5xl xs:text-5xl sm:text-7xl lg:text-7xl mt-10 grid place-items-center">
               nakshathra
             </div>
             <div className="font-milk text-white text-xl xs:text-2xl sm:text-3xl grid place-items-center">
               CINEVERSE EXTRAVAGANZA
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
       <div className="middle-section">
-        <div className=" mx-3 font-pop  text-white text-3xl">Featured Events</div>
+        <div className=" mx-3 font-pop  text-white text-3xl">
+          Featured Events
+        </div>
         <Carouselc />
       </div>
 
