@@ -4,6 +4,10 @@ import { Button } from "@material-tailwind/react";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../firebase/firebase";
 import { useNavigate } from "react-router-dom";
+import {QRCodeSVG} from "qrcode.react"
+import * as htmlToImage from 'html-to-image';
+import { saveAs } from 'file-saver';
+import { FaDownload } from "react-icons/fa";
 import {
   Dialog,
   DialogHeader,
@@ -30,6 +34,7 @@ export default function Dash() {
   const [amboId, setAmboId] = useState(null);
   const [open, setOpen] = useState(false);
   const [ref, setRefcode] = useState(0);
+  const [regData,setRegData] = useState([]);
 
   const [currentUser, setCurrentUser] = useState(null);
   const nav = useNavigate();
@@ -37,27 +42,43 @@ export default function Dash() {
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setCurrentUser(user);
-
+  
       try {
         const usersRef = collection(db, "users");
+        const regRef = collection(db, "Registrations");
         const q = query(usersRef, where("email", "==", user.email));
+        const e = query(regRef, where("email", "==", user.email));
+        
+        const regSnapshot = await getDocs(e);
         const querySnapshot = await getDocs(q);
-        const userDocSnapshot = querySnapshot.docs[0];
-        const isAmbassador = userDocSnapshot.data().isCA;
-        const id = userDocSnapshot.data().CACode;
-        const nam = userDocSnapshot.data().name;
-        setCampusAmbassador(isAmbassador);
-        setAmboId(id);
-        setName(nam);
-        setRefcode(userDocSnapshot.data().refcount)
-        console.log(ref);
-        console.log(name);
+  
+        if (!regSnapshot.empty) {
+          const regDocData = regSnapshot.docs.map(doc => doc.data());
+          console.log(regDocData);
+          setRegData(regDocData)
+        } else {
+          console.log("No registration document found for the user.");
+        }
+  
+        if (!querySnapshot.empty) {
+          const userDocData = querySnapshot.docs[0].data();
+  
+          setCampusAmbassador(userDocData.isAmbassador);
+          setAmboId(userDocData.CACode);
+          setName(userDocData.name);
+          setRefcode(userDocData.refcount);
+  
+        } else {
+          console.log("No user document found for the user.");
+        }
       } catch (error) {
-        console.log("error");
+        console.error("Error fetching data:", error);
       }
     });
+  
     return () => unsubscribe();
   }, []);
+  
 
   const handleUpdate = () => {
     nav("/update_profile", { state: { update: true } });
@@ -103,12 +124,24 @@ export default function Dash() {
     }
   };
 
+  const handleDownload = (index) => {
 
+      htmlToImage.toBlob(document.getElementById(`qrCodeContainer${index}`))
+  .then(function (blob) {
+    if (window.saveAs) {
+      window.saveAs(blob, `qrcode${index}.png`);
+    } else {
+     saveAs(blob, `qrcode${index}.png`);
+   }
+  });
+  };
   //whatsapp evide
   const shareText = `Dive into the Ciniverse Extravaganza at Nakshatra 2024! 🌌✨ Experience the ultimate blend of technology and culture, where the magic of cinema meets the future of innovation. Don't miss this epic fest! Join us: ${window.location.origin}?refocde=${amboId} #Nakshatra2024 #CiniverseExtravaganza`;
   const encodedShareText = encodeURIComponent(shareText);
   const whatsappLink = `https://wa.me/?text=${encodedShareText}`;
-
+  
+  if(regData)
+  {
   return (
     <div className=" min-h-screen  flex flex-col items-center justify-center bg-[url('https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Signupbg.jpeg?alt=media&token=94bfbc88-78f6-4c8a-a749-19fcb76fe493')] bg-no-repeat bg-cover bg-fixed bg-center">
       <div className="container mx-auto px-4 lg:px-8 mt-20 ">
@@ -206,14 +239,31 @@ export default function Dash() {
             className="bg-white p-12 shadow-xl rounded-xl md:col-span-2 min-h-[300px] w-full"
             style={{
               backgroundColor: "rgb(22, 23, 27)",
-            }} /*style={{ animation: 'gradientAnimation 3s ease infinite', backgroundSize: '200% 200%' }}*/
+            }} 
           >
             <div className="text-3xl sm:text-xl md:text-2xl lg:text-3xl font-bold font-pop text-white">
-              Registered Events
+              Registered Events 
+              {regData ?(
+              <div className="flex flex-wrap gap-5 mt-5">
+                          {regData.map((event, index) => (
+                  <div key={index} id={`qrCodeContainer${index}`}  className="border border-gray-300  p-4 rounded-md mb-4 hover:scale-105 transition duration-200 cursor-pointer flex flex-col  justify-between w-64 h-70">
+                    <h2 className="text-xl font-semibold font-pop">{event.nkid + '-' + event.eventid}</h2>
+                    <p className="text-gray-500 text-lg mt-2 font-pop">Event name: {event.eventname}</p>
+                    <p className="text-gray-500 mb-2 mt-2 text-lg font-pop">Event ID: {event.eventid}</p>
+                    <div className=""> 
+                    <QRCodeSVG value={`reg id: ${event.nkid}${event.eventid} \n Event name: ${event.eventname}\nevent ID: ${event.eventid} `} size={100} className="mt-5 w-full mb-2"/>
+                    <button onClick={()=>{handleDownload(index)}}> <FaDownload/> </button>
+                    </div>
+                  </div>
+                ))}
+                </div>
+              ):(<div> No events registered</div>)}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
   );
+  }
+          
 }
