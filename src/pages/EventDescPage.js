@@ -28,6 +28,7 @@ import {
   DialogBody,
   DialogFooter,
   Typography,
+  Checkbox
 } from "@material-tailwind/react";
 
 import { displayRazorpay } from "../razorpay/razorpay";
@@ -37,10 +38,11 @@ const EventPage = () => {
   const { id } = useParams();
   const [registering, setRegistering] = useState(false);
   const [newMemberName, setNewMemberName] = useState("");
+
   const [refCode, setRefcode] = useState(null);
   const [team, setTeam] = useState([]);
   const [currentUser, setCurrentUser] = useState();
-  const [userData, setUserData] = useState(null);
+  const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [needSignUp, setNeedSignUp] = useState(true);
   const nav = useNavigate();
   const [open, setOpen] = React.useState(false);
@@ -106,17 +108,24 @@ const EventPage = () => {
     eventData?.min,
     eventData?.max,
     eventData?.type,
-    currentUser?.email
+    currentUser?.email,
+    eventData?.slots_left
   );
 
   const proceedToPay = async () => {
-    if (
-      (team.length >= Number(eventData.min) &&
-        team.length <= Number(eventData.max)) ||
-      eventData.type.toLowerCase() === "single"
-    ) {
-      getUserByEmail(currentUser.email).then((userData) => {
-        const token = {
+
+
+
+    if(agreeToTerms===true)
+    {
+      if (
+        (team.length >= Number(eventData.min) &&
+          team.length <= Number(eventData.max)) ||
+        eventData.type.toLowerCase() === "single"
+      ) {
+        getUserByEmail(currentUser.email).then((userData) => {
+          const token = {
+
           uid: userData.id,
           nkid: userData.NKID,
           email: userData.email,
@@ -130,12 +139,20 @@ const EventPage = () => {
             eventData.type.toLowerCase() === "team" ? team.toString() : null,
         };
         setRegistering(true);
-        displayRazorpay(token, nav);
-      });
-    } else {
-      alert(
-        `number of participants are required between ${eventData.min} and ${eventData.max}`
-      );
+
+        displayRazorpay(token,nav);
+        });
+      } else {
+        alert(
+          `number of participants are required between ${eventData.min} and ${eventData.max}`
+        );
+      }
+    }
+    else
+    {
+     alert("Read the rules and regulations")
+
+
     }
   };
 
@@ -149,6 +166,13 @@ const EventPage = () => {
       setNewMemberName("");
     }
   };
+
+  const handleChange=()=>{
+    if(agreeToTerms)
+      setAgreeToTerms(false)
+    else
+      setAgreeToTerms(true)
+  }
 
   const deleteTeamMember = (index) => {
     setTeam(team.filter((_, i) => i !== index));
@@ -167,7 +191,7 @@ const EventPage = () => {
             alt="Event Poster"
           />
         </div>
-
+  
         {/* Data Container */}
         <div className="flex-1 space-y-6">
           <h1 className="text-3xl text-white font-pop font-bold text-center mb-4">
@@ -179,18 +203,19 @@ const EventPage = () => {
               Details
             </h2>
             <p className="mb-1 font-pop">
-              Date:{" "}
-              <span className="font-medium font-pop ">{eventData.date}</span>
+              Date: <span className="font-medium font-pop ">{eventData.date}</span>
             </p>
             <p className="mb-1 font-pop">
-              Time:{" "}
-              <span className="font-medium font-pop u">{eventData.time}</span>
+              Time: <span className="font-medium font-pop ">{eventData.time}</span>
             </p>
             <p className="font-pop">
-              Category:{" "}
-              <span className="font-medium font-pop">
-                {eventData.cat} - {eventData.subcat}
-              </span>
+              Category: <span className="font-medium font-pop">{eventData.cat} - {eventData.subcat}</span>
+            </p>
+            <p className="font-pop">
+              Minimum participants: <span className="font-medium text-white font-pop">{eventData.min}</span>
+            </p>
+            <p className="font-pop">
+              Maximum participants: <span className="font-medium text-white font-pop">{eventData.max}</span>
             </p>
           </div>
           <div className="mb-6">
@@ -201,20 +226,20 @@ const EventPage = () => {
               <div key={index} className="mb-2">
                 <p>
                   <span className="font-medium font-pop">
-                    {person.title} : {person.name},{" "}
-                    <MdPhone className="inline text-white" /> {person.phno}
+                    {person.title} : {person.name}, <MdPhone className="inline text-white" /> {person.phno}
                   </span>
                 </p>
               </div>
             ))}
           </div>
           <div className="mb-6">
-            <h2 className="text-2xl font-semibol font-pop text-white mb-2 underline">
+            <h2 className="text-2xl font-semibold font-pop text-white mb-2 underline">
               Prizes
             </h2>
             {eventData.prizes.map((prize, index) => (
               <div key={index} className="mb-2">
                 <div className="font-medium font-pop">
+
                   {prize.title === "1st" && (
                     <TrophyIcon className="text-yellow-500 inline" size={32} />
                   )}
@@ -229,10 +254,15 @@ const EventPage = () => {
                     prize.title !== "3rd" ||
                     prize.title}{" "}
                   {prize.amt}
+
                 </div>
               </div>
             ))}
           </div>
+
+            <div className="mb-1 font-pop text-green-500 text-2xl">
+              Slots left: <span className="font-medium font-pop ">{eventData.slots_left}</span>
+            </div>
           <div>
             <Button
               className=" hover:bg-green-500 py-4 px-2 font-pop"
@@ -271,70 +301,129 @@ const EventPage = () => {
               </DialogFooter>
             </Dialog>
           </div>
+  
+          {/* Conditional Rendering based on slots_left */}
+          {eventData.slots_left > 0 ? (
           <div>
             <h2 className="text-2xl font-semibold text-white font-pop mb-2 underline">
               Register
             </h2>
             <div className="flex flex-col md:flex-row gap-4">
-              {currentUser ? (
-                <>
-                  {needSignUp ? (
-                    <>
-                      <button
-                        className="bg-blue-500 hover:bg-blue-700 font-pop text-white font-bold py-2 px-4 rounded"
-                        onClick={() => {
-                          nav(`/signup?redirect=/events/cultural/${id}`);
-                        }}
-                      >
-                        SignUp to register
-                      </button>
-                    </>
-                  ) : (
-                    <div className="flex flex-col ">
-                      {eventData && eventData.type.toLowerCase() == "team" && (
-                        <div className="mt-5 flex flex-col  justify-center mx-0 gap-3 ">
-                          <div className="w-full text-left">
-                            <h1 className="font-pop text-white">
-                              Add team member
-                            </h1>
-                          </div>
-                          <div className="flex gap-2 ">
-                            <input
-                              type="text"
-                              value={newMemberName}
-                              onChange={(e) => setNewMemberName(e.target.value)}
-                              className="text-white font-pop py-2 px-4  w-full px-5 sm:w-72 rounded"
-                              placeholder="Enter team member's name"
-                            />
-                            <button
-                              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-                              onClick={addTeamMember}
-                            >
-                              <AiOutlinePlus />
-                            </button>
-                          </div>
-                          <div className="w-full flex flex-col items-start gap-2">
-                            {" "}
-                            {/* Adjust for alignment */}
-                            {team.map((member, index) => (
-                              <div
-                                key={index}
-                                className="flex items-center justify-start gap-4 w-full"
+
+            {currentUser ? (
+                        <>
+                          {needSignUp ? (
+                            <>
+                              <button
+                                className="bg-blue-500 hover:bg-blue-700 font-pop text-white font-bold py-2 px-4 rounded"
+                                onClick={() => {
+                                  nav(`/signup?redirect=/events/cultural/${id}`);
+                                }}
+
                               >
-                                <button
-                                  className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
-                                  onClick={() => deleteTeamMember(index)}
-                                >
-                                  <AiOutlineMinus />
-                                </button>
-                                <div className="text-xl font-pop text-white flex-1">
-                                  {member}
+                                SignUp to register
+                              </button>
+                            </>
+                          ) : (
+                            <div className="flex flex-col">
+                              {eventData && eventData.type.toLowerCase() == "team" && (
+                                <div className="mt-5 flex flex-col  justify-center mx-0 gap-3">
+                                  <div className="w-full text-left">
+                                    <h1 className="font-pop text-white">
+                                      Add team member
+                                    </h1>
+                                  </div>
+                                  <div className="flex gap-2 ">
+                                    <input
+                                      type="text"
+                                      value={newMemberName}
+                                      onChange={(e) => setNewMemberName(e.target.value)}
+                                      className="text-white font-pop py-2 px-4 w-72 rounded"
+                                      placeholder="Enter team member's name"
+                                    />
+                                    <button
+                                      className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                                      onClick={addTeamMember}
+                                    >
+                                      <AiOutlinePlus />
+                                    </button>
+                                  </div>
+                                  <div className="w-full flex flex-col items-start gap-2">
+                                    {" "}
+                                    {/* Adjust for alignment */}
+                                    {team.map((member, index) => (
+                                      <div
+                                        key={index}
+                                        className="flex items-center justify-start gap-4 w-full"
+                                      >
+                                        <button
+                                          className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
+                                          onClick={() => deleteTeamMember(index)}
+                                        >
+                                          <AiOutlineMinus />
+                                        </button>
+                                        <div className="text-xl font-pop text-white flex-1">
+                                          {member}
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+
+                              <div className="w-full flex flex-col  justify-center gap-6">
+                                <div className="font-pop text-white mt-7">
+                                  REFERRAL CODE
+                                </div>
+                                <div className="flex w-72 flex-col gap-6">
+                                  <input
+                                    type="text"
+                                    value={refCode}
+                                    onChange={handleRefCodeChange}
+                                    className="text-white font-pop py-2 px-4 rounded"
+                                    placeholder="Enter referral code"
+                                  />
                                 </div>
                               </div>
-                            ))}
-                          </div>
-                        </div>
+                              <Checkbox
+                                        label={
+                                          <Typography
+                                            variant="small"
+                                            color="gray"
+                                            className="flex  font-normal font-pop text-white mt-4">
+                                            I have read the rules and regulations 
+                                
+                                          </Typography>
+                                        }
+                                        containerProps={{ className: "mt-4" }}
+                                        onChange={handleChange}
+                                        checked={agreeToTerms}
+                                      />
+                              <button
+                                className="bg-blue-500 mt-5 hover:bg-blue-700 font-pop w-72 text-white font-bold py-2 px-4 rounded "
+                                onClick={() => {
+                                  proceedToPay();
+                                }}
+                          
+                              >
+                                REGISTER
+                              </button>
+                            </div>
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          <button
+                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                            onClick={() => {
+                              handleSignIn();
+                            }}
+                          >
+                            Sign In to Register
+                          </button>
+                        </>
                       )}
+
 
                       <div className="w-full flex flex-col  justify-center gap-6">
                         <div className="font-pop text-white mt-7">
@@ -377,12 +466,19 @@ const EventPage = () => {
                   </button>
                 </>
               )}
+
             </div>
           </div>
+        ):(
+          <div className="font-pop text-2xl text-red-500 ">
+                REGISTRATION CLOSED, NO SLOTS LEFT.
         </div>
+        )}
       </div>
     </div>
-  );
+  </div>
+);
+
 };
 
 export default EventPage;
