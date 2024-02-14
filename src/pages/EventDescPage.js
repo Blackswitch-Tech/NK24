@@ -28,6 +28,7 @@ import {
   DialogBody,
   DialogFooter,
   Typography,
+  Checkbox
 } from "@material-tailwind/react";
 
 import { displayRazorpay } from "../razorpay/razorpay";
@@ -37,10 +38,11 @@ const EventPage = () => {
   const { id } = useParams();
 
   const [newMemberName, setNewMemberName] = useState("");
+
   const [refCode, setRefcode] = useState(null);
   const [team, setTeam] = useState([]);
   const [currentUser, setCurrentUser] = useState();
-  const [userData, setUserData] = useState(null);
+  const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [needSignUp, setNeedSignUp] = useState(true);
   const nav = useNavigate();
   const [open, setOpen] = React.useState(false);
@@ -111,26 +113,34 @@ const EventPage = () => {
   );
 
   const proceedToPay = async () => {
-    if (
-      (team.length >= Number(eventData.min) &&
-        team.length <= Number(eventData.max)) ||
-      eventData.type.toLowerCase() === "single"
-    ) {
-      getUserByEmail(currentUser.email).then((userData) => {
-        const token = {
-          uid: userData.id,
-          nkid: userData.NKID,
-          username: userData.name,
-          amount: eventData.regfee,
-          eventid: eventData.id,
-          eventname: eventData.name,
-        };
-        displayRazorpay(token);
-      });
-    } else {
-      alert(
-        `number of participants are required between ${eventData.min} and ${eventData.max}`
-      );
+
+    if(agreeToTerms===true)
+    {
+      if (
+        (team.length >= Number(eventData.min) &&
+          team.length <= Number(eventData.max)) ||
+        eventData.type.toLowerCase() === "single"
+      ) {
+        getUserByEmail(currentUser.email).then((userData) => {
+          const token = {
+            uid: userData.id,
+            nkid: userData.NKID,
+            username: userData.name,
+            amount: eventData.regfee,
+            eventid: eventData.id,
+            eventname: eventData.name,
+          };
+          displayRazorpay(token);
+        });
+      } else {
+        alert(
+          `number of participants are required between ${eventData.min} and ${eventData.max}`
+        );
+      }
+    }
+    else
+    {
+     alert("Read the rules and regulations")
     }
   };
 
@@ -144,6 +154,13 @@ const EventPage = () => {
       setNewMemberName("");
     }
   };
+
+  const handleChange=()=>{
+    if(agreeToTerms)
+      setAgreeToTerms(false)
+    else
+      setAgreeToTerms(true)
+  }
 
   const deleteTeamMember = (index) => {
     setTeam(team.filter((_, i) => i !== index));
@@ -182,6 +199,12 @@ const EventPage = () => {
             <p className="font-pop">
               Category: <span className="font-medium font-pop">{eventData.cat} - {eventData.subcat}</span>
             </p>
+            <p className="font-pop">
+              Minimum participants: <span className="font-medium text-white font-pop">{eventData.min}</span>
+            </p>
+            <p className="font-pop">
+              Maximum participants: <span className="font-medium text-white font-pop">{eventData.max}</span>
+            </p>
           </div>
           <div className="mb-6">
             <h2 className="text-2xl text-white font-semibold mb-2 font-pop underline">
@@ -212,6 +235,10 @@ const EventPage = () => {
               </div>
             ))}
           </div>
+
+            <div className="mb-1 font-pop text-green-500 text-2xl">
+              Slots left: <span className="font-medium font-pop ">{eventData.slots_left}</span>
+            </div>
           <div>
             <Button
               className=" hover:bg-green-500 py-4 px-2 font-pop"
@@ -332,12 +359,26 @@ const EventPage = () => {
                                   />
                                 </div>
                               </div>
-
+                              <Checkbox
+                                        label={
+                                          <Typography
+                                            variant="small"
+                                            color="gray"
+                                            className="flex  font-normal font-pop text-white mt-4">
+                                            I have read the rules and regulations 
+                                
+                                          </Typography>
+                                        }
+                                        containerProps={{ className: "mt-4" }}
+                                        onChange={handleChange}
+                                        checked={agreeToTerms}
+                                      />
                               <button
-                                className="bg-blue-500 mt-3 hover:bg-blue-700 font-pop w-72 text-white font-bold py-2 px-4 rounded"
+                                className="bg-blue-500 mt-5 hover:bg-blue-700 font-pop w-72 text-white font-bold py-2 px-4 rounded "
                                 onClick={() => {
                                   proceedToPay();
                                 }}
+                          
                               >
                                 REGISTER
                               </button>
