@@ -35,7 +35,7 @@ import { displayRazorpay } from "../razorpay/razorpay";
 const EventPage = () => {
   const [eventData, setEventData] = useState(null);
   const { id } = useParams();
-  const [registering,setRegistering] = useState(false)
+  const [registering, setRegistering] = useState(false);
   const [newMemberName, setNewMemberName] = useState("");
   const [refCode, setRefcode] = useState(null);
   const [team, setTeam] = useState([]);
@@ -113,23 +113,24 @@ const EventPage = () => {
     if (
       (team.length >= Number(eventData.min) &&
         team.length <= Number(eventData.max)) ||
-        eventData.type.toLowerCase() === "single" 
+      eventData.type.toLowerCase() === "single"
     ) {
       getUserByEmail(currentUser.email).then((userData) => {
         const token = {
           uid: userData.id,
           nkid: userData.NKID,
-          email:userData.email,
+          email: userData.email,
           username: userData.name,
-          amount: eventData.regfee*100,
+          amount: eventData.regfee * 100,
           eventid: eventData.id,
           eventname: eventData.name,
           phone: userData.phoneNumber,
           ref: refCode ? refCode : "nor",
-          team:eventData.type.toLowerCase() === "team" ? team.toString() : null,
+          team:
+            eventData.type.toLowerCase() === "team" ? team.toString() : null,
         };
         setRegistering(true);
-        displayRazorpay(token,nav);
+        displayRazorpay(token, nav);
       });
     } else {
       alert(
@@ -156,7 +157,7 @@ const EventPage = () => {
   if (!eventData) return <div className="text-center p-10">Loading...</div>;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="max-w-7xl mx-auto px-4 py-8 bg-cover bg-fixed bg-no-repeat h-auto min-h-screen bg-[url('https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Signupbg.jpeg?alt=media&token=94bfbc88-78f6-4c8a-a749-19fcb76fe493')] w-full px-5">
       <div className="flex flex-col md:flex-row gap-8 mt-24">
         {/* Image Container */}
         <div className="flex-1">
@@ -213,28 +214,22 @@ const EventPage = () => {
             </h2>
             {eventData.prizes.map((prize, index) => (
               <div key={index} className="mb-2">
-                  <div className="font-medium font-pop">
-                    {prize.title === "1st" && (
-                      <TrophyIcon
-                        className="text-yellow-500 inline"
-                        size={32}
-                      />
-                    )}
-                    {prize.title === "2nd" && (
-                      <TrophyIcon className="text-gray-400 inline" size={32} />
-                    )}
-                    {prize.title === "3rd" && (
-                      <TrophyIcon
-                        className="text-orange-400 inline"
-                        size={32}
-                      />
-                    )}
-                    {prize.title !== "1st" ||
-                      prize.title !== "2nd" ||
-                      prize.title !== "3rd" ||
-                      prize.title}{" "}
-                    {prize.amt}
-                  </div>
+                <div className="font-medium font-pop">
+                  {prize.title === "1st" && (
+                    <TrophyIcon className="text-yellow-500 inline" size={32} />
+                  )}
+                  {prize.title === "2nd" && (
+                    <TrophyIcon className="text-gray-400 inline" size={32} />
+                  )}
+                  {prize.title === "3rd" && (
+                    <TrophyIcon className="text-orange-400 inline" size={32} />
+                  )}
+                  {prize.title !== "1st" ||
+                    prize.title !== "2nd" ||
+                    prize.title !== "3rd" ||
+                    prize.title}{" "}
+                  {prize.amt}
+                </div>
               </div>
             ))}
           </div>
@@ -295,9 +290,9 @@ const EventPage = () => {
                       </button>
                     </>
                   ) : (
-                    <div className="flex flex-col">
-                      {eventData &&  eventData.type.toLowerCase() == "team" && (
-                        <div className="mt-5 flex flex-col  justify-center mx-0 gap-3">
+                    <div className="flex flex-col ">
+                      {eventData && eventData.type.toLowerCase() == "team" && (
+                        <div className="mt-5 flex flex-col  justify-center mx-0 gap-3 ">
                           <div className="w-full text-left">
                             <h1 className="font-pop text-white">
                               Add team member
@@ -308,7 +303,7 @@ const EventPage = () => {
                               type="text"
                               value={newMemberName}
                               onChange={(e) => setNewMemberName(e.target.value)}
-                              className="text-white font-pop py-2 px-4 w-72 rounded"
+                              className="text-white font-pop py-2 px-4  w-full px-5 sm:w-72 rounded"
                               placeholder="Enter team member's name"
                             />
                             <button
@@ -342,27 +337,30 @@ const EventPage = () => {
                       )}
 
                       <div className="w-full flex flex-col  justify-center gap-6">
-                        <div className="font-pop text-white mt-7">REFERRAL CODE</div>
-                        <div className="flex w-72 flex-col gap-6">
+                        <div className="font-pop text-white mt-7">
+                          REFERRAL CODE
+                        </div>
+                        <div className="flex flex-col gap-6 w-full  sm:w-72">
                           <input
                             type="text"
                             value={refCode}
                             onChange={handleRefCodeChange}
-                            className="text-white font-pop py-2 px-4 rounded"
+                            className="text-white font-pop py-2 px-4 rounded "
                             placeholder="Enter referral code"
                           />
                         </div>
                       </div>
 
                       <button
-                        className="bg-blue-500 mt-3 hover:bg-blue-700 font-pop w-72 text-white font-bold py-2 px-4 rounded"
+                        className="bg-blue-500 mt-3 hover:bg-blue-700 font-pop w-full px-5 sm:w-72 text-white font-bold py-2 px-4 rounded"
                         disabled={registering}
                         onClick={() => {
-                          
                           proceedToPay();
                         }}
                       >
-{registering ? "Registering, May take time ..":"Register"}
+                        {registering
+                          ? "Registering, May take time .."
+                          : "Register"}
                       </button>
                     </div>
                   )}
@@ -370,7 +368,7 @@ const EventPage = () => {
               ) : (
                 <>
                   <button
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2  rounded  w-full px-5 sm:w-72"
                     onClick={() => {
                       handleSignIn();
                     }}

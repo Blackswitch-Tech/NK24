@@ -15,9 +15,10 @@ const Technical = () => {
   const [events, setEvents] = useState([]);
   const [curEvents,setCurEvents]=useState([]);
   const options = [
+    { value: "All", label: "All" },
     { value: "Competition", label: "Competition" },
     { value: "Workshop", label: "Workshop" },
-    { value: "All", label: "All" },
+
   ];
   useEffect(() => {
     const getData = async () => {
@@ -29,7 +30,8 @@ const Technical = () => {
             id: docData.id, 
           };
         });
-        setEvents(newData.filter((event) => event.cat === "Technical"||event.cat === "technical"));
+        setEvents(newData.filter((event) => event.cat === "Technical" || event.cat === "technical"));
+        setCurEvents(newData.filter((event) => event.cat === "Technical" || event.cat === "technical"));
         setTimeout(() => setLoaded(true), 1000);
       });
     };
@@ -45,7 +47,7 @@ const Technical = () => {
     }
   }
   return (
-    <div className="bg-cover bg-fixed bg-no-repeat h-auto min-h-screen bg-gradient-to-b from-gray-900 to-black w-full px-5">
+    <div className="bg-cover bg-fixed bg-no-repeat h-auto min-h-screen bg-[url('https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Signupbg.jpeg?alt=media&token=94bfbc88-78f6-4c8a-a749-19fcb76fe493')] w-full px-5">
       <div className="flex justify-center items-center pt-32">
         <h1 className="text-white text-6xl font-pop sm:text-7xl tracking-widest">
           TECHNICAL
@@ -78,17 +80,17 @@ const Technical = () => {
       <div className="flex flex-wrap justify-center mx-4 my-12">
         {loaded ? (
           curEvents.map((event, index) => (
-            <Suspense fallback={<Loader />} key={index}>
+            
               <div className="hover:scale-110 transition duration-200 cursor-pointer rounded-2xl m-4" onClick={() => nav(`/events/cultural/${event.id}`)}>
                   <div class="max-w-sm rounded-lg overflow-hidden shadow-lg bg-white">
                     <img
                       class="w-full h-fit"
                       src={event.imgurl}
-                      alt={`${event.type}`}
+                      alt={event.id}
                     />
                   </div>
               </div>
-            </Suspense>
+            
           ))
         ) : (
           <div className="text-center">{/* Loader Placeholder */}</div>
