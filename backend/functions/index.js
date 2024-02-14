@@ -40,8 +40,8 @@ admin.initializeApp({
 const db = admin.firestore();
 
 const razorpay = new Razorpay({
-  key_id: process.env.KEY_ID,
-  key_secret: process.env.KEY_SECRET,
+  key_id: process.env.KEY_ID_LIVE,
+  key_secret: process.env.KEY_SECRET_LIVE,
 });
 
 app.use(cors());
@@ -169,7 +169,7 @@ app.post("/verify", async (req, res) => {
         payment_id: req.body.data.payment_id,
       },
       req.body.data.sign,
-      "W9SnUEGR1KjlCyJhxw8ibejD"
+      process.env.KEY_SECRET_LIVE
     )
   ) {
     const notes = req.body.data.notes; // Centralized reference for ease of access
