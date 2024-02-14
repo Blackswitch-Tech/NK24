@@ -14,6 +14,7 @@ const Cultural = () => {
   const [events, setEvents] = useState([]);
   const [curEvents,setCurEvents]=useState([]);
   const options = [
+    {value:"All",label:"All"},
     { value: "General Events", label: "General Events" },
     { value: "Dance", label: "Dance" },
     { value: "Music", label: "Music" },
@@ -25,7 +26,7 @@ const Cultural = () => {
     { value: "Art", label: "Art" },
     { value: "Cookery", label: "Cookery" },
     { value: "Movie/Anime", label: "Movie/Anime" },
-    {value:"All",label:"All"}
+
   ];
   useEffect(() => {
     const getData = async () => {
@@ -37,8 +38,8 @@ const Cultural = () => {
             id: docData.id, 
           };
         });
-        setEvents(newData.filter((event) => event.cat === "Cultural"||event.cat === "cultural"));
-        setCurEvents(newData.filter((event) => event.cat === "Cultural"||event.cat === "cultural"));
+        setEvents(newData.filter((event) => event.cat.trim() === "Cultural"||event.cat.trim() === "cultural"));
+        setCurEvents(newData.filter((event) => event.cat.trim() === "Cultural"||event.cat.trim() === "cultural"));
         // Assuming wait is a custom function or you meant to use setTimeout here
         setTimeout(() => setLoaded(true), 1000);
       });
@@ -58,7 +59,7 @@ const Cultural = () => {
  
 
   return (
-    <div className="bg-cover bg-fixed bg-no-repeat h-auto min-h-screen bg-gradient-to-b from-gray-900 to-black w-full px-5">
+    <div className="bg-cover bg-fixed bg-no-repeat h-auto min-h-screen bg-[url('https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Signupbg.jpeg?alt=media&token=94bfbc88-78f6-4c8a-a749-19fcb76fe493')] w-full px-5">
       <div className="flex justify-center items-center pt-32">
         <h1 className="text-white text-6xl font-pop sm:text-7xl tracking-widest">
           CULTURAL
