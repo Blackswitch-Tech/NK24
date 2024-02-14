@@ -148,9 +148,9 @@ export default function Dash() {
       .toBlob(document.getElementById(`qrCodeContainer${index}`))
       .then(function (blob) {
         if (window.saveAs) {
-          window.saveAs(blob, `qrcode${index}.png`);
+          window.saveAs(blob, `qrcode${index}.jpg`);
         } else {
-          saveAs(blob, `qrcode${index}.png`);
+          saveAs(blob, `qrcode${index}.jpg`);
         }
       });
   };

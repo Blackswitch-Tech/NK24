@@ -44,12 +44,13 @@ export const displayRazorpay = async (token,nav,pathnn) => {
         order_id: t.data.id,
 
         image:
-          "https://firebasestorage.googleapis.com/v0/b/nk23-a5689.appspot.com/o/logos%2Fnk23logoblack.jpeg?alt=media&token=20bf02ff-8d1a-48db-9ae4-44a5e1d496e0",
+          "https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/NK24logo.webp?alt=media&token=eee01aaf-eba2-4cfb-a49f-d0456b50bc51",
 
         notes: {
           eventid: token.eventid,
           eventname: token.eventname,
           username: token.username,
+          email: token.email,
           userid: token.uid,
           amount: token.amount,
           referral: token.ref,
