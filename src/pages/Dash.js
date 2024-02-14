@@ -58,6 +58,7 @@ export default function Dash() {
           setRegData(regDocData)
         } else {
           console.log("No registration document found for the user.");
+          console.log(regData);
         }
   
         if (!querySnapshot.empty) {
@@ -243,7 +244,7 @@ export default function Dash() {
           >
             <div className="text-3xl sm:text-xl md:text-2xl lg:text-3xl font-bold font-pop text-white">
               Registered Events 
-              {regData ?(
+              {regData.length > 0 ?(
               <div className="flex flex-wrap gap-5 mt-5">
                           {regData.map((event, index) => (
                   <div key={index} id={`qrCodeContainer${index}`}  className="border border-gray-300  p-4 rounded-md mb-4 hover:scale-105 transition duration-200 cursor-pointer flex flex-col  justify-between w-64 h-70">
@@ -257,7 +258,7 @@ export default function Dash() {
                   </div>
                 ))}
                 </div>
-              ):(<div> No events registered</div>)}
+              ):(<div className="font-pop text-2xl"> No events registered!</div>)}
               </div>
             </div>
           </div>
