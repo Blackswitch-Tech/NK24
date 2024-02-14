@@ -124,13 +124,18 @@ const EventPage = () => {
           const token = {
             uid: userData.id,
             nkid: userData.NKID,
+            email:userData.email,
             username: userData.name,
-            amount: eventData.regfee,
+            amount: eventData.regfee*100,
             eventid: eventData.id,
             eventname: eventData.name,
+            phone: userData.phoneNumber,
+            ref: refCode ? refCode : "nor",
+            team:eventData.type.toLowerCase() === "team" ? team.toString() : null,
+  
           };
           setRegistering(true);
-          displayRazorpay(token);
+          displayRazorpay(token,nav);
         });
       } else {
         alert(
