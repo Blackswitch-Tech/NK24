@@ -17,7 +17,7 @@ const loadScript = () => {
   });
 };
 
-export const displayRazorpay = async (token,nav) => {
+export const displayRazorpay = async (token,nav,pathnn) => {
 
   const res = await loadScript();
 
@@ -99,7 +99,8 @@ export const displayRazorpay = async (token,nav) => {
       const paymentObject = new window.Razorpay(options);
       paymentObject.open();
       paymentObject.on("payment.failed", function (res) {
-        alert("payment failed");
+        alert("Payment failed, Please Refresh to try again");
+        
       });
     })
     .catch((error) => {

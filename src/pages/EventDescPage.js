@@ -135,7 +135,7 @@ const EventPage = () => {
   
           };
           setRegistering(true);
-          displayRazorpay(token,nav);
+          displayRazorpay(token,nav,window.location.pathname);
         });
       } else {
         alert(
