@@ -106,7 +106,7 @@ const Signup = ({route}) => {
   return (
 
     <div className="min-h-screen flex flex-col items-center justify-center bg-[url('https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Signupbg.jpeg?alt=media&token=94bfbc88-78f6-4c8a-a749-19fcb76fe493')] bg-no-repeat bg-cover bg-fixed bg-center">
-      <div className="w-full max-w-md px-8 py-8 bg-transparent rounded-2xl mt-16 shadow-lg">
+    <div className="w-full max-w-md px-8 py-8 bg-transparent rounded-2xl mt-16 shadow-lg">
         <Card color="transparent" shadow={false}>
        
                 

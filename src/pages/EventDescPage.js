@@ -316,7 +316,7 @@ const EventPage = () => {
                     {needSignUp ? (
                       <>
                         <button
-                          className="bg-blue-500 hover:bg-blue-700 font-pop text-white font-bold py-2 px-4 rounded"
+                          className="bg-blue-500 hover:bg-blue-700 font-pop  w-full py-3 sm:w-72 text-white font-bold py-2 px-4 rounded"
                           onClick={() => {
                             nav(`/signup?redirect=/events/cultural/${id}`);
                           }}
@@ -341,7 +341,7 @@ const EventPage = () => {
                                   onChange={(e) =>
                                     setNewMemberName(e.target.value)
                                   }
-                                  className="text-white font-pop py-2 px-4 w-72 rounded"
+                                  className="text-white font-pop py-2 px-4  w-full py-3 sm:w-72 rounded"
                                   placeholder="Enter team member's name"
                                 />
                                 <button
@@ -378,12 +378,12 @@ const EventPage = () => {
                           <div className="font-pop text-white mt-7">
                             REFERRAL CODE
                           </div>
-                          <div className="flex w-72 flex-col gap-6">
+                          <div className="flex w-72 flex-col gap-6  w-full py-3 sm:w-72">
                             <input
                               type="text"
                               value={refCode}
                               onChange={handleRefCodeChange}
-                              className="text-white font-pop py-2 px-4 rounded"
+                              className="text-white font-pop px-4 rounded  w-full py-3 sm:w-72"
                               placeholder="Enter referral code"
                             />
                           </div>
@@ -403,7 +403,7 @@ const EventPage = () => {
                           checked={agreeToTerms}
                         />
                         <button
-                          className="bg-blue-500 mt-5 hover:bg-blue-700 font-pop w-72 text-white font-bold py-2 px-4 rounded "
+                          className="bg-blue-500 mt-5 hover:bg-blue-700 font-pop w-full py-3 sm:w-72 text-white font-bold py-2 px-4 rounded "
                           disabled={registering}
                           onClick={() => {
                             proceedToPay();

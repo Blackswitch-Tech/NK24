@@ -7,7 +7,7 @@ function EventsPage() {
     nav(page);
   };
   return (
-    <div className="upper-section  bg-cover bg-no-repeat bg-fixed bg-center h-full bg-gradient-to-b from-gray-900 to-black ">
+    <div className="upper-section  bg-cover bg-no-repeat bg-fixed bg-center h-full ">
       <div className="justify-evenly align-middle flex w-2/3 sm:w-1/3 mx-auto">
         <h1 className="text-white font-pop text-7xl sm:text-8xl mt-24">E</h1>
         <h1 className="text-white font-pop text-7xl sm:text-8xl mt-24">V</h1>

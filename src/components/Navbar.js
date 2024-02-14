@@ -92,6 +92,7 @@ export default function Navbar() {
                     className="h-20 w-20 sm:h-24 sm:w-24 "
                     src={NK24logo}
                     alt="NK24Logo"
+                    onClick={() => nav("/")}
                   />
                 </div>
                 <div className="hidden sm:ml-5 sm:block p-6">
