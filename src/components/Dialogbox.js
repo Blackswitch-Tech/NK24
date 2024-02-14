@@ -17,7 +17,7 @@ export function Dialogbox() {
     <>
       <Button onClick={handleOpen}>View Rules</Button>
       <Dialog open={open} handler={handleOpen}>
-        <DialogHeader>Event Rules</DialogHeader>
+        <DialogHeader>Rules</DialogHeader>
         <DialogBody className="h-[42rem] overflow-scroll">
           <Typography className="font-normal">
             {/* Your long content goes here */}
