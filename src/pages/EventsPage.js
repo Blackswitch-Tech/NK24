@@ -7,7 +7,7 @@ function EventsPage() {
     nav(page);
   };
   return (
-    <div className="upper-section  bg-cover bg-no-repeat bg-fixed bg-center h-full ">
+    <div className="bg-cover bg-fixed bg-no-repeat h-auto min-h-screen bg-[url('https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Signupbg.jpeg?alt=media&token=94bfbc88-78f6-4c8a-a749-19fcb76fe493')] w-full px-5 ">
       <div className="justify-evenly align-middle flex w-2/3 sm:w-1/3 mx-auto">
         <h1 className="text-white font-pop text-7xl sm:text-8xl mt-24">E</h1>
         <h1 className="text-white font-pop text-7xl sm:text-8xl mt-24">V</h1>

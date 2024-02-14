@@ -7,6 +7,7 @@ import { Loader } from "./components/Loader.js";
 
 import { getAnalytics, logEvent } from "firebase/analytics";
 import "./App.css";
+import ScrollToTop from "./components/ScrollToTop.js";
 //const analytics = getAnalytics();
 //logEvent(analytics, "received");
 
@@ -21,7 +22,7 @@ function App() {
       ) : (
         <Router>
           <Navbar />
-
+<ScrollToTop/>
           <RouterPaths />
           <Footer />
         </Router>
