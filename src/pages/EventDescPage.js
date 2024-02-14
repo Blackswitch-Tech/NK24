@@ -36,7 +36,7 @@ import { displayRazorpay } from "../razorpay/razorpay";
 const EventPage = () => {
   const [eventData, setEventData] = useState(null);
   const { id } = useParams();
-
+  const [registering,setRegistering] = useState(false)
   const [newMemberName, setNewMemberName] = useState("");
 
   const [refCode, setRefcode] = useState(null);
@@ -114,6 +114,7 @@ const EventPage = () => {
 
   const proceedToPay = async () => {
 
+
     if(agreeToTerms===true)
     {
       if (
@@ -123,14 +124,19 @@ const EventPage = () => {
       ) {
         getUserByEmail(currentUser.email).then((userData) => {
           const token = {
-            uid: userData.id,
-            nkid: userData.NKID,
-            username: userData.name,
-            amount: eventData.regfee,
-            eventid: eventData.id,
-            eventname: eventData.name,
-          };
-          displayRazorpay(token);
+          uid: userData.id,
+          nkid: userData.NKID,
+          email:userData.email,
+          username: userData.name,
+          amount: eventData.regfee*100,
+          eventid: eventData.id,
+          eventname: eventData.name,
+          phone: userData.phoneNumber,
+          ref: refCode ? refCode : "nor",
+          team:eventData.type.toLowerCase() === "team" ? team.toString() : null,
+        };
+        setRegistering(true);
+        displayRazorpay(token,nav);
         });
       } else {
         alert(
@@ -141,6 +147,7 @@ const EventPage = () => {
     else
     {
      alert("Read the rules and regulations")
+
     }
   };
 
@@ -397,6 +404,47 @@ const EventPage = () => {
                           </button>
                         </>
                       )}
+
+
+                      <div className="w-full flex flex-col  justify-center gap-6">
+                        <div className="font-pop text-white mt-7">REFERRAL CODE</div>
+                        <div className="flex w-72 flex-col gap-6">
+                          <input
+                            type="text"
+                            value={refCode}
+                            onChange={handleRefCodeChange}
+                            className="text-white font-pop py-2 px-4 rounded"
+                            placeholder="Enter referral code"
+                          />
+                        </div>
+                      </div>
+
+                      <button
+                        className="bg-blue-500 mt-3 hover:bg-blue-700 font-pop w-72 text-white font-bold py-2 px-4 rounded"
+                        disabled={registering}
+                        onClick={() => {
+                          
+                          proceedToPay();
+                        }}
+                      >
+{registering ? "Registering, May take time ..":"Register"}
+                      </button>
+                    </div>
+                  )}
+                </>
+              ) : (
+                <>
+                  <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    onClick={() => {
+                      handleSignIn();
+                    }}
+                  >
+                    Sign In to Register
+                  </button>
+                </>
+              )}
+
             </div>
           </div>
         ):(

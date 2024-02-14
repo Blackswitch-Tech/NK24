@@ -1,5 +1,6 @@
 import { redirect } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const loadScript = () => {
   return new Promise((resolve) => {
     const script = document.createElement("script");
@@ -16,7 +17,8 @@ const loadScript = () => {
   });
 };
 
-export const displayRazorpay = async (token) => {
+export const displayRazorpay = async (token,nav) => {
+
   const res = await loadScript();
 
   if (!res) {
@@ -24,12 +26,13 @@ export const displayRazorpay = async (token) => {
     return;
   }
   const options = {
-    method: 'POST',
-    url: 'https://corsanywhereapp-4f23bd6e01ee.herokuapp.com/https://asia-south1-nakshatra-9c45c.cloudfunctions.net/app/razorpay',
-    headers: {'content-type': 'application/json'},
-    data: {id: token.eventid}
+    method: "POST",
+    url: "https://corsanywhereapp-4f23bd6e01ee.herokuapp.com/https://asia-south1-nakshatra-9c45c.cloudfunctions.net/app/razorpay",
+    headers: { "content-type": "application/json" },
+    data: { id: token.eventid },
   };
-  await axios.request(options)
+  await axios
+    .request(options)
     .then((t) => {
       const options = {
         key: process.env.REACT_APP_RZP_APIKEY,
@@ -50,7 +53,7 @@ export const displayRazorpay = async (token) => {
           userid: token.uid,
           amount: token.amount,
           referral: token.ref,
-          whatsapp: token.whatsapp,
+          phone: token.phone,
           team: token.team,
         },
 
@@ -60,7 +63,34 @@ export const displayRazorpay = async (token) => {
 
         handler: function (res) {
           if (res.razorpay_payment_id) {
-            console.log("sucess");
+            console.log(res);
+            axios
+              .post(
+                "https://asia-south1-nakshatra-9c45c.cloudfunctions.net/app/verify",
+                {
+                  headers: {
+                    "content-type": "application/json",
+                    "x-razorpay-signature": res.razorpay_signature,
+                  },
+                  data: {
+                    payment_id: res.razorpay_payment_id,
+                    order_id: res.razorpay_order_id,
+                    event_id: token.eventid,
+                    sign: res.razorpay_signature,
+                    notes: token,
+                  },
+                }
+              )
+              .then((res) => {
+                if(res.data.status === "ok"){
+                  console.log("success");
+                  alert("Payment Successful");
+                  nav("/dashboard");
+                }
+              })
+              .catch((error) => {
+                console.log(error);
+              });
           } else {
             console.log("failed");
           }
