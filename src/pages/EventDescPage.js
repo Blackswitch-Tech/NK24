@@ -6,7 +6,7 @@ import { Input } from "@material-tailwind/react";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 
 import { redirect, useParams } from "react-router-dom";
-import { Dialogbox, LongDialog } from "../components/Dialogbox";
+
 import {
   collection,
   query,
@@ -271,34 +271,27 @@ const EventPage = () => {
             >
               View Rules
             </Button>
-            <Dialog open={open} handler={handleOpen}>
-              <DialogHeader>Event Rules</DialogHeader>
-              <DialogBody className="h-[42rem] overflow-scroll">
+            <Dialog open={open} handler={handleOpen} className="bg-black-200">
+              <DialogHeader className="font-pop text-white">Event Rules</DialogHeader>
+              <DialogBody className="h-[25rem] overflow-scroll">
                 <Typography className="font-normal">
                   <ul className="list-disc pl-5">
                     {eventData.rules.map((rule, index) => (
-                      <li key={index}>{rule}</li>
+                      <li key={index} className="text-white font-pop ">{rule}</li>
                     ))}
                   </ul>
                 </Typography>
               </DialogBody>
               <DialogFooter className="space-x-2">
                 <Button
-                  className="font-pop"
+                  className="font-pop text-white hover:bg-green-400"
                   variant="text"
                   color="blue-gray"
                   onClick={handleOpen}
                 >
-                  Cancel
-                </Button>
-                <Button
-                  className="font-pop"
-                  variant="gradient"
-                  color="green"
-                  onClick={handleOpen}
-                >
                   Confirm
                 </Button>
+  
               </DialogFooter>
             </Dialog>
           </div>
