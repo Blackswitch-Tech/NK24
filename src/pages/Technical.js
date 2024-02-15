@@ -76,6 +76,7 @@ const Technical = () => {
         {loaded ? (
           curEvents.map((event, index) => (
             
+      
               <div className="hover:scale-110 transition duration-200 cursor-pointer rounded-2xl m-4" onClick={() => nav(`/events/cultural/${event.id}`)}>
                   <div class="max-w-sm rounded-lg overflow-hidden shadow-lg bg-white">
                     <img
@@ -84,7 +85,10 @@ const Technical = () => {
                       alt={event.id}
                     />
                   </div>
+                  <div className="font-pop text-white text-sm">{event.name} </div>
               </div>
+           
+             
             
           ))
         ) : (
