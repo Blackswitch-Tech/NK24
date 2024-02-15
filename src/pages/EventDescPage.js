@@ -54,14 +54,13 @@ const EventPage = () => {
     const fetchEventData = async () => {
       const q = query(collection(db, "events"), where("id", "==", id));
       const querySnapshot = await getDocs(q);
-      console.log(querySnapshot);
 
       if (!querySnapshot.empty) {
         const docData = querySnapshot.docs[0].data();
 
         setEventData(docData);
       } else {
-        console.log("No such event!");
+        alert("No such event!");
       }
     };
 
@@ -102,18 +101,8 @@ const EventPage = () => {
         });
       })
       .catch((error) => {
-        console.log(error.message);
       });
   };
-  console.log(
-    team.length,
-    eventData?.min,
-    eventData?.max,
-    eventData?.type,
-    currentUser?.email,
-    eventData?.slots_left
-  );
-
   const proceedToPay = async () => {
     if (agreeToTerms === true) {
       if (

@@ -62,7 +62,6 @@ export const displayRazorpay = async (token,nav,pathnn) => {
 
         handler: function (res) {
           if (res.razorpay_payment_id) {
-            console.log(res);
             axios
               .post(
                 "https://asia-south1-nakshatra-9c45c.cloudfunctions.net/app/verify",
@@ -82,16 +81,15 @@ export const displayRazorpay = async (token,nav,pathnn) => {
               )
               .then((res) => {
                 if(res.data.status === "ok"){
-                  console.log("success");
                   alert("Payment Successful");
                   nav("/dashboard");
                 }
               })
               .catch((error) => {
-                console.log(error);
+                //Add to alert about Error Type
               });
           } else {
-            console.log("failed");
+            //Add For Alerting About Failure
           }
         },
       };
@@ -103,6 +101,5 @@ export const displayRazorpay = async (token,nav,pathnn) => {
       });
     })
     .catch((error) => {
-      console.log(error);
     });
 };

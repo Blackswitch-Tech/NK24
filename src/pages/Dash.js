@@ -58,11 +58,9 @@ export default function Dash() {
 
         if (!regSnapshot.empty) {
           const regDocData = regSnapshot.docs.map((doc) => doc.data());
-          console.log(regDocData);
           setRegData(regDocData);
         } else {
-          console.log("No registration document found for the user.");
-          console.log(regData);
+          //Add alert about No registration document found for the user.
         }
 
         if (!querySnapshot.empty) {
@@ -73,7 +71,7 @@ export default function Dash() {
           setName(userDocData.name);
           setRefcode(userDocData.refcount);
         } else {
-          console.log("No user document found for the user.");
+          // Add alert No user document found for the user
         }
 
         const campusAmbRef = collection(db, "campusAmb");
@@ -84,10 +82,9 @@ export default function Dash() {
 
           if (!snapshot.empty) {
             const campusAmbData = snapshot.docs.map((doc) => doc.data());
-            console.log(campusAmbData);
             setLeaderboard(campusAmbData);
           } else {
-            console.log("No documents found in the campusamb collection.");
+            //Add alert about No documents found in the campusamb collection."
           }
         } catch (error) {
           console.error("Error fetching data:", error);
@@ -123,7 +120,6 @@ export default function Dash() {
         email: currentUser.email,
         refcount: ref,
       });
-      console.log("Document successfully written!");
     } catch (e) {
       console.error("Error adding document: ", e);
     }

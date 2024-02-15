@@ -80,7 +80,7 @@ export default function Homepage() {
             className="flex flex-col w-full h-fit max-w-full justify-center mt-50"
           >
             <div className="font-aurora text-white text-5xl xs:text-5xl sm:text-7xl lg:text-7xl mt-10 grid place-items-center">
-              nakshathra
+              nakshatra
             </div>
             <div className="font-milk text-white text-xl xs:text-2xl sm:text-3xl grid place-items-center">
               CINEVERSE EXTRAVAGANZA
