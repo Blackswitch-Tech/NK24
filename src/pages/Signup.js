@@ -47,7 +47,6 @@ const Signup = ({route}) => {
   if (loading) {
     return <Loader />; // Render your loader component here
   }
-  console.log(route)
   if (!currentUser) {
     // Optionally, redirect or show a message instead
     return <div>Please sign in to access this page.</div>;
@@ -68,7 +67,6 @@ const Signup = ({route}) => {
       // Add a new document in collection "users"
       
         let ids = doc(collection(db, "users")).id;
-        console.log(ids)
         await addDoc(collection(db, "users"), {
           name: name,
           phoneNumber: phoneNumber,
@@ -93,7 +91,6 @@ const Signup = ({route}) => {
     
       // Reset form or redirect user as needed
     } catch (error) {
-      console.error("Error adding document: ", error);
       alert("There was an issue registering the user.");
     }
   }
