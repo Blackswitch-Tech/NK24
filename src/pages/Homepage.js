@@ -1,6 +1,5 @@
 import DefaultAccordion from "../components/DefaultAccordion";
 import Carouselc from "../components/Carouselc";
-
 import { motion } from "framer-motion";
 import img1 from "../assets/Mar1 asset(1).png";
 import img2 from "../assets/Mar2 asset(2).png";

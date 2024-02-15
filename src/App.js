@@ -5,7 +5,6 @@ import { RouterPaths } from "./components/router";
 import useReady from "./components/useReady";
 import { Loader } from "./components/Loader.js";
 
-import { getAnalytics, logEvent } from "firebase/analytics";
 import "./App.css";
 import ScrollToTop from "./components/ScrollToTop.js";
 //const analytics = getAnalytics();

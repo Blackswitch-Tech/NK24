@@ -7,24 +7,19 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { Loader } from "../components/Loader";
-import firebase from "firebase/app";
 import "firebase/auth";
 
 import { db } from "../firebase/firebase"; // Adjust the path as necessary
-import { collection, addDoc, doc ,updateDoc, getDocs,query,where} from "firebase/firestore/lite";
+import { collection, addDoc, doc } from "firebase/firestore/lite";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
-
-import { useParams } from "react-router-dom";
-
 
 const Signup = ({route}) => {
 
   const [name, setName] = useState("");
   const nav = useNavigate();
   const location = useLocation();
-  const from = useParams().from;
   const [phoneNumber, setPhoneNumber] = useState("");
   const [college, setCollege] = useState("");
   const [branch, setBranch] = useState("");
