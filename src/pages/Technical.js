@@ -72,7 +72,7 @@ const Technical = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-wrap justify-center mx-4 my-12">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mx-4 my-12">
         {loaded ? (
           curEvents.map((event, index) => (
             
@@ -80,12 +80,12 @@ const Technical = () => {
               <div className="hover:scale-110 transition duration-200 cursor-pointer rounded-2xl m-4" onClick={() => nav(`/events/cultural/${event.id}`)}>
                   <div class="max-w-sm rounded-lg overflow-hidden shadow-lg bg-white">
                     <img
-                      class="w-full h-fit"
-                      src={event.imgurl}
+                      className="w-full object-cover  h-120"
+                      src="https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/WhatsApp%20Image%202024-02-15%20at%2022.51.22.jpeg?alt=media&token=01fb68e9-9262-4edb-8b49-13d21971f4db"
                       alt={event.id}
                     />
                   </div>
-                  <div className="font-pop text-white text-sm">{event.name} </div>
+                 
               </div>
            
              

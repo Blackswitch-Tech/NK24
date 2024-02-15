@@ -12,7 +12,7 @@ const Cultural = () => {
   const [loaded, setLoaded] = useState(false);
   const [search, setSearch] = useState("");
   const [events, setEvents] = useState([]);
-  const [curEvents,setCurEvents]=useState([]);
+  const [curEvents, setCurEvents] = useState([]);
   const options = [
     { value: "General Events", label: "General Events" },
     { value: "Dance", label: "Dance" },
@@ -25,7 +25,7 @@ const Cultural = () => {
     { value: "Art", label: "Art" },
     { value: "Cookery", label: "Cookery" },
     { value: "Movie/Anime", label: "Movie/Anime" },
-    {value:"All",label:"All"}
+    { value: "All", label: "All" },
   ];
   useEffect(() => {
     const getData = async () => {
@@ -33,12 +33,20 @@ const Cultural = () => {
         const newData = querySnapshot.docs.map((doc) => {
           const docData = doc.data();
           return {
-            ...docData, 
-            id: docData.id, 
+            ...docData,
+            id: docData.id,
           };
         });
-        setEvents(newData.filter((event) => event.cat === "Cultural"||event.cat === "cultural"));
-        setCurEvents(newData.filter((event) => event.cat === "Cultural"||event.cat === "cultural"));
+        setEvents(
+          newData.filter(
+            (event) => event.cat === "Cultural" || event.cat === "cultural"
+          )
+        );
+        setCurEvents(
+          newData.filter(
+            (event) => event.cat === "Cultural" || event.cat === "cultural"
+          )
+        );
         // Assuming wait is a custom function or you meant to use setTimeout here
         setTimeout(() => setLoaded(true), 1000);
       });
@@ -47,15 +55,12 @@ const Cultural = () => {
   }, []);
 
   const handleChangeCategory = (category) => {
-    if(category==="All"){
+    if (category === "All") {
       setCurEvents(events);
-    }
-    else {
+    } else {
       setCurEvents(events.filter((event) => event.subcat === category));
     }
-  }
-
- 
+  };
 
   return (
     <div className="bg-cover bg-fixed bg-no-repeat h-auto min-h-screen bg-[url('https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Signupbg.jpeg?alt=media&token=94bfbc88-78f6-4c8a-a749-19fcb76fe493')] w-full px-5">
@@ -81,27 +86,24 @@ const Cultural = () => {
                   </option>
                 ))}
               </select>
-              <label className="absolute left-3 -top-5 text-xs text-gray-400 transition-all  peer-focus:-top-5 peer-focus:text-gray-200 peer-focus:text-xs">
-          
-              </label>
+              <label className="absolute left-3 -top-5 text-xs text-gray-400 transition-all  peer-focus:-top-5 peer-focus:text-gray-200 peer-focus:text-xs"></label>
             </div>
           </div>
         </div>
       </div>
       {/*image rendered here*/}
-      <div className="flex flex-wrap justify-center mx-4 my-12">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mx-4 my-12">
         {loaded ? (
           curEvents.map((event, index) => (
             <Suspense fallback={<Loader />} key={index}>
-              <div className=" hover:scale-110 transition duration-200 cursor-pointer rounded-2xl m-4" onClick={() => nav(`/events/cultural/${event.id}`)}>
-                  <div class="max-w-sm rounded-lg overflow-hidden shadow-lg bg-white">
-                    <img
-                      className="w-full h-fit "
-                      src={event.imgurl}
-                      alt={`${event.id}`}
-                    />
+              <div className="hover:scale-110 transition duration-200 cursor-pointer rounded-2xl" onClick={() => nav(`/events/cultural/${event.id}`)}>
+                <div className="max-w-sm rounded-lg overflow-hidden shadow-lg bg-white">
+                  <img
+                    className="w-full object-cover  h-120"
+                    src="https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/WhatsApp%20Image%202024-02-15%20at%2022.51.22.jpeg?alt=media&token=01fb68e9-9262-4edb-8b49-13d21971f4db"
+                    alt={`${event.id}`}
+                  />
                 </div>
-                <div className="font-pop text-white text-sm">{event.name} </div>
               </div>
             </Suspense>
           ))

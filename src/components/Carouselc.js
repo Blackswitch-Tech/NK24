@@ -23,46 +23,46 @@ const sliderImageUrl = [
   //First image url
   {
     url:
-      "https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Artle.jpg?alt=media&token=f5e0fc71-88c4-47a5-945c-537f48282b4f"
+   "https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/WhatsApp%20Image%202024-02-15%20at%2022.51.22.jpeg?alt=media&token=01fb68e9-9262-4edb-8b49-13d21971f4db"
   },
   {
     url:
-      "https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Neo%20Graffiti.jpg?alt=media&token=50cc9156-5218-443c-96cc-6a12cbe3218a"
+      "https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/WhatsApp%20Image%202024-02-15%20at%2022.51.22.jpeg?alt=media&token=01fb68e9-9262-4edb-8b49-13d21971f4db"
   },
   //Second image url
   {
     url:
-      "https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Pencil%20Mania.jpg?alt=media&token=edf839e6-b381-4a91-8e1f-74ae52f4aa1a"
+      "https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/WhatsApp%20Image%202024-02-15%20at%2022.51.22.jpeg?alt=media&token=01fb68e9-9262-4edb-8b49-13d21971f4db"
   },
   //Third image url
   {
     url:
-      "https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Double%20Trouble.jpg?alt=media&token=d4a489b5-c967-4485-8cd8-b7fcbc751e95"
+      "https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/WhatsApp%20Image%202024-02-15%20at%2022.51.22.jpeg?alt=media&token=01fb68e9-9262-4edb-8b49-13d21971f4db"
   },
 
   //Fourth image url
   {
     url:
-      "https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Duo%20Dance.jpg?alt=media&token=93c5019d-651a-4140-a6ae-d538cf098378"
+      "https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/WhatsApp%20Image%202024-02-15%20at%2022.51.22.jpeg?alt=media&token=01fb68e9-9262-4edb-8b49-13d21971f4db"
   },
   {
     url:
-      "https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Sync%20Step1.jpg?alt=media&token=a5e09542-63aa-4d30-821a-4d43a22108ac"
+      "https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/WhatsApp%20Image%202024-02-15%20at%2022.51.22.jpeg?alt=media&token=01fb68e9-9262-4edb-8b49-13d21971f4db"
   },
   //Second image url
   {
     url:
-      "https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/BASKETBALL.png?alt=media&token=38ca6811-60c7-4c6f-a5df-d7085d535220"
+      "https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/WhatsApp%20Image%202024-02-15%20at%2022.51.22.jpeg?alt=media&token=01fb68e9-9262-4edb-8b49-13d21971f4db"
   },
   //Third image url
   {
     url:
-      "https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/COUNTY%20CRICKET.png?alt=media&token=aa7d8e74-97af-4d47-a0a1-fbd0c427a8c9"
+      "https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/WhatsApp%20Image%202024-02-15%20at%2022.51.22.jpeg?alt=media&token=01fb68e9-9262-4edb-8b49-13d21971f4db"
   },
 
   {
     url:
-      "https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/FOOTBALL.png?alt=media&token=622da273-5c44-4b6c-9599-09ab37a67b32"
+      "https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/WhatsApp%20Image%202024-02-15%20at%2022.51.22.jpeg?alt=media&token=01fb68e9-9262-4edb-8b49-13d21971f4db"
   }
 ];
 const Carouselc = () => {
