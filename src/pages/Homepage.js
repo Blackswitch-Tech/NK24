@@ -36,7 +36,7 @@ export default function Homepage() {
                   initial={{ x: "-50%" }}
                   animate={{ x: "17%" }}
                   transition={{ duration: 1 }}
-                  className="w-12/12 sm:w-1/2 md:w-2/3 lg:w-1/4 2xl:w-1/4 flex justify-end mt-12"
+                  className="w-12/12 sm:w-1/2 md:w-1/3 lg:w-1/4 2xl:w-1/4 flex justify-end mt-12 "
                 >
                   <img src={img1} alt="Left Image" style={{ width: "100%" }} />
                 </motion.div>
@@ -62,7 +62,7 @@ export default function Homepage() {
                   initial={{ x: "50%" }}
                   animate={{ x: "-17%" }}
                   transition={{ duration: 1 }}
-                  className="w-12/12 sm:w-1/2 md:w-2/3 lg:w-1/4 2xl:w-1/4 flex justify-end mt-12"
+                  className="w-12/12 sm:w-1/2 md:w-1/3 lg:w-1/4 2xl:w-1/4 flex justify-end mt-12"
                 >
                   <img src={img2} alt="Right Image" style={{ width: "100%" }} />
                 </motion.div>

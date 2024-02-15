@@ -4,8 +4,8 @@ const Terms = () => {
   return (
     <div className="bg-black text-white font-pop text-md md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl p-8 min-h-screen flex items-center">
       <div>
-        <h1 className="text-2xl md:text-3xl lg:text-3xl xl:text-5xl 2xl:text-6xl 3xl:text-6xl 4xl:text-6xl 5xl:text-6xlfont-bold mb-4 text-center mt-10">Terms & Conditions</h1>
-        <p className="mb-4 md:text-lg lg:text-xl xl:text-2xl font-pop">
+        <h1 className="text-2xl md:text-3xl lg:text-3xl xl:text-5xl 2xl:text-6xl 3xl:text-6xl 4xl:text-6xl 5xl:text-6xlfont-bold mb-4 text-center mt-16 font-pop">Terms & Conditions</h1>
+        <p className="mb-4 md:text-lg lg:text-xl xl:text-2xl font-pop mt-3">
           Acceptance of Terms: By accessing and utilizing the website and services provided by Saintgits Nakshatra 24 ("Owner"), you acknowledge and agree to comply with these Terms and Conditions. If you do not agree with any part of these terms, please refrain from using the website.
         </p>
         <p className="mb-4 md:text-lg lg:text-xl xl:text-2xl font-pop">
@@ -23,7 +23,7 @@ const Terms = () => {
         <p className="mb-4 md:text-lg lg:text-xl xl:text-2xl font-pop">
           Termination of Access: The Owner reserves the right to terminate or suspend your access to the website and services, without notice, in the event of a breach of these Terms and Conditions. Any disputes arising from the use of the website and services shall be resolved through negotiation and, if necessary, legal proceedings.
         </p>
-        <p className="md:text-lg lg:text-xl xl:text-2xl">
+        <p className="md:text-lg lg:text-xl xl:text-2xl font-pop">
           Contact Information: For inquiries or concerns regarding these Terms and Conditions, please contact Saintgits Nakshatra 24 at [Contact Information].
         </p>
       </div>

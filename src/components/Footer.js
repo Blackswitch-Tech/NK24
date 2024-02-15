@@ -59,7 +59,7 @@ export default function Footer() {
           <li>
             <Typography
               as="a"
-              onClick={() => {nav("/privacy")}}
+              onClick={() => {nav("/contact_us")}}
               color="white"
               className="font-pop transition-colors hover:text-blue-500 focus:text-blue-500"
             >
