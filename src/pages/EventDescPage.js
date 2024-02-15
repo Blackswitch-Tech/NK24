@@ -54,7 +54,7 @@ const EventPage = () => {
     const fetchEventData = async () => {
       const q = query(collection(db, "events"), where("id", "==", id));
       const querySnapshot = await getDocs(q);
-
+      
       if (!querySnapshot.empty) {
         const docData = querySnapshot.docs[0].data();
 
