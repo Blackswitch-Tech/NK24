@@ -283,7 +283,7 @@ export default function Dash() {
                     <div className="text-3xl mt-5 sm:text-xl md:text-2xl lg:text-3xl font-bold font-pop text-white">
                       You are Registered!
                     </div>
-                    <div className="text-lg sm:text-lg md:text-2xl lg:text-3xl font-bold font-pop  text-green-500">
+                    <div className="text-lg sm:text-lg md:text-xl lg:text-3xl font-bold font-pop  text-green-500">
                       id: {amboId}
                     </div>
                     <a

@@ -167,7 +167,7 @@ const EventPage = () => {
         <div className="flex-1">
           <img
             className="w-full h-auto rounded-lg"
-            src={eventData.imgurl}
+            src="https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/WhatsApp%20Image%202024-02-15%20at%2022.51.22.jpeg?alt=media&token=01fb68e9-9262-4edb-8b49-13d21971f4db"
             alt="Event Poster"
           />
         </div>
