@@ -79,7 +79,7 @@ export default function Navbar() {
                   <span className="sr-only">Open main menu</span>
                   {open ? (
 
-                    <MdClose className="block h-6 w-6 " size={20} aria-hidden="true" />
+                    <MdClose className="block h-6 w-6 text-white" size={20} aria-hidden="true" />
                   ) : (
                     
                     <MdMenu className="block h-6 w-6  " aria-hidden="true" />
@@ -126,7 +126,7 @@ export default function Navbar() {
                     <Menu.Button className="relative flex  " onClick={handleSignIn}>
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
-                      <MdPerson className="block h-10 w-10 " size={20} aria-hidden="true" />
+                      <MdPerson className="block h-10 w-10 text-white" size={20} aria-hidden="true" />
                     </Menu.Button>
                   </div>
                   
@@ -140,7 +140,7 @@ export default function Navbar() {
                     <Menu.Button className="relative flex  " onClick={()=>{handleSignIn()}}>
                       <span className="-inset-1.5" />
                       <span className="sr-only">Open user menu</span>
-                      <MdLogin className="block h-6 w-6 " size={20} aria-hidden="true" />
+                      <MdLogin className="block h-6 w-6 text-white" size={20} aria-hidden="true" />
                     </Menu.Button>
                   </div>
                   

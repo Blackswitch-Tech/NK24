@@ -186,32 +186,32 @@ const EventPage = () => {
           <h1 className="text-3xl text-white font-pop font-bold text-center mb-4">
             {eventData.name}
           </h1>
-          <p className="text-lg mb-4 font-pop ">{eventData.description}</p>
+          <p className="text-lg mb-4 font-pop text-white ">{eventData.description}</p>
           <div className="mb-6">
             <h2 className="text-2xl font-semibold text-white font-pop mb-2 underline">
               Details
             </h2>
-            <p className="mb-1 font-pop">
+            <p className="mb-1 font-pop text-white">
               Date:{" "}
-              <span className="font-medium font-pop ">{eventData.date}</span>
+              <span className="font-medium font-pop text-white ">{eventData.date}</span>
             </p>
-            <p className="mb-1 font-pop">
+            <p className="mb-1 font-pop text-white">
               Time:{" "}
-              <span className="font-medium font-pop ">{eventData.time}</span>
+              <span className="font-medium font-pop  text-white">{eventData.time}</span>
             </p>
-            <p className="font-pop">
+            <p className="font-pop text-white">
               Category:{" "}
-              <span className="font-medium font-pop">
+              <span className="font-medium font-pop text-white">
                 {eventData.cat} - {eventData.subcat}
               </span>
             </p>
-            <p className="font-pop">
+            <p className="font-pop text-white">
               Minimum participants:{" "}
               <span className="font-medium text-white font-pop">
                 {eventData.min}
               </span>
             </p>
-            <p className="font-pop">
+            <p className="font-pop text-white">
               Maximum participants:{" "}
               <span className="font-medium text-white font-pop">
                 {eventData.max}
@@ -225,7 +225,7 @@ const EventPage = () => {
             {eventData.people.map((person, index) => (
               <div key={index} className="mb-2">
                 <p>
-                  <span className="font-medium font-pop">
+                  <span className="font-medium font-pop text-white">
                     {person.title} : {person.name},{" "}
                     <MdPhone className="inline text-white" /> {person.phno}
                   </span>
@@ -239,7 +239,7 @@ const EventPage = () => {
             </h2>
             {eventData.prizes.map((prize, index) => (
               <div key={index} className="mb-2">
-                <div className="font-medium font-pop">
+                <div className="font-medium font-pop text-white">
                   {prize.title === "1st" && (
                     <TrophyIcon className="text-yellow-500 inline" size={32} />
                   )}
