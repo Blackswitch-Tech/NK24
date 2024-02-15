@@ -73,15 +73,19 @@ const EventPage = () => {
     });
 
     if (currentUser) {
-      console.log(currentUser);
       getUserByEmail(currentUser.email).then((data) => {
         if (data) {
+          console.log(data.name)
+          setTeam([...team, data.name ])
           setNeedSignUp(false);
         } else {
           setNeedSignUp(true);
         }
       });
     }
+    
+      
+    
     // Cleanup subscription on unmount
     return () => unsubscribe();
   }, [id, currentUser]);
@@ -149,6 +153,7 @@ const EventPage = () => {
   };
 
   const addTeamMember = () => {
+    console.log(team)
     if (newMemberName.trim()) {
       setTeam([...team, newMemberName.trim()]);
       setNewMemberName("");
@@ -344,20 +349,25 @@ const EventPage = () => {
                                 {" "}
                                 {/* Adjust for alignment */}
                                 {team.map((member, index) => (
+                                  <>
                                   <div
                                     key={index}
                                     className="flex items-center justify-start gap-4 w-full"
                                   >
+                                    
                                     <button
                                       className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded"
                                       onClick={() => deleteTeamMember(index)}
                                     >
                                       <AiOutlineMinus />
                                     </button>
+                                   
                                     <div className="text-xl font-pop text-white flex-1">
                                       {member}
                                     </div>
+                
                                   </div>
+                                  </>
                                 ))}
                               </div>
                             </div>

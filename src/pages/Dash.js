@@ -374,7 +374,7 @@ export default function Dash() {
                           <span className="font-pop text-white">
                             {event.name}
                           </span>
-                          <span className="font-pop">
+                          <span className="font-pop text-yellow-500">
                             &nbsp;{event.refcount * 100} pts
                           </span>
                         </div>
@@ -390,7 +390,7 @@ export default function Dash() {
                           <span className="font-pop text-white">
                             {event.name}
                           </span>
-                          <span className="font-pop">
+                          <span className="font-pop text-gray-400">
                             &nbsp;{event.refcount * 100} pts
                           </span>
                         </div>
@@ -406,7 +406,7 @@ export default function Dash() {
                           <span className="font-pop text-white">
                             {event.name}
                           </span>
-                          <span className="font-pop">
+                          <span className="font-pop text-orange-400">
                             &nbsp;{event.refcount * 100} pts
                           </span>
                         </div>
