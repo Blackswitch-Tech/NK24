@@ -1,6 +1,4 @@
-import { redirect } from "react-router-dom";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 const loadScript = () => {
   return new Promise((resolve) => {
     const script = document.createElement("script");

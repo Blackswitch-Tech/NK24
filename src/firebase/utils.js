@@ -1,5 +1,5 @@
 import { signInWithPopup } from "firebase/auth";
-import { auth, db, provider } from "./firebase";
+import { auth, provider } from "./firebase";
 
 export const signInWithGoogle = () => {
 

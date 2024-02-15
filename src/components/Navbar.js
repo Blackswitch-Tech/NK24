@@ -1,13 +1,11 @@
-import { Fragment,useState,useEffect } from "react";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { useState,useEffect } from "react";
+import { Disclosure, Menu} from "@headlessui/react";
 import { useNavigate } from "react-router-dom";
 import { signInWithPopup } from "firebase/auth";
 import { auth, db, provider } from "../firebase/firebase";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import {getUserByEmail} from "../utils/searchbyEmail";
 import NK24logo from '../assets/NK24logo.webp';
-import Enter from '../assets/enter.png';
-import User from '../assets/user.svg'
 import { MdMenu,MdClose,MdLogin,MdPerson } from 'react-icons/md';
 import "./styles.css"
 
@@ -23,7 +21,6 @@ function classNames(...classes) {
 
 export default function Navbar() {
   const nav=useNavigate();
-  const [loading, setLoading] = useState(true); // State to manage loading state
   const [currentUser, setCurrentUser] = useState(null); // State to store the current user
 
   // icon import

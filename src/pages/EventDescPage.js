@@ -2,18 +2,15 @@
 import React, { useEffect, useState } from "react";
 import { MdPhone } from "react-icons/md";
 import { MdOutlineEmojiEvents as TrophyIcon } from "react-icons/md";
-import { Input } from "@material-tailwind/react";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 
-import { redirect, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import {
   collection,
   query,
   where,
   getDocs,
-  addDoc,
-  doc,
 } from "firebase/firestore/lite";
 import { signInWithPopup } from "firebase/auth";
 import { auth, db, provider } from "../firebase/firebase";
