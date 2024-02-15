@@ -68,7 +68,7 @@ export default function Dash() {
         if (!querySnapshot.empty) {
           const userDocData = querySnapshot.docs[0].data();
 
-          setCampusAmbassador(userDocData.isAmbassador);
+          setCampusAmbassador(userDocData.isCA);
           setAmboId(userDocData.CACode);
           setName(userDocData.name);
           setRefcode(userDocData.refcount);

@@ -14,7 +14,7 @@ import ScrollToTop from "./components/ScrollToTop.js";
 function App() {
   const { ready } = useReady(3500);
 
-
+  document.documentElement.classList.add('dark')
   return (
     <div className="App ">
       {ready !== true ? (
