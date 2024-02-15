@@ -214,14 +214,61 @@ export default function Dash() {
               >
                 CLICK HERE TO VIEW RULES
               </a>
-              <Dialog open={open} handler={handleOpen}>
-                <DialogHeader>Event Rules</DialogHeader>
-                <DialogBody className="h-[42rem] overflow-scroll">
-                  <Typography className="font-normal">
-                    <ul className="list-disc pl-5"></ul>
-                  </Typography>
-                </DialogBody>
-              </Dialog>
+              <Dialog open={open} handler={handleOpen} className="bg-black-200">
+              <DialogHeader className="font-pop text-white">Rules and regulations</DialogHeader>
+              <DialogBody className="h-[25rem] overflow-scroll">
+              <li className="font-pop text-white">
+                      Each participant will have a unique referral code, and the
+                      points won't start accruing until the other participants
+                      use the code to register for other events.
+                   </li>
+                    <br />
+                    <li className="font-pop text-white">
+                      Higher the registration more the point rewarded!
+                    </li>
+                    <br />
+                    <li className="font-pop text-white">Referral codes generated through either app or website can
+                      only be used for event registrations and sign-ups.
+                    </li>
+                    <br />
+                    <li className="font-pop text-white"> If tied, prize money will be shared.</li>
+                    <br />
+                    <li className="font-pop text-white">
+                      The winners should submit their valid college id cards to
+                      get the cash prize.
+                    </li>{" "}
+                    <br />
+                    <li className="font-pop text-white">
+                      Certificates will be provided to the winners only.
+                    </li>{" "}
+                    <br />
+                    <li className="font-pop text-white">Committee decisions will be final.</li>
+                    <br />
+                    <li className="font-pop text-white">For further queries contact:</li>
+                    <br />
+                    <ul>
+                      <li className="font-pop text-white text-xl">Head: Airene Ann Mathew | 6282597327</li>
+                      <li className="font-pop text-white text-xl">Subhead :David M | 8111867786</li>
+                      <li className="font-pop text-white text-xl">Subhead :Geevees K | George 9487894178</li>
+                    </ul>
+                <Typography className="font-normal">
+                  <ul className="list-disc pl-5">
+                 
+                  </ul>
+                </Typography>
+              </DialogBody>
+              <DialogFooter className="space-x-2">
+                <Button
+                  className="font-pop text-white hover:bg-green-400"
+                  variant="text"
+                  color="blue-gray"
+                  onClick={handleOpen}
+                >
+                  Confirm
+                </Button>
+  
+              </DialogFooter>
+            </Dialog>
 
               <div>
                 {isCampusAmbassador === false ? (
