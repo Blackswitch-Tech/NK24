@@ -427,7 +427,7 @@ const EventPage = () => {
                         >
                           {registering
                             ? "Registering, May take time .."
-                            : "Register"}
+                            : `Register and Pay Rs: ${eventData.regfee}`}
                         </button>
                       </div>
                     )}
