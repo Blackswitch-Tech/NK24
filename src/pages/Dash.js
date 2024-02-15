@@ -175,7 +175,7 @@ export default function Dash() {
                   : "No user logged in"}
               </div>
 
-              <div className="text-20 font-pop mt-2">
+              <div className="text-20 text-white font-pop mt-2">
                 This is the dashboard. You can view the events you have
                 registered here and update your current profile.
               </div>
@@ -200,7 +200,7 @@ export default function Dash() {
               <div className="text-3xl sm:text-xl md:text-2xl lg:text-3xl font-bold font-pop text-white">
                 Campus Ambassador
               </div>
-              <div className="text-20 font-pop mt-5">
+              <div className="text-20 font-pop mt-5 text-white">
                 Have you dreamed of being a superhero ? Who needs superheroes
                 when you can be a campus ambassador. “With great power comes
                 great responsibility”. Here’s an opportunity to explore your
@@ -253,7 +253,7 @@ export default function Dash() {
                     <ul>
                       <li className="font-pop text-white text-xl">Head: Ahana Babu | 9895800302</li>
                       <li className="font-pop text-white text-xl">Subhead : Cinta Susan Thomas  | 8590890617 </li>
-                      <li className="font-pop text-white text-xl">Subhead : Simi|  7025398459</li>
+                      <li className="font-pop text-white text-xl">Subhead : Simi |  7025398459</li>
                     </ul>
                 <Typography className="font-normal">
                   <ul className="list-disc pl-5">

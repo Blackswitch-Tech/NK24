@@ -67,16 +67,16 @@ const Cultural = () => {
       <div className="flex justify-center my-10">
         <div className="max-w-md w-full space-y-10">
           {/* Search Component Placeholder */}
-          <div className="mt-10">
-            <div className="relative">
+          <div className="mt-10 bg-black">
+            <div className="relative bg-black">
               <select
                 onChange={(item) => {
                   handleChangeCategory(item.target.value);
                 }}
-                className="peer h-full w-full rounded-lg bg-transparent px-3 py-2 text-sm font-normal text-white outline-none border border-gray-700 focus:ring-2 focus:ring-gray-500"
+                className="peer h-full w-full rounded-lg bg-transparent px-3 py-2 text-sm font-normal text-white outline-none border border-gray-700 focus:ring-2 focus:ring-gray-500 bg-black"
               >
                 {options.map((option, index) => (
-                  <option key={index} value={option.value}>
+                  <option key={index} className="bg-black" value={option.value}>
                     {option.label}
                   </option>
                 ))}
