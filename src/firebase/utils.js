@@ -6,6 +6,6 @@ export const signInWithGoogle = () => {
   signInWithPopup(auth,provider).then((res) => {
     return(true)
   }).catch((error) => {
-    console.log(error.message)
+    //Add alert about Error Type
   })
 }

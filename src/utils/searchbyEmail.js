@@ -9,13 +9,12 @@ export const getUserByEmail = async (email) => {
       const userData = [];
       querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
         userData.push({ id: doc.id, ...doc.data() });
       });
       if (userData.length > 0) {
         return userData[0]; // Assuming email is unique and only one document will be found
       } else {
-        console.log("No such document!");
+        //Alert No such document!
         return null; // No user found
       }
     } catch (error) {
