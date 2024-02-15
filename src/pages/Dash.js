@@ -159,7 +159,7 @@ export default function Dash() {
   const encodedShareText = encodeURIComponent(shareText);
   const whatsappLink = `https://wa.me/?text=${encodedShareText}`;
 
-  if (regData) {
+  if (regData && currentUser) {
     return (
       <div className=" min-h-screen  flex flex-col items-center justify-center bg-[url('https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Signupbg.jpeg?alt=media&token=94bfbc88-78f6-4c8a-a749-19fcb76fe493')] bg-no-repeat bg-cover bg-fixed bg-center">
         <div className="container mx-auto px-4 lg:px-8 mt-20 ">
@@ -217,7 +217,11 @@ export default function Dash() {
               <Dialog open={open} handler={handleOpen} className="bg-black-200">
               <DialogHeader className="font-pop text-white">Rules and regulations</DialogHeader>
               <DialogBody className="h-[25rem] overflow-scroll">
+    
               <li className="font-pop text-white">
+                      Anyone who sign up to our web page /App  can enter the event there is no particular number 
+                </li>
+              <li className="font-pop text-white mt-2">
                       Each participant will have a unique referral code, and the
                       points won't start accruing until the other participants
                       use the code to register for other events.
@@ -247,9 +251,9 @@ export default function Dash() {
                     <li className="font-pop text-white">For further queries contact:</li>
                     <br />
                     <ul>
-                      <li className="font-pop text-white text-xl">Head: Airene Ann Mathew | 6282597327</li>
-                      <li className="font-pop text-white text-xl">Subhead :David M | 8111867786</li>
-                      <li className="font-pop text-white text-xl">Subhead :Geevees K | George 9487894178</li>
+                      <li className="font-pop text-white text-xl">Head: Ahana Babu | 9895800302</li>
+                      <li className="font-pop text-white text-xl">Subhead : Cinta Susan Thomas  | 8590890617 </li>
+                      <li className="font-pop text-white text-xl">Subhead : Simi|  7025398459</li>
                     </ul>
                 <Typography className="font-normal">
                   <ul className="list-disc pl-5">
