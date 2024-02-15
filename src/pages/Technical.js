@@ -10,8 +10,8 @@ const Technical = () => {
   const [events, setEvents] = useState([]);
   const [curEvents,setCurEvents]=useState([]);
   const options = [
-    { value: "All", label: "All" },
-    { value: "Competition", label: "Competition" },
+    { value: "All", label: "All"},
+    { value: "Competition", label: "Competition"},
     { value: "Workshop", label: "Workshop" },
 
   ];
@@ -57,10 +57,10 @@ const Technical = () => {
                 onChange={(item) => {
                   handleChangeCategory(item.target.value);
                 }}
-                className="peer h-full w-full rounded-lg bg-transparent px-3 py-2 text-sm font-normal text-white outline-none border border-gray-700 focus:ring-2 focus:ring-gray-500"
+                className="peer h-full w-full font-pop rounded-lg bg-transparent px-3 py-2 text-sm font-normal text-white outline-none border border-gray-700 focus:ring-2 focus:ring-gray-500"
               >
                 {options.map((option, index) => (
-                  <option key={index} value={option.value}>
+                  <option key={index} value={option.value} className="font-pop">
                     {option.label}
                   </option>
                 ))}

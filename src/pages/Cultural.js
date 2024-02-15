@@ -78,15 +78,15 @@ const Cultural = () => {
                 onChange={(item) => {
                   handleChangeCategory(item.target.value);
                 }}
-                className="peer h-full w-full rounded-lg bg-transparent px-3 py-2 text-sm font-normal text-white outline-none border border-gray-700 focus:ring-2 focus:ring-gray-500 bg-black"
+                className="peer h-full w-full font-pop rounded-lg bg-transparent px-3 py-2 text-sm font-normal text-white outline-none border border-gray-700 focus:ring-2 focus:ring-gray-500 bg-black"
               >
                 {options.map((option, index) => (
-                  <option key={index} className="bg-black" value={option.value}>
+                  <option key={index} className="bg-black font-pop" value={option.value}>
                     {option.label}
                   </option>
                 ))}
               </select>
-              <label className="absolute left-3 -top-5 text-xs text-gray-400 transition-all  peer-focus:-top-5 peer-focus:text-gray-200 peer-focus:text-xs"></label>
+              <label className="absolute left-3 -top-5 text-xs text-gray-400 transition-all font-pop  peer-focus:-top-5 peer-focus:text-gray-200 peer-focus:text-xs">item</label>
             </div>
           </div>
         </div>
