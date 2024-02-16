@@ -208,6 +208,12 @@ const EventPage = () => {
                 {eventData.max}
               </span>
             </p>
+            <p className="font-pop text-2xl text-white">
+              registration fees:{" "}
+              <span className=" font-extrabold font-pop text-white">
+                Rs.{eventData.regfee} 
+              </span>
+            </p>
           </div>
           <div className="mb-6">
             <h2 className="text-2xl text-white font-semibold mb-2 font-pop underline">
