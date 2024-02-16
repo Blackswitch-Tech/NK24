@@ -39,13 +39,11 @@ const Cultural = () => {
         });
         setEvents(
           newData.filter(
-            (event) => event.cat === "Cultural" || event.cat === "cultural"
-          )
+            (event) => event.cat.toLowerCase().trim() === "cultural" )
         );
         setCurEvents(
           newData.filter(
-            (event) => event.cat === "Cultural" || event.cat === "cultural"
-          )
+            (event) => event.cat.toLowerCase().trim() === "cultural" )
         );
         // Assuming wait is a custom function or you meant to use setTimeout here
         setTimeout(() => setLoaded(true), 1000);
@@ -58,7 +56,7 @@ const Cultural = () => {
     if (category === "All") {
       setCurEvents(events);
     } else {
-      setCurEvents(events.filter((event) => event.subcat === category));
+      setCurEvents(events.filter((event) => event.subcat.trim() === category));
     }
   };
 
@@ -100,10 +98,11 @@ const Cultural = () => {
                 <div className="max-w-sm rounded-lg overflow-hidden shadow-lg bg-white">
                   <img
                     className="w-full object-cover  h-120"
-                    src="https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/WhatsApp%20Image%202024-02-15%20at%2022.51.22.jpeg?alt=media&token=01fb68e9-9262-4edb-8b49-13d21971f4db"
+                    src={event.imgurl ? event.imgurl:"https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/comingsoon.jpeg?alt=media&token=db8b5064-054e-45b9-9dc6-393ac6ebc840"}
                     alt={`${event.id}`}
                   />
                 </div>
+                <div className="font-pop text-white">{event.name}</div>
               </div>
             </Suspense>
           ))

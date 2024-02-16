@@ -122,7 +122,7 @@ const EventPage = () => {
             phone: userData.phoneNumber,
             ref: refCode ? refCode : "nor",
             team:
-              eventData.type.toLowerCase() === "team" ? team.toString() : null,
+              eventData.type.trim().toLowerCase() === "team" ? team.toString() : null,
           };
           setRegistering(true);
           displayRazorpay(token, nav, window.location.pathname);
@@ -167,7 +167,7 @@ const EventPage = () => {
         <div className="flex-1">
           <img
             className="w-full h-auto rounded-lg"
-            src="https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/WhatsApp%20Image%202024-02-15%20at%2022.51.22.jpeg?alt=media&token=01fb68e9-9262-4edb-8b49-13d21971f4db"
+            src={eventData.imgurl? eventData.imgurl:"https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/comingsoon.jpeg?alt=media&token=db8b5064-054e-45b9-9dc6-393ac6ebc840"}
             alt="Event Poster"
           />
         </div>
@@ -310,7 +310,7 @@ const EventPage = () => {
                     ) : (
                       <div className="flex flex-col">
                         {eventData &&
-                          eventData.type.toLowerCase() == "team" && (
+                          eventData.type.trim().toLowerCase() == "team" && (
                             <div className="mt-5 flex flex-col  justify-center mx-0 gap-3">
                               <div className="w-full text-left">
                                 <h1 className="font-pop text-white">
