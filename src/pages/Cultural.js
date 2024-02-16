@@ -14,6 +14,7 @@ const Cultural = () => {
   const [events, setEvents] = useState([]);
   const [curEvents, setCurEvents] = useState([]);
   const options = [
+    { value: "All", label: "All" },
     { value: "General Events", label: "General Events" },
     { value: "Dance", label: "Dance" },
     { value: "Music", label: "Music" },
@@ -25,7 +26,7 @@ const Cultural = () => {
     { value: "Art", label: "Art" },
     { value: "Cookery", label: "Cookery" },
     { value: "Movie/Anime", label: "Movie/Anime" },
-    { value: "All", label: "All" },
+    
   ];
   useEffect(() => {
     const getData = async () => {

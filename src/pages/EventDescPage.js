@@ -324,7 +324,7 @@ const EventPage = () => {
                                   onChange={(e) =>
                                     setNewMemberName(e.target.value)
                                   }
-                                  className="text-white font-pop py-2 px-4  w-full py-3 sm:w-72 rounded"
+                                  className="text-black-500 font-pop  px-4  w-full py-3 sm:w-72 rounded"
                                   placeholder="Enter team member's name"
                                 />
                                 <button
@@ -371,7 +371,7 @@ const EventPage = () => {
                               type="text"
                               value={refCode}
                               onChange={handleRefCodeChange}
-                              className="text-white font-pop px-4 rounded  w-full py-3 sm:w-72"
+                              className="text-black-500 font-pop px-4 rounded  w-full py-3 sm:w-72"
                               placeholder="Enter referral code"
                             />
                           </div>

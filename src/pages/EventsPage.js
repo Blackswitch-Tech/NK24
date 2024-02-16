@@ -26,7 +26,7 @@ function EventsPage() {
         >
           <div className=" hover:scale-110 transition duration-200 cursor-pointer rounded-2xl">
               <img
-                src="https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/CULTURAL%20EVENTS-1.png?alt=media&token=48777f84-42c5-4097-9aeb-160858e5d8ef"
+                src="https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/CULTURAL%20EVENTS-1.jpg?alt=media&token=88369d0a-6c34-48b1-850c-cb82d1362780"
                 alt="event"
                 className="rounded-2xl"
               />
@@ -41,7 +41,7 @@ function EventsPage() {
           <div className=" hover:scale-110 transition duration-200 cursor-pointer rounded-2xl">
             
               <img
-                src="https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Technical%20Events.png?alt=media&token=f0dfb5e8-dee8-4d0e-a307-642b8b8e3cbc"
+                src="https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/Technical%20Events-min.png?alt=media&token=2a436c20-7f0e-4249-ab09-b0f06206de82"
                 alt="event"
                 className=" rounded-2xl"
               />
