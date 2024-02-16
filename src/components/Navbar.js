@@ -79,7 +79,7 @@ export default function Navbar() {
                     <MdClose className="block h-6 w-6 text-white" size={20} aria-hidden="true" />
                   ) : (
                     
-                    <MdMenu className="block h-6 w-6  " aria-hidden="true" />
+                    <MdMenu className="block h-6 w-6 text-white  " aria-hidden="true" />
                   )}
                 </Disclosure.Button>
               </div>
