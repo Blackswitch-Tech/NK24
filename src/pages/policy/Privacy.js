@@ -3,7 +3,7 @@ import React from 'react';
 const PrivacyPolicy = () => {
   return (
     <div className="bg-black  text-white text-lg md:text-base lg:text-lg xl:text-xl 2xl:text-2xl p-8 flex items-center justify-center h-screen">
-      <div className="max-w-2xl w-full">
+      <div className="max-w-2xl w-full mt-12">
         <h1 className="text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-7xl font-bold mb-4 text-center font-pop mt-16">Privacy Policy</h1>
         <p className="text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl mb-4 font-pop mb-2">
           This page outlines our policies concerning the collection, use, and disclosure of information obtained from users of the site. By utilizing this site, you consent to the collection and utilization of information as per this policy.

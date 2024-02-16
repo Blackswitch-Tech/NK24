@@ -119,7 +119,7 @@ export default function Homepage() {
             </div>
             <div className="w-full sm:w-3/4 md:w-1/2 px-2 sm:px-4 flex justify-center md:justify-end order-first md:order-none">
               <img
-                src="https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Saintgits%20New%20logo.png?alt=media&token=37c5d9d9-4b01-4cea-910f-bfaf09d3f08b"
+                src="https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/Saintgits%20New%20logo.png?alt=media&token=90dec050-d8f9-4c66-9d9d-d99becd51251"
                 alt="About Us"
                 className="rounded-lg shadow-lg max-w-full h-auto mt-4 sm:mt-0"
               />
