@@ -51,6 +51,11 @@ const sliderImageUrl = [
     eventlink : "/events/cultural/NK-44"
 
   },
+  {
+    url:"https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/EventImages%2FCultural%20Events%2Finfinityglam.jpg?alt=media&token=7d189330-533d-4fbd-bfbf-37d95e83e3cd",
+    eventlink : "/events/cultural/NK-05"
+
+  },
   
  
   
