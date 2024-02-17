@@ -13,7 +13,12 @@ module.exports = withMT({
         pop:['Poppins', ...defaultTheme.fontFamily.sans],
         aurora:['Aurora', ...defaultTheme.fontFamily.sans],
         milk:['Milk', ...defaultTheme.fontFamily.sans],
-      }
+      },
+      screens: {
+        
+        xsm: '480px',
+      
+      },
     },
   },
   plugins: [require("daisyui")],
