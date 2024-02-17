@@ -65,8 +65,8 @@ const Cultural = () => {
   return (
     <div className="bg-cover bg-fixed bg-no-repeat h-auto min-h-screen bg-[url('https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Signupbg.jpeg?alt=media&token=94bfbc88-78f6-4c8a-a749-19fcb76fe493')] w-full px-5">
       <div className="flex justify-center items-center pt-32">
-        <h1 className="text-white text-6xl font-pop sm:text-7xl tracking-widest">
-          CULTURAL
+        <h1 className="text-white text-6xl font-neu sm:text-7xl tracking-widest">
+          NON TECHNICAL
         </h1>
       </div>
       <div className="flex justify-center my-10">
