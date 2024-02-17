@@ -36,7 +36,7 @@ export default function Homepage() {
                   initial={{ x: "-50%" }}
                   animate={{ x: "17%" }}
                   transition={{ duration: 1 }}
-                  className="w-12/12 sm:w-1/2 md:w-1/3 lg:w-1/4 2xl:w-1/4 flex justify-end mt-12 "
+                  className="w-12/12 sm:w-1/2 md:w-2/3 lg:w-1/4 2xl:w-1/4 flex justify-end mt-12 "
                 >
                   <img src={img1} alt="Left Image" style={{ width: "100%" }} />
                 </motion.div>
@@ -62,7 +62,7 @@ export default function Homepage() {
                   initial={{ x: "50%" }}
                   animate={{ x: "-17%" }}
                   transition={{ duration: 1 }}
-                  className="w-12/12 sm:w-1/2 md:w-1/3 lg:w-1/4 2xl:w-1/4 flex justify-end mt-12"
+                  className="w-12/12 sm:w-1/2 md:w-2/3 lg:w-1/4 2xl:w-1/4 flex justify-end mt-12"
                 >
                   <img src={img2} alt="Right Image" style={{ width: "100%" }} />
                 </motion.div>
@@ -99,14 +99,14 @@ export default function Homepage() {
         className="about-section flex h-screen bg-no-repeat bg-cover bg-center"
         style={{ backgroundImage: `url(${require("../assets/bottom.jpg")})` }}
       >
-        <div className="container mx-auto lg:mx-4 px-4 py-8  bg-cover bg-center">
+        <div className="container mx-auto lg:mx-4 px-4 py-8 bg-cover bg-center">
           <div className="flex flex-wrap items-center">
             <div className="w-full sm:w-3/4 md:w-1/2 px-2 sm:px-4 md:order-first">
               <h2 className="text-2xl sm:text-3xl font-bold text-white font-pop mb-4">
                 About Us
               </h2>
               <p className="text-base sm:text-lg text-white font-pop">
-                Saintgits College of Engineering presents NAKSHATRA 2024, the
+                Saintgits College of Engineering presents NAKSHATRA 2023, the
                 annual techno-cultural fest. It is hosted every year to
                 recognise fledging engineers who have a flair of technical
                 expertise and artistry. It is one of the most eminent fests with
@@ -114,7 +114,7 @@ export default function Homepage() {
                 extravaganza unfolds a two-day mega event that transports you
                 into a new realm. Get enraptured in performances by budding
                 engineers and artists that will leave you spellbound. Join in to
-                be a part of our exquisite fest, NAKSHATRA 2024.
+                be a part of our exquisite fest, NAKSHATRA 2023.
               </p>
             </div>
             <div className="w-full sm:w-3/4 md:w-1/2 px-2 sm:px-4 flex justify-center md:justify-end order-first md:order-none">
@@ -128,8 +128,8 @@ export default function Homepage() {
         </div>
       </div>
 
-      <div className="end-section mx-8 mt-16 lg:mt-2">
-        <div className="text-white-800 font-extrabold text-5xl font-pop text-white">
+      <div className="end-section mx-8 mt-40 lg:mt-2 ">
+        <div className="text-white-800 font-extrabold text-5xl font-pop">
           FAQ
         </div>
         <DefaultAccordion />

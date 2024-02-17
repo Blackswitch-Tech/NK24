@@ -235,6 +235,14 @@ const EventPage = () => {
                 {eventData.max}
               </span>
             </p>
+
+            <p className="font-pop text-2xl text-white">
+              registration fees:{" "}
+              <span className=" font-extrabold font-pop text-white">
+                Rs.{eventData.regfee}
+              </span>
+            </p>
+
           </div>
           <div className="mb-6">
             <h2 className="text-2xl text-white font-semibold mb-2 font-pop underline">
@@ -279,9 +287,13 @@ const EventPage = () => {
 
           <div className="mb-1 font-pop text-green-500 text-2xl">
             Slots left:{" "}
-            <span className="font-medium font-pop ">
-              {eventData.slots_left}
-            </span>
+            {eventData.id !== "NK-45" ? (
+              <span className="font-medium font-pop ">
+                {eventData.slots_left}
+              </span>
+            ) : (
+              <span className="font-medium font-pop ">Unlimited.</span>
+            )}
           </div>
           <div>
             <Button
@@ -319,7 +331,7 @@ const EventPage = () => {
           </div>
 
           {/* Conditional Rendering based on slots_left */}
-          {eventData.slots_left > 0 ? (
+          {eventData.slots_left > 0 || eventData.id === "NK-45" ? (
             <div>
               <h2 className="text-2xl font-semibold text-white font-pop mb-2 underline">
                 Register
@@ -330,7 +342,7 @@ const EventPage = () => {
                     {needSignUp ? (
                       <>
                         <button
-                          className="bg-blue-500 hover:bg-blue-700 font-pop  w-full py-3 sm:w-72 text-white font-bold py-2 px-4 rounded"
+                          className="bg-blue-500 hover:bg-blue-700 font-pop  w-full sm:w-72 text-white font-bold py-2 px-4 rounded"
                           onClick={() => {
                             nav(`/signup?redirect=/events/cultural/${id}`);
                           }}
@@ -338,6 +350,17 @@ const EventPage = () => {
                           SignUp to register
                         </button>
                       </>
+                    ) : eventData.id === "NK-45" ? (
+                      <div>
+                        <button
+                          className="bg-blue-500 hover:bg-blue-700 font-pop  w-full  sm:w-72 text-white font-bold py-2 px-4 rounded"
+                          onClick={() => {
+                            nav("/dashboard");
+                          }}
+                        >
+                         Go to dashboard
+                        </button>
+                      </div>
                     ) : (
                       <div className="flex flex-col">
                         {eventData &&
@@ -428,7 +451,7 @@ const EventPage = () => {
                               <strong class="font-bold font-pop">
                                 Disclaimer:
                               </strong>
-                              <span class="block sm:inline text-xs text-pop">
+                              <span class="block sm:inline text-xs font-pop">
                                 {" "}
                                 If your account is debited but the transaction
                                 does not appear in your registration status,
@@ -449,7 +472,7 @@ const EventPage = () => {
                               <strong class="font-bold font-pop">
                                 Disclaimer:
                               </strong>
-                              <span class="block sm:inline text-xs text-pop">
+                              <span class="block sm:inline text-xs font-pop">
                                 {" "}
                                 If you have manually closed and open the
                                 Nakshatra webiste during payment, there is some
