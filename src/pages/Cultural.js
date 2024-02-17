@@ -117,7 +117,6 @@ const Cultural = () => {
                     alt={`${event.id}`}
                   />
                 </div>
-                <div className="font-pop text-white">{event.name}</div>
               </div>
             </Suspense>
           ))
