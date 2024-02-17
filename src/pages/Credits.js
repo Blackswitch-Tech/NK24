@@ -5,85 +5,85 @@ const people = [
     name: 'Fredy Somy',
     role: 'Head',
     imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/fredy.jpg?alt=media&token=50ddba52-c5dd-4d57-a4c7-ac2fb09197ba',
+      'https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/Credits%2Ffredy.jpg?alt=media&token=d182265e-c938-4561-9b4c-665529373cbd',
   },
   {
     name: 'Abhishek J Mathew',
     role: 'Sub Head',
     imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/abhishek.jpg?alt=media&token=50577a46-9895-4e7a-aac2-612da2b5cd9e',
+      'https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/Credits%2Fabhishek.jpg?alt=media&token=f22be033-a86c-4248-b3b9-ce193d832916',
   },
   {
     name: 'Tom Sabu',
     role: 'Sub Head',
     imageUrl:
-    'https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/tom.jpg?alt=media&token=df99a7be-9991-40b0-9876-2cfd260b8aca',
+    'https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/Credits%2Ftom.jpg?alt=media&token=e4f26d9b-6b62-410c-addc-509424fba58a',
   },
   {
     name: 'Abhinand M',
     role: 'Lead Designer',
     imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/abhi.jpg?alt=media&token=79955179-e34f-4d43-a6a2-752ab89eb055',
+      'https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/Credits%2Fabhi.jpg?alt=media&token=b3c690e0-6efe-4d57-af13-835c5358d412',
   },
   {
     name: 'Allen Bastian',
     role: 'Developer',
     imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/basti.jpg?alt=media&token=e7e4e77b-8168-4b72-b5d3-fafa753864ba',
+      'https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/Credits%2Fbasti.jpg?alt=media&token=35062ddd-f504-493c-81d2-7b3ccfd99e83',
   },
   {
     name: 'Basil Rari',
     role: 'Developer',
     imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/1000019819-fotor-bg-remover-20231207205747.png?alt=media&token=7698f0bf-8630-4804-ac3c-0e58257e955c'
+      'https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/Credits%2FBasil.png?alt=media&token=861ec40e-e6f4-4f0f-9b8d-248082324853'
   },
   {
     name: 'Bhagya Suresh',
     role: 'Developer',
     imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/bhagya.jpg?alt=media&token=960326a7-e9db-47fa-9449-40b081a2d549',
+      'https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/Credits%2Fbhagya.jpg?alt=media&token=c8a9ede9-9fae-4290-8b47-c290849a21ff',
   },
   {
     name: 'Jobin Tom',
     role: 'Developer',
     imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/jobin.jpg?alt=media&token=0379e882-f4e8-4ccf-9e94-1fea9c99164e',
+      'https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/Credits%2Fjobin.jpg?alt=media&token=5c2d3a5f-5e5e-479e-b09a-ec4160776215',
   },
   {
     name: 'Jefrin Thomas',
     role: 'Data and Quality Testing',
     imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/jefrin.jpg?alt=media&token=eee0aa80-d963-4ba3-a7f0-158a31b47e43',
+      'https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/Credits%2Fjefrin.jpg?alt=media&token=39b3b8b1-13f3-4453-81c1-f518edc5c067',
   },
   {
     name: 'Bonny David',
     role: 'Data and Quality Testing',
     imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/bonny.jpg?alt=media&token=7992bf5e-2377-4991-a5ed-ff5030e8e09a',
+      'https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/Credits%2Fbonny.jpg?alt=media&token=28cf6666-2ccd-49c7-b148-89938bcefeb6',
   },
   {
     name: 'Chandhrashekar C A',
     role: 'Developer',
     imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/chandu.jpg?alt=media&token=f7d9e46b-4d4d-4415-88ea-129c5a1e8cf8',
+      'https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/Credits%2Fchandu.jpg?alt=media&token=1b75b0fb-cf71-4c51-b20d-e79efca2a13d',
   },
   {
     name: 'Mohammed Aadil',
     role: 'Developer',
     imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/aadil.jpg?alt=media&token=cb565f3b-2afb-4751-a7f2-c2ef7243d861',
+      'https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/Credits%2Faadil.jpg?alt=media&token=28bf4a9f-fd7b-403d-af95-2a1de760b36e',
   },
   {
     name: 'Ashish George',
     role: 'Designer',
     imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/ashish.jpg?alt=media&token=65403ab9-bf60-4aed-a265-b3030c9a1fc4',
+      'https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/Credits%2Fashish.jpg?alt=media&token=97c73dba-0b74-40ba-a381-5c87660800bd',
   },
   {
-    name: 'Alaina Byju',
+    name: 'Alaina Baiju',
     role: 'Designer ',
     imageUrl:
-      'https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/alaina.jpg?alt=media&token=11df67eb-24a3-416a-accc-0bb7bdd5006f',
+      'https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/Credits%2Falaina.jpg?alt=media&token=661b56c7-5f04-47a9-9b88-e228312c6d6a',
   },
 
 ]
