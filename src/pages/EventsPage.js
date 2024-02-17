@@ -25,7 +25,7 @@ function EventsPage() {
         >
           <div className=" hover:scale-110 transition duration-200 cursor-pointer rounded-2xl">
             <img
-              src="https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/EventImages%2FCultural%20Events%2Fnon%20tech%201.jpg?alt=media&token=ea4a7655-b619-432b-8627-3581ff942965"
+              src="https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/EventImages%2FTechnical%20Events%2Fftechcorrected.jpg?alt=media&token=5ebeb06a-ae10-4005-939c-717a16c06ec3"
               alt="event"
               className="rounded-2xl"
             />
@@ -34,7 +34,7 @@ function EventsPage() {
         <div
           className="w-9/12 lg:w-1/3 mx-auto sm:mx-0 mb-14 sm:mb-10 outline-4  border-white"
           onClick={() => {
-            handleNavigation("cultural");
+            handleNavigation("technical");
           }}
         >
           <div className=" hover:scale-110 transition duration-200 cursor-pointer rounded-2xl">

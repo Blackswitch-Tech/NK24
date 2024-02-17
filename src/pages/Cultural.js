@@ -15,7 +15,7 @@ const Cultural = () => {
   const [curEvents, setCurEvents] = useState([]);
   const options = [
     { value: "All", label: "All" },
-    { value: "General Events", label: "General Events" },
+    { value: "General", label: "General Events" },
     { value: "Dance", label: "Dance" },
     { value: "Music", label: "Music" },
     { value: "Sports", label: "Sports" },
