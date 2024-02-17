@@ -25,11 +25,11 @@ function EventsPage() {
           }}
         >
           <div className=" hover:scale-110 transition duration-200 cursor-pointer rounded-2xl">
-              <img
-                src="https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/CULTURAL%20EVENTS-1.jpg?alt=media&token=88369d0a-6c34-48b1-850c-cb82d1362780"
-                alt="event"
-                className="rounded-2xl"
-              />
+            <img
+              src="https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/EventImages%2FCultural%20Events%2FCulturalEventsPoster.jpg?alt=media&token=a6d441ce-a024-4447-8817-49057bb491cb"
+              alt="event"
+              className="rounded-2xl"
+            />
           </div>
         </div>
         <div
@@ -39,13 +39,11 @@ function EventsPage() {
           }}
         >
           <div className=" hover:scale-110 transition duration-200 cursor-pointer rounded-2xl">
-            
-              <img
-                src="https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/Technical%20Events-min.png?alt=media&token=2a436c20-7f0e-4249-ab09-b0f06206de82"
-                alt="event"
-                className=" rounded-2xl"
-              />
-    
+            <img
+              src="https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/EventImages%2FTechnical%20Events%2FTechnicalEventsPoster.png?alt=media&token=b35b682d-d0ea-4960-9a8d-1a65827de4e1"
+              alt="event"
+              className=" rounded-2xl"
+            />
           </div>
         </div>
         <div></div>
