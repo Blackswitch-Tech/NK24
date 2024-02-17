@@ -19,7 +19,7 @@ function EventsPage() {
       <div className="flex flex-col items-center justify-center lg:flex-row mt-16 align-middle lg:justify-around h-1/3">
         <div></div>
         <div
-          className="w-9/12 lg:w-1/3 mx-auto sm:mx-0 mb-1 sm:mb-12 outline-4  border-white"
+          className="w-9/12 lg:w-1/3 mx-auto sm:mx-0 mb-4 sm:mb-12 outline-4  border-white"
           onClick={() => {
             handleNavigation("cultural");
           }}
