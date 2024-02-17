@@ -41,6 +41,16 @@ const sliderImageUrl = [
     eventlink : "/events/cultural/NK-58"
 
   },
+  {
+    url:"https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/EventImages%2FTechnical%20Events%2Fchemhunt%20FINAL.jpg?alt=media&token=187fa5e1-8e4a-4159-b93b-f75c882e71f6",
+    eventlink : "/events/cultural/NK-57"
+
+  },
+  {
+    url:"https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/EventImages%2FCultural%20Events%2Fmr%26ms%20NAKSHATRA%202.jpg?alt=media&token=24ab91a7-f7db-48d3-908f-098e9ffcc4df",
+    eventlink : "/events/cultural/NK-44"
+
+  },
   
  
   
