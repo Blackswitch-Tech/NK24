@@ -23,21 +23,21 @@ const responsive = {
 const sliderImageUrl = [
   //First image url
   {
-    url: "https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/Cultural%20Events%2FNIRVANA%20(Kriswin)-min.jpg?alt=media&token=ff6c626a-3137-4c50-8489-8f4c97189b8f",
+    url: "https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/EventImages%2FCultural%20Events%2Fnirvananation.jpg?alt=media&token=000da85f-a57d-491a-8457-e12b6e4eb2ff",
     eventlink :  "/events/cultural/NK-34"
   },
   {
-    url:"https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/Cultural%20Events%2FSyncStep.jpeg?alt=media&token=97b7a01f-c930-4094-9bb0-3c13c5bc1e32",
+    url:"https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/EventImages%2FCultural%20Events%2FSync%20Step.jpg?alt=media&token=430094be-335d-4174-9bed-de18f1d613e9",
     eventlink : "/events/cultural/NK-23"
 
   },
   {
-    url:"https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/Technical%20Events%2FRobo%20Soccer%20-min.jpg?alt=media&token=732fea49-d8d5-4bba-a86f-a6788cb18231",
+    url:"https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/EventImages%2FTechnical%20Events%2FRobo%20Soccer%20Final.jpg?alt=media&token=83c17492-f307-4190-bddf-28981906cf45",
     eventlink : "/events/cultural/NK-33"
 
   },
   {
-    url:"https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/Cultural%20Events%2FVoiceofNK%20(Kriswin)-min.jpg?alt=media&token=07c746b8-0455-45a9-83be-17eff75d342f",
+    url:"https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/EventImages%2FCultural%20Events%2Fvoiceofnk.jpg?alt=media&token=ac66e263-1149-48b8-915a-baffaa0bd684",
     eventlink : "/events/cultural/NK-58"
 
   },
