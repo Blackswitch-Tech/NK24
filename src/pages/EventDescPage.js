@@ -257,7 +257,7 @@ const EventPage = () => {
               </div>
             ))}
           </div>
-          {eventData.subcat.toLowerCase().trim()!=="Workshop" &&(
+          {eventData.subcat.toLowerCase().trim()!=="workshop" &&(
           <div className="mb-6">
             <h2 className="text-2xl font-semibold font-pop text-white mb-2 underline">
               Prizes
