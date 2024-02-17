@@ -11,7 +11,10 @@ const Terms = () => {
         <p className="mb-4 md:text-lg lg:text-xl xl:text-2xl font-pop">
           Definitions: "Owner," "Us," "We" refers to Saintgits Nakshatra 24, encompassing its creator, operator, and publisher, as well as all employees and affiliates. "You" refers to the user of the website and services.
         </p>
-        <p className="mb-4 md:text-lg lg:text-xl xl:text-2xl font-pop">
+        <p className="md:text-lg lg:text-xl xl:text-2xl font-pop">
+        Responsibility for Double Booking: The customer acknowledges and agrees that it is their sole responsibility to ensure they do not book the same event more than once. Nakshatra Team (hereinafter referred to as "we", "us", "our") will not be liable for any instances where a customer books the same event multiple times, either through our platform or across different platforms.
+        </p>
+        <p className="mb-4 md:text-lg lg:text-xl xl:text-2xl font-pop mt-5">
           User Obligations: You are responsible for understanding and adhering to these Terms and Conditions, along with all applicable laws and regulations. Failure to comply may result in the termination of your access to the website and services.
         </p>
         <p className="mb-4 md:text-lg lg:text-xl xl:text-2xl font-pop">
@@ -26,6 +29,7 @@ const Terms = () => {
         <p className="md:text-lg lg:text-xl xl:text-2xl font-pop">
           Contact Information: For inquiries or concerns regarding these Terms and Conditions, please contact Saintgits Nakshatra 24 at [Contact Information].
         </p>
+
       </div>
     </div>
   );
