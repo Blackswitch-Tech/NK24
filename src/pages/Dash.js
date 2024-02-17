@@ -342,7 +342,7 @@ export default function Dash() {
                     ))}
                   </div>
                 ) : (
-                  <div className="font-pop text-2xl">
+                  <div className="font-pop mt-10 text-red-500 text-2xl">
                     {" "}
                     No events registered!
                   </div>
