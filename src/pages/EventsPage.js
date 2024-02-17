@@ -16,10 +16,10 @@ function EventsPage() {
         <h1 className="text-white font-neu text-7xl sm:text-8xl mt-24">T</h1>
         <h1 className="text-white font-neu text-7xl sm:text-8xl mt-24">S </h1>
       </div>
-      <div className="flex flex-col lg:flex-row mt-16 align-middle lg:justify-around h-1/3 md:flex-row ">
+      <div className="flex flex-col items-center justify-center lg:flex-row mt-16 align-middle lg:justify-around h-1/3">
         <div></div>
         <div
-          className="w-9/12 lg:w-1/3 mx-auto sm:mx-0 mb-14 outline-4  border-white"
+          className="w-9/12 lg:w-1/3 mx-auto sm:mx-0 mb-4 sm:mb-12 outline-4  border-white"
           onClick={() => {
             handleNavigation("cultural");
           }}
@@ -33,12 +33,12 @@ function EventsPage() {
           </div>
         </div>
         <div
-          className="w-9/12 lg:w-1/3 mx-auto sm:mx-0"
+          className="w-9/12 lg:w-1/3 pt-1 mb-14 mx-auto sm:mx-0 sm-mt-5"
           onClick={() => {
             handleNavigation("technical");
           }}
         >
-          <div className=" hover:scale-110 md:ml-3 transition duration-200 cursor-pointer rounded-2xl">
+          <div className=" hover:scale-110 transition duration-200 cursor-pointer rounded-2xl">
             <img
               src="https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/EventImages%2FTechnical%20Events%2FTechnicalEventsPoster.png?alt=media&token=b35b682d-d0ea-4960-9a8d-1a65827de4e1"
               alt="event"
