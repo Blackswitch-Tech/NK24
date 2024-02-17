@@ -65,7 +65,7 @@ const Technical = () => {
                 className="peer h-full w-full font-pop rounded-lg bg-transparent px-3 py-2 text-sm font-normal text-white outline-none border border-gray-700 focus:ring-2 focus:ring-gray-500"
               >
                 {options.map((option, index) => (
-                  <option key={index} value={option.value} className="font-pop">
+                  <option key={index} value={option.value} className="font-pop bg-black">
                     {option.label}
                   </option>
                 ))}
