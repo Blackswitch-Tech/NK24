@@ -99,10 +99,14 @@ const Signup = ({route}) => {
 
     <div className="min-h-screen flex flex-col items-center justify-center bg-[url('https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Signupbg.jpeg?alt=media&token=94bfbc88-78f6-4c8a-a749-19fcb76fe493')] bg-no-repeat bg-cover bg-fixed bg-center">
     <div className="w-full max-w-md px-8 py-8 bg-transparent rounded-2xl mt-16 shadow-lg">
+    <div className="border border-red-900 text-red-700 bg-transparent px-4 py-3 rounded relative">
+      <strong className="font-bold text-lg font-pop">Disclaimer: </strong>
+      <span className="block sm:inline font-pop  text-sm">The registration and Participation is only for Engineering students. Sufficient proof should be provided at the registration counter.</span>
+    </div>
         <Card color="transparent" shadow={false}>
        
                 
-                 <Typography variant="h4" color="white" className="text-center"> Sign up</Typography>
+                 <Typography variant="h4" color="white" className="text-center mt-3"> Sign up</Typography>
 
               <Typography color="white" className="mt-1 mb-4 font-normal text-center">
               
