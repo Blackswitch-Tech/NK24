@@ -257,6 +257,7 @@ const EventPage = () => {
               </div>
             ))}
           </div>
+          {eventData.subcat.toLowerCase().trim()==="Workshop" &&(
           <div className="mb-6">
             <h2 className="text-2xl font-semibold font-pop text-white mb-2 underline">
               Prizes
@@ -282,6 +283,8 @@ const EventPage = () => {
               </div>
             ))}
           </div>
+
+          )}
 
           <div className="mb-1 font-pop text-green-500 text-2xl">
             Slots left:{" "}
