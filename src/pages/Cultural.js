@@ -91,7 +91,7 @@ const Cultural = () => {
                 ))}
               </select>
               <label className="absolute left-3 -top-5 text-xs text-gray-400 transition-all font-pop  peer-focus:-top-5 peer-focus:text-gray-200 peer-focus:text-xs">
-                item
+                Categories
               </label>
             </div>
           </div>

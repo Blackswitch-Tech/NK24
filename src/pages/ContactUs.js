@@ -3,7 +3,7 @@ import React from 'react';
 const ContactUsPage = () => {
   return (
     <div className="container mx-auto px-4 py-8 h-screen">
-          <h1 className="text-3xl font-bold text-center text-white mb-8">Contact Us</h1>
+          <h1 className="text-3xl font-bold text-center text-white font-pop mt-12 ">Contact Us</h1>
           <div className="mb-8">
             <h2 className="text-2xl font-semibold font-pop mt-3 text-white mb-4">Payment-Related Queries</h2>
             <p className='font-pop text-white mt-3'>If you have any issues with payments, such as failed transactions or payment success but not registered, please contact:</p>

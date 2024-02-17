@@ -108,7 +108,7 @@ export default function Homepage() {
               <p className="text-base sm:text-lg text-white font-pop">
                 Saintgits College of Engineering presents NAKSHATRA 2024, the
                 annual techno-cultural fest. It is hosted every year to
-                recognise fledging engineers who have a flair of technical
+                recognise fledgling engineers who have a flair of technical
                 expertise and artistry. It is one of the most eminent fests with
                 more than 4000 entrants from across the nation. This
                 extravaganza unfolds a two-day mega event that transports you
@@ -119,7 +119,7 @@ export default function Homepage() {
             </div>
             <div className="w-full sm:w-3/4 md:w-1/2 px-2 sm:px-4 flex justify-center md:justify-end order-first md:order-none">
               <img
-                src="https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/Saintgits%20New%20logo.png?alt=media&token=90dec050-d8f9-4c66-9d9d-d99becd51251"
+                src="https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/Sglogo.png?alt=media&token=e4459c95-8ced-47ac-bd94-d63d607375a1"
                 alt="About Us"
                 className="rounded-lg shadow-lg max-w-full h-auto mt-4 sm:mt-0"
               />

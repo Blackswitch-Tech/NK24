@@ -62,7 +62,7 @@ const Technical = () => {
                 onChange={(item) => {
                   handleChangeCategory(item.target.value);
                 }}
-                className="peer h-full w-full font-pop rounded-lg bg-transparent px-3 py-2 text-sm font-normal text-white outline-none border border-gray-700 focus:ring-2 focus:ring-gray-500"
+                className="peer h-full w-full font-pop rounded-lg bg-transparent px-3 py-2 text-sm font-normal text-white  border border-gray-700 focus:ring-2 focus:ring-gray-500 bg-black"
               >
                 {options.map((option, index) => (
                   <option key={index} value={option.value} className="font-pop bg-black">
@@ -71,7 +71,7 @@ const Technical = () => {
                 ))}
               </select>
               <label className="absolute left-3 -top-5 text-xs font-pop text-gray-400 transition-all peer-focus:-top-5 peer-focus:text-gray-200 peer-focus:text-xs">
-                Item
+                Categories
               </label>
             </div>
           </div>
@@ -82,7 +82,7 @@ const Technical = () => {
           curEvents.map((event, index) => (
             <div
               className="hover:scale-110 transition duration-200 cursor-pointer rounded-2xl m-4"
-              onClick={() => nav(`/events/cultural/${event.id}`)}
+              onClick={() => nav(`/events/technical/${event.id}`)}
             >
               <div class="max-w-sm rounded-lg overflow-hidden shadow-lg bg-white">
                 <img

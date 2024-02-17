@@ -33,7 +33,7 @@ export function RouterPaths() {
       <Route path="/events/cultural" element={<Cultural />} />
       <Route path="/events/technical" element={<Technical />} />
       <Route path="/events/cultural/:id" element={<EventDescPage />} />
-      <Route path="/events/cultural/:id" element={<EventDescPage />} />
+      <Route path="/events/technical/:id" element={<EventDescPage />} />
       <Route path="/update_profile" element={<UpdateProfile />} />
       <Route path="/credits" element={<Credits />} />
       <Route path="/contact_us" element={<ContactUsPage />} />
