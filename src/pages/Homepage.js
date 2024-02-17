@@ -106,7 +106,7 @@ export default function Homepage() {
                 About Us
               </h2>
               <p className="text-base sm:text-lg text-white font-pop">
-                Saintgits College of Engineering presents NAKSHATRA 2023, the
+                Saintgits College of Engineering presents NAKSHATRA 2024, the
                 annual techno-cultural fest. It is hosted every year to
                 recognise fledging engineers who have a flair of technical
                 expertise and artistry. It is one of the most eminent fests with
@@ -114,7 +114,7 @@ export default function Homepage() {
                 extravaganza unfolds a two-day mega event that transports you
                 into a new realm. Get enraptured in performances by budding
                 engineers and artists that will leave you spellbound. Join in to
-                be a part of our exquisite fest, NAKSHATRA 2023.
+                be a part of our exquisite fest, NAKSHATRA 2024.
               </p>
             </div>
             <div className="w-full sm:w-3/4 md:w-1/2 px-2 sm:px-4 flex justify-center md:justify-end order-first md:order-none">
@@ -128,8 +128,8 @@ export default function Homepage() {
         </div>
       </div>
 
-      <div className="end-section mx-8 mt-40 lg:mt-2 ">
-        <div className="text-white-800 font-extrabold text-5xl font-pop">
+      <div className="end-section mx-8 mt-40 py-8 lg:mt-2 ">
+        <div className="text-white font-extrabold text-5xl font-pop">
           FAQ
         </div>
         <DefaultAccordion />
