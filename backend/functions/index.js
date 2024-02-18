@@ -63,6 +63,7 @@ let amount;
 app.post("/razorpay", async (req, res) => {
   const dataforevents = {
     "NK-69": "50",
+    "NK-82": "100",
     "NK-45": "0",
     "NK-71": "150",
     "NK-68": "80",
@@ -78,11 +79,12 @@ app.post("/razorpay", async (req, res) => {
     "NK-49": "50",
     "NK-62": "60",
     "NK-10": "500",
-    "NK-77": "400",
+    "NK-77": "150",
     "NK-04": "40",
     "NK-65": "100",
     "NK-32": "30",
     "NK-59": "100",
+    "NK-81": "40",
     "NK-79": "50",
     "NK-31": "50",
     "NK-19": "10",
@@ -90,14 +92,12 @@ app.post("/razorpay", async (req, res) => {
     "NK-43": "100",
     "NK-78": "60",
     "NK-02": "30",
-    "NK-84":"150",
-    "NK-82":"100",
-    "NK-74": "299",
+    "NK-74": "200",
     "NK-05": "2000",
     "NK-47": "40",
     "NK-54": "500",
     "NK-21": "80",
-    "NK-60": "299",
+    "NK-60": "100",
     "NK-46": "100",
     "NK-20": "30",
     "NK-26": "80",
@@ -134,11 +134,11 @@ app.post("/razorpay", async (req, res) => {
     "NK-444": "100",
     "NK-56": "50",
     "NK-33": "250",
-    "NK-09": "100",
     "NK-35": "30",
     "NK-25": "250",
     "NK-63": "30",
     "NK-16": "100",
+    "NK-80": "50",
     "NK-64": "100",
     "NK-07": "50",
     "NK-333": "30",
@@ -221,34 +221,7 @@ app.post("/verify", async (req, res) => {
     }
 
     // Update user's registered events
-    const userRef = db.collection("users").doc(notes.uid);
-
-    try {
-      const doc = await userRef.get();
-
-      if (doc.exists) {
-        // Get the current array or initialize it as an empty array if it doesn't exist
-        const currentRegistered = doc.data().registered || [];
-
-        // Check if the eventId is already in the array to avoid duplicates
-        if (!currentRegistered.includes(notes.eventid)) {
-          // Add the eventId to the array
-          const updatedRegistered = [...currentRegistered, notes.eventid];
-
-          // Update the document with the new array
-          await userRef.update({
-            registered: updatedRegistered,
-          });
-          console.log("Updated registered events for user:", notes.uid);
-        } else {
-          console.log("EventId already registered for user:", notes.uid);
-        }
-      } else {
-        console.log("No such document exists with UID:", notes.uid);
-      }
-    } catch (error) {
-      console.error("Error updating registered events for user:", error);
-    }
+   
 
     try {
       if (notes.ref && notes.ref !== "nor") {
@@ -313,46 +286,7 @@ app.post("/verify", async (req, res) => {
       console.error("Error registering user:", error);
     }
     // Update event registrations
-    try {
-      const eventRegRef = db.collection("EventRegs").doc(notes.eventid);
-
-      eventRegRef
-        .get()
-        .then((doc) => {
-          // Initialize the registrations object to hold arrays keyed by eventid
-          let registrations = {};
-
-          if (doc.exists) {
-            // Document exists, fetch its data
-            registrations = doc.data().registrations || {};
-          }
-
-          // Ensure there's an array for the current eventid, then check for and add the userid if not already present
-          registrations[notes.eventid] = registrations[notes.eventid] || [];
-          if (
-            !registrations[notes.eventid].includes(
-              `${notes.nkid}-${notes.eventid}`
-            )
-          ) {
-            registrations[notes.eventid].push(`${notes.nkid}-${notes.eventid}`);
-
-            // Update or create the document with the updated registrations object
-            eventRegRef
-              .set({ registrations }, { merge: true })
-              .then(() =>
-                console.log("Updated event registrations for:", notes.eventid)
-              )
-              .catch((error) =>
-                console.error("Error updating event registrations:", error)
-              );
-          } else {
-            console.log("Userid already registered for event:", notes.eventid);
-          }
-        })
-        .catch((error) => console.error("Error fetching document:", error));
-    } catch (error) {
-      console.error("Error updating event registrations:", error);
-    }
+    
     res.json({ status: "ok" });
   } else {
     res.json({ status: "Error" });
