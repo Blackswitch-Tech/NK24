@@ -223,6 +223,9 @@ const EventPage = () => {
                 {eventData.cat} - {eventData.subcat}
               </span>
             </p>
+
+            {eventData.type.toLowerCase().trim()==="team"&&(
+            <>
             <p className="font-pop text-white">
               Minimum participants:{" "}
               <span className="font-medium text-white font-pop">
@@ -235,6 +238,8 @@ const EventPage = () => {
                 {eventData.max}
               </span>
             </p>
+            </>
+            )}
             <p className="font-pop text-2xl text-white">
               registration fees:{" "}
               <span className=" font-extrabold font-pop text-white">
@@ -257,7 +262,7 @@ const EventPage = () => {
               </div>
             ))}
           </div>
-          {eventData.subcat.toLowerCase().trim()==="Workshop" &&(
+          {eventData.subcat.toLowerCase()!=="workshop" &&(
           <div className="mb-6">
             <h2 className="text-2xl font-semibold font-pop text-white mb-2 underline">
               Prizes
