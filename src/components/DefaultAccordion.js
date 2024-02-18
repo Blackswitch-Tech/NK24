@@ -46,7 +46,7 @@ export default function DefaultAccordion() {
         Is transportation provided for participants attending Nakshatra 2024?
         </AccordionHeader>
         <AccordionBody className="font-pop text-white">
-        Transportation arrangements can be made available for participants upon request. Those interested in availing of this service are kindly requested to contact the Transportation Head, Devika, at 94008 05672. Please inform him as soon as possible and confirm your transportation arrangements no later than 3 days prior to the event.
+        Transportation arrangements can be made available for participants upon request. Those interested in availing  this service are kindly requested to contact the Transportation Head, Devika, at 94008 05672. Please inform her as soon as possible and confirm your transportation arrangements no later than 3 days prior to the event.
         </AccordionBody>
       </Accordion>
     </>

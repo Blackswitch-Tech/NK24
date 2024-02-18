@@ -49,7 +49,7 @@ const Technical = () => {
   return (
     <div className="bg-cover bg-fixed bg-no-repeat h-auto min-h-screen bg-[url('https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Signupbg.jpeg?alt=media&token=94bfbc88-78f6-4c8a-a749-19fcb76fe493')] w-full px-5">
       <div className="flex justify-center items-center pt-32">
-        <h1 className="text-white text-6xl font-pop sm:text-7xl tracking-widest">
+        <h1 className="text-white text-6xl font-neu sm:text-7xl tracking-widest">
           TECHNICAL
         </h1>
       </div>
@@ -62,7 +62,7 @@ const Technical = () => {
                 onChange={(item) => {
                   handleChangeCategory(item.target.value);
                 }}
-                className="peer h-full w-full font-pop rounded-lg bg-transparent px-3 py-2 text-sm font-normal text-white outline-none border border-gray-700 focus:ring-2 focus:ring-gray-500"
+                className="peer h-full w-full font-pop rounded-lg bg-transparent px-3 py-2 text-sm font-normal text-white  border border-gray-700 focus:ring-2 focus:ring-gray-500 bg-black"
               >
                 {options.map((option, index) => (
                   <option key={index} value={option.value} className="font-pop bg-black">
@@ -71,7 +71,7 @@ const Technical = () => {
                 ))}
               </select>
               <label className="absolute left-3 -top-5 text-xs font-pop text-gray-400 transition-all peer-focus:-top-5 peer-focus:text-gray-200 peer-focus:text-xs">
-                Item
+                Categories
               </label>
             </div>
           </div>
@@ -82,7 +82,7 @@ const Technical = () => {
           curEvents.map((event, index) => (
             <div
               className="hover:scale-110 transition duration-200 cursor-pointer rounded-2xl m-4"
-              onClick={() => nav(`/events/cultural/${event.id}`)}
+              onClick={() => nav(`/events/technical/${event.id}`)}
             >
               <div class="max-w-sm rounded-lg overflow-hidden shadow-lg bg-white">
                 <img
@@ -95,7 +95,6 @@ const Technical = () => {
                   alt={event.id}
                 />
               </div>
-              <div className="font-pop text-white">{event.name}</div>
             </div>
           ))
         ) : (

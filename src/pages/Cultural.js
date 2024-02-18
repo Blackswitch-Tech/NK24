@@ -15,7 +15,7 @@ const Cultural = () => {
   const [curEvents, setCurEvents] = useState([]);
   const options = [
     { value: "All", label: "All" },
-    { value: "General Events", label: "General Events" },
+    { value: "General", label: "General Events" },
     { value: "Dance", label: "Dance" },
     { value: "Music", label: "Music" },
     { value: "Sports", label: "Sports" },
@@ -65,8 +65,8 @@ const Cultural = () => {
   return (
     <div className="bg-cover bg-fixed bg-no-repeat h-auto min-h-screen bg-[url('https://firebasestorage.googleapis.com/v0/b/sampkle.appspot.com/o/Signupbg.jpeg?alt=media&token=94bfbc88-78f6-4c8a-a749-19fcb76fe493')] w-full px-5">
       <div className="flex justify-center items-center pt-32">
-        <h1 className="text-white text-6xl font-pop sm:text-7xl tracking-widest">
-          CULTURAL
+        <h1 className="text-white text-6xl font-neu sm:text-7xl tracking-widest">
+          NON TECHNICAL
         </h1>
       </div>
       <div className="flex justify-center my-10">
@@ -91,7 +91,7 @@ const Cultural = () => {
                 ))}
               </select>
               <label className="absolute left-3 -top-5 text-xs text-gray-400 transition-all font-pop  peer-focus:-top-5 peer-focus:text-gray-200 peer-focus:text-xs">
-                item
+                Categories
               </label>
             </div>
           </div>
@@ -117,7 +117,6 @@ const Cultural = () => {
                     alt={`${event.id}`}
                   />
                 </div>
-                <div className="font-pop text-white">{event.name}</div>
               </div>
             </Suspense>
           ))
