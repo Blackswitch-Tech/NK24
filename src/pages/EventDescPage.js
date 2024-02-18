@@ -496,7 +496,17 @@ const EventPage = () => {
                         ) : (
                           <></>
                         )}
-
+<div
+                              class=" border border-red-400 text-red-700 px-4 py-3 rounded relative"
+                              role="alert"
+                            >
+                             
+                              <span class="block sm:inline text-sm font-pop">
+                                {" "}
+                                Event registration is not open for Students of Saintgits.
+                                
+                              </span>
+                            </div>
                         <button
                           className="bg-blue-500 mt-5 hover:bg-blue-700 font-pop w-full py-3 sm:w-72 text-white font-bold py-2 px-4 rounded "
                           disabled={registering}
