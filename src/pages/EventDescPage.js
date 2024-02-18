@@ -227,13 +227,13 @@ const EventPage = () => {
             {eventData.type.toLowerCase().trim()==="team"&&(
             <>
             <p className="font-pop text-white">
-              Minimum participants:{" "}
+              Minimum participants per team:{" "}
               <span className="font-medium text-white font-pop">
                 {eventData.min}
               </span>
             </p>
             <p className="font-pop text-white">
-              Maximum participants:{" "}
+              Maximum participants per team:{" "}
               <span className="font-medium text-white font-pop">
                 {eventData.max}
               </span>
