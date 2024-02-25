@@ -24,7 +24,7 @@ export default function Footer() {
   return (
     <footer className="w-full bg-black p-8 font-pop">
       <div className="flex flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12 bg-black  text-center md:justify-between">
-        <img src={Logo} alt="logo-ct" className="w-20" />
+        <img src="https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/sglogo2.jpeg?alt=media&token=a83266e4-72da-4135-aa8b-be26d619ccef" alt="logo-ct" className="w-20" />
         <ul className="flex flex-wrap items-center gap-x-8">
           <li>
             <Typography
