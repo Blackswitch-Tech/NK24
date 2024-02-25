@@ -42,7 +42,7 @@ const sliderImageUrl = [
 
   },
   {
-    url:"https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/EventImages%2FTechnical%20Events%2Fchemhunt%20FINAL.jpg?alt=media&token=187fa5e1-8e4a-4159-b93b-f75c882e71f6",
+    url:"https://firebasestorage.googleapis.com/v0/b/nakshatra-9c45c.appspot.com/o/EventImages%2FTechnical%20Events%2Fchemhunt%20fixed.jpg?alt=media&token=67e2d909-be1b-475c-a661-854ef7f2bb29",
     eventlink : "/events/cultural/NK-57"
 
   },
