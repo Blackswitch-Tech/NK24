@@ -13,6 +13,7 @@ import EventDescPage from "../pages/EventDescPage";
 import Privacy from "../pages/policy/Privacy";
 import Refund from "../pages/policy/Refund.js";
 import Terms from "../pages/policy/Terms.js";
+import Feedback from "../pages/Feeback.js";
 
 import Credits from "../pages/Credits";
 import UpdateProfile from "../pages/UpdateProfile";
@@ -37,6 +38,7 @@ export function RouterPaths() {
       <Route path="/update_profile" element={<UpdateProfile />} />
       <Route path="/credits" element={<Credits />} />
       <Route path="/contact_us" element={<ContactUsPage />} />
+      <Route path="/feedback" element={<Feedback />} />
     </Routes>
   );
 }

@@ -13,6 +13,7 @@ import "./styles.css"
 const navigation = [
   { name: "Home", href: "/", current: false },
   { name: "Events", href: "/events", current: false },
+  { name: "Feedback", href: "/Feedback", current: false },
 ];
 
 function classNames(...classes) {
