@@ -49,6 +49,14 @@ export default function DefaultAccordion() {
         Transportation arrangements can be made available for participants upon request. Those interested in availing  this service are kindly requested to contact the Transportation Head, Devika, at 94008 05672. Please inform her as soon as possible and confirm your transportation arrangements no later than 3 days prior to the event.
         </AccordionBody>
       </Accordion>
+      <Accordion open={open === 4} icon={<Icon id={4} open={open} />}>
+        <AccordionHeader onClick={() => handleOpen(4)} className="hover:!text-white text-white font-pop">
+        Is Stay available for participants of Nakshatra?
+        </AccordionHeader>
+        <AccordionBody className="font-pop text-white">
+        Stay won't be available at the Hostel but it will be provided at nearby locations outside the college premises and transportation will be provided on demand. For more information contact Johns N Reji at  8075662344.
+        </AccordionBody>
+      </Accordion>
     </>
   );
 }
