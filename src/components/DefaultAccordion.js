@@ -54,7 +54,7 @@ export default function DefaultAccordion() {
         Is Stay available for participants of Nakshatra?
         </AccordionHeader>
         <AccordionBody className="font-pop text-white">
-        Stay won't be available at the Hostel but it will be provided at nearby locations outside the college premises and transportation will be provided on demand. For more information contact Johns N Reji at  8075662344.
+        Accommodation will not be available at the hostel. Please note that the college is not responsible for arranging alternate stay options. However, contact details for nearby accommodation providers will be shared upon request. Transportation services can also be arranged as needed. For more information or to request contact details, please get in touch with Johns N Reji at 8075662344.
         </AccordionBody>
       </Accordion>
     </>
